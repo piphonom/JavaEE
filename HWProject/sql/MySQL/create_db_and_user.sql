@@ -1,0 +1,3 @@
+CREATE DATABASE Rik;
+CREATE USER 'rik_itsys'@'%' IDENTIFIED BY 'rik_test_pass';
+GRANT SELECT, INSERT, UPDATE, EXECUTE, SHOW VIEW, LOCK TABLES ON Rik.* to 'rik_itsys'@'%';
