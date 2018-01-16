@@ -31,6 +31,19 @@ public class JpaUserDAO implements UserDAO {
     }
 
     @Override
+    public List<UserEntity> findAllOrderBySalaryDesc() {
+        Query query = entityManager.createQuery("from UserEntity u order by u.positionRef.salary desc");
+        return query.getResultList();
+    }
+
+    @Override
+    public UserEntity findByMaxSalary() {
+        Query query = entityManager.createNamedStoredProcedureQuery("findByMaxSalary")
+                .setMaxResults(1);
+        return (UserEntity) query.getSingleResult();
+    }
+
+    @Override
     public UserEntity save(UserEntity user) {
         return baseDAO.save(user);
     }

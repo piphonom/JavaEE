@@ -8,6 +8,8 @@ public interface UserDAO {
     UserEntity findByName(String name);
     UserEntity findByEmail(String email);
     List<UserEntity> findAll();
+    List<UserEntity> findAllOrderBySalaryDesc();
+    UserEntity findByMaxSalary();
     UserEntity save(UserEntity user);
     UserEntity delete(UserEntity user);
 }

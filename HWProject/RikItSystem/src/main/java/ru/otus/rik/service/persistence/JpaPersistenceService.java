@@ -33,6 +33,16 @@ public class JpaPersistenceService implements PersistenceService {
     }
 
     @Override
+    public List<UserEntity> findUsersOrderBySalaryDesc() {
+        return runTransaction(entityManager -> new JpaUserDAO(entityManager).findAllOrderBySalaryDesc());
+    }
+
+    @Override
+    public UserEntity findUserWithMaxSalary() {
+        return runTransaction(entityManager -> new JpaUserDAO(entityManager).findByMaxSalary());
+    }
+
+    @Override
     public UserEntity saveUser(UserEntity user) {
         return runTransaction(entityManager -> new JpaUserDAO(entityManager).save(user));
     }

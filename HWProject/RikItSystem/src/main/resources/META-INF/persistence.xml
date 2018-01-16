@@ -8,7 +8,7 @@
         <class>ru.otus.rik.domain.PositionEntity</class>
         <class>ru.otus.rik.domain.RoleEntity</class>
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/Rik?useTimezone=true&amp;serverTimezone=UTC"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/Rik?noAccessToProcedureBodies=true&amp;useTimezone=true&amp;serverTimezone=UTC"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
             <property name="hibernate.connection.username" value="rik_itsys"/>

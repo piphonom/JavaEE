@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 @WebServlet("/TestConnection")
 public class TestConnectionServlet extends HttpServlet {
     /* not thread safe, just for test */
-    private static String nameToFind = "test user";
+    private static String nameToFind = "Bob Marley";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

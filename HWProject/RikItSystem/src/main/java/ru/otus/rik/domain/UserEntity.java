@@ -11,6 +11,13 @@ import javax.persistence.*;
        uniqueConstraints = {@UniqueConstraint(columnNames = {"name"}),
                             @UniqueConstraint(columnNames = {"email"})}
        )
+@NamedStoredProcedureQueries({
+       @NamedStoredProcedureQuery(
+           name = "findByMaxSalary",
+           procedureName = "GetMaxSalary",
+           resultClasses = { UserEntity.class }
+           )
+})
 @Getter
 @Setter
 public class UserEntity {
@@ -22,15 +29,15 @@ public class UserEntity {
     private String email;
     private String phone;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="departmentRef", referencedColumnName="idDepartment")
     private DepartmentEntity departmentRef;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="positionRef", referencedColumnName="idPosition")
     private PositionEntity positionRef;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="roleRef", referencedColumnName="idRole")
     private RoleEntity roleRef;
 }

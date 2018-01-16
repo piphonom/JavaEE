@@ -12,6 +12,8 @@ public interface PersistenceService {
     UserEntity findUserByName(String name);
     UserEntity findUserByEmail(String email);
     List<UserEntity> findAllUsers();
+    List<UserEntity> findUsersOrderBySalaryDesc();
+    UserEntity findUserWithMaxSalary();
     UserEntity saveUser(UserEntity user);
     void deleteUser(UserEntity user);
 
