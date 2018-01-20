@@ -5,7 +5,6 @@ import ru.otus.rik.domain.PositionEntity;
 import ru.otus.rik.domain.RoleEntity;
 import ru.otus.rik.domain.UserEntity;
 
-import javax.management.relation.Role;
 import java.util.List;
 
 public interface PersistenceService {
@@ -14,6 +13,7 @@ public interface PersistenceService {
     List<UserEntity> findAllUsers();
     List<UserEntity> findUsersOrderBySalaryDesc();
     UserEntity findUserWithMaxSalary();
+    double getAverageSalary();
     UserEntity saveUser(UserEntity user);
     void deleteUser(UserEntity user);
 

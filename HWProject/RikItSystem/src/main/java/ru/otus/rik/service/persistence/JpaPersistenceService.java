@@ -43,6 +43,11 @@ public class JpaPersistenceService implements PersistenceService {
     }
 
     @Override
+    public double getAverageSalary() {
+        return runTransaction(entityManager -> new JpaUserDAO(entityManager).getAverageSalary());
+    }
+
+    @Override
     public UserEntity saveUser(UserEntity user) {
         return runTransaction(entityManager -> new JpaUserDAO(entityManager).save(user));
     }

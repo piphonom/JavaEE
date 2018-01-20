@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.*;
 
 @Entity
 @Table(name = "User",
@@ -20,24 +21,33 @@ import javax.persistence.*;
 })
 @Getter
 @Setter
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @XmlAttribute(name = "id")
     private int idUser;
 
+    @XmlElement
     private String name;
+    @XmlElement
     private String email;
+    @XmlElement
     private String phone;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="departmentRef", referencedColumnName="idDepartment")
+    @XmlElement(name = "Department")
     private DepartmentEntity departmentRef;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="positionRef", referencedColumnName="idPosition")
+    @XmlElement(name = "Position")
     private PositionEntity positionRef;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="roleRef", referencedColumnName="idRole")
+    @XmlElement(name = "Role")
     private RoleEntity roleRef;
 }

@@ -1,4 +1,4 @@
-package ru.otus.rik.web;
+package ru.otus.rik.web.persistence;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;

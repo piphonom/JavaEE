@@ -1,4 +1,4 @@
-package ru.otus.rik.web;
+package ru.otus.rik.web.persistence;
 
 import ru.otus.rik.domain.UserEntity;
 import ru.otus.rik.service.persistence.JpaPersistenceService;

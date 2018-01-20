@@ -44,6 +44,15 @@ public class JpaUserDAO implements UserDAO {
     }
 
     @Override
+    public double getAverageSalary() {
+        Query query = entityManager.createQuery("select avg(u.positionRef.salary) from UserEntity u")
+                .setMaxResults(1);
+        return (Double) query.getSingleResult();
+    }
+
+
+
+    @Override
     public UserEntity save(UserEntity user) {
         return baseDAO.save(user);
     }

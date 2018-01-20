@@ -10,6 +10,7 @@ public interface UserDAO {
     List<UserEntity> findAll();
     List<UserEntity> findAllOrderBySalaryDesc();
     UserEntity findByMaxSalary();
+    double getAverageSalary();
     UserEntity save(UserEntity user);
     UserEntity delete(UserEntity user);
 }
