@@ -34,9 +34,12 @@ public class XmlBinder<T> {
         Validator validator = schema.newValidator();
         validator.validate(new StreamSource(new FileInputStream(data)));
 
+        return fromXML((new FileInputStream(data)));
+    }
+
+    public T fromXML(InputStream data) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(type);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-
         return (T) unmarshaller.unmarshal(data);
     }
 }
