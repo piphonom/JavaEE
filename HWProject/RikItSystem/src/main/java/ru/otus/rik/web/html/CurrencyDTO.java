@@ -1,4 +1,4 @@
-package ru.otus.rik.domain.currency;
+package ru.otus.rik.web.html;
 
 import lombok.Getter;
 import lombok.Setter;

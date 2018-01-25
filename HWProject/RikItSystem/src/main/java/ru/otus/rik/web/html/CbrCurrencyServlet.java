@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import ru.otus.rik.domain.currency.CbrValute;
 import ru.otus.rik.domain.currency.CbrValuteList;
-import ru.otus.rik.domain.currency.CurrencyDTO;
 import ru.otus.rik.service.xml.XmlBinder;
 
 import javax.servlet.ServletException;
@@ -19,16 +18,14 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @WebServlet(name = "CbrCurrency", urlPatterns = "/currency")
 public class CbrCurrencyServlet extends HttpServlet {
 
     private static final String CBR_CURRENCY_URL = "http://www.cbr.ru/scripts/XML_daily.asp";
-    private static final Gson jsonBuilder = new GsonBuilder().setPrettyPrinting().create();
+    private static final Gson jsonBuilder = new GsonBuilder().create();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

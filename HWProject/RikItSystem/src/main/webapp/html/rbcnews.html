@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>This has a nice outline</title>
+    <style>
+        article, aside, nav {display: block;}
+        article, aside {float: left; }
+        article {width: 500px;}
+        nav {width: 250px;}
+    </style>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.min.js" type="text/javascript"></script>
+    <script>
+        $(function() {
+            $.getJSON( "/currency", function( data ) {
+                $('#usd').html(data.usd);
+                $('#eur').html(data.eur);
+                $('#chf').html(data.chf);
+            });
+        });
+
+        $(function() {
+            $.getJSON( "/rbc", function( data ) {
+                var startRef = "<a href=";
+                var endRef = "</a>";
+                var element = "rbcevent"
+                var news = data.news;
+                for(var i in news) {
+                    var line = startRef.concat(news[i].link, ">", news[i].title, endRef);
+                    var elementId = element.concat(i);
+                    document.getElementById(elementId).innerHTML = line;
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<header>
+    <h1>Рога и копыта</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="login.html">Администраторская панель</a></li>
+            <li><a href="forum.html">Форум</a></li>
+        </ul>
+    </nav>
+</header>
+<article>
+    <header>
+        <h1>Новости РБК</h1>
+    </header>
+    <ul>
+        <li><div id="rbcevent0"></div></li>
+        <li><div id="rbcevent1"></div></li>
+        <li><div id="rbcevent2"></div></li>
+        <li><div id="rbcevent3"></div></li>
+        <li><div id="rbcevent4"></div></li>
+        <li><div id="rbcevent5"></div></li>
+        <li><div id="rbcevent6"></div></li>
+        <li><div id="rbcevent7"></div></li>
+        <li><div id="rbcevent8"></div></li>
+        <li><div id="rbcevent9"></div></li>
+        <li><div id="rbcevent10"></div></li>
+        <li><div id="rbcevent11"></div></li>
+        <li><div id="rbcevent12"></div></li>
+        <li><div id="rbcevent13"></div></li>
+    </ul>
+</article>
+<aside>
+    <header>
+        <h2>Курс валют ЦБ РФ</h2>
+    </header>
+    <ul>
+        <li>USD: <div id="usd"></div></li>
+        <li>EUR: <div id="eur"></div></li>
+        <li>CHF: <div id="chf"></div></li>
+    </ul>
+</aside>
+</body>
+</html>
