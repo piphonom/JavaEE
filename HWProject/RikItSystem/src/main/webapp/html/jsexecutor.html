@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>This has a nice outline</title>
+    <style>
+        article, aside, nav {display: block; }
+        article, aside {float: left; }
+        article {width: 500px; }
+        nav {width: 250px; }
+        .firstColumnWidth {width: 200px; display: inline-block; }
+        .inputWidth {width: 300px; height: 300px; }
+    </style>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.min.js" type="text/javascript"></script>
+    <script>
+        $(function() {
+            $.getJSON( "/currency", function( data ) {
+                $('#usd').html(data.usd);
+                $('#eur').html(data.eur);
+                $('#chf').html(data.chf);
+            });
+        });
+
+        $(function () {
+            var scriptElement = document.getElementById('scriptText');
+            scriptElement.addEventListener('blur', function(){
+            makeRequest('POST', '/nashorn', 'toExecute=' + scriptElement.value,
+                    function (err, datums) {
+                        if (err) { throw err; }
+                        $('#nashornResult').val(datums);
+                    });
+            });
+        });
+
+        function makeRequest (method, url, data, done) {
+            var xhrs = new XMLHttpRequest();
+            xhrs.open(method, url, true);
+            xhrs.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+            xhrs.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhrs.setRequestHeader('Cache-Control', 'no-cache');
+            xhrs.setRequestHeader('Expires', '0');
+
+            xhrs.timeout = 1000;
+
+            xhrs.ontimeout = function () {
+                return;
+            };
+
+            xhrs.onreadystatechange = function () {
+                if (xhrs.readyState != 4) {
+                    return;
+                }
+
+                if (xhrs.status != 200) {
+                    return;
+                }
+                done(null, xhrs.responseText);
+            };
+            xhrs.send(data);
+        }
+
+
+    </script>
+</head>
+<body>
+<header>
+    <h1>Рога и копыта</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="login.html">Личный кабинет</a></li>
+            <li><a href="rbcnews.html">Новости РБК</a></li>
+            <li><a href="jsexecutor.html">Запуск JavaScript</a></li>
+        </ul>
+    </nav>
+</header>
+<article>
+    <header>
+        <h1>Запуск JavaScript</h1>
+    </header>
+    <div>
+        <label for="scriptText" class="firstColumnWidth">Скрипт для запуска:</label>
+        <textarea type="text" id="scriptText" class="inputWidth"></textarea>
+    </div>
+    <div>
+        <label for="nashornResult" class="firstColumnWidth">Результат:</label>
+        <textarea id="nashornResult" class="inputWidth" disabled></textarea>
+    </div>
+</article>
+<aside>
+    <header>
+        <h2>Курс валют ЦБ РФ</h2>
+    </header>
+    <ul>
+        <li>USD: <div id="usd"></div></li>
+        <li>EUR: <div id="eur"></div></li>
+        <li>CHF: <div id="chf"></div></li>
+    </ul>
+</aside>
+</body>
+</html>

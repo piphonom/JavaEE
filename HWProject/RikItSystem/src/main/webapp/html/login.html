@@ -18,6 +18,22 @@
                 $('#chf').html(data.chf);
             });
         });
+
+        function validateInput() {
+            var login = document.getElementById("login").value;
+            var password = document.getElementById("password").value;
+            if (login !== "" && password !== "") {
+                document.getElementById("login_button").setAttribute("disabled", "");
+            }
+        }
+
+        function startLogin() {
+            var login = document.getElementById("login").value;
+            var password = document.getElementById("password").value;
+            if (login === "Vasya" && password === "Password") {
+                document.getElementById("message").innerText = "Вы успешно вошли!";
+            }
+        }
     </script>
 </head>
 <body>
@@ -34,18 +50,17 @@
 </header>
 <article>
     <header>
-        <h1>Новость часа</h1>
+        <h1>Личный кабинет</h1>
     </header>
-    <p><strong></strong>
-        Кто-то что-то сказал. Это важно!
-    </p>
-    <br>
-    <header>
-        <h1>Новость другого часа</h1>
-    </header>
-    <p><strong></strong>
-        До этого тоже что-то говорили!
-    </p>
+    <label for="login">Логин</label>
+    <input type="text" id="login" size="15" maxlength="15" autocomplete="off" value="" onchange="validateInput()">
+    <br><br>
+    <label for="password">Пароль</label>
+    <input type="password" id="password" size="15" maxlength="15" autocomplete="off" value="" onchange="validateInput()">
+    <br><br>
+    <input type="button" id="login_button" value="Вход" onclick="startLogin()" disabled="disabled">
+    <br><br>
+    <div id="message"></div>
 </article>
 <aside>
     <header>
