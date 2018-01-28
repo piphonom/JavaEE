@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>This has a nice outline</title>
+    <title>Rik IT system</title>
     <style>
         article, aside, nav {display: block;}
         article, aside {float: left; }
@@ -19,11 +19,25 @@
             });
         });
 
+        $(function() {
+            document.getElementById('search').addEventListener('blur', goToSearch);
+            document.getElementById('login').addEventListener('blur', validateInput);
+            document.getElementById('password').addEventListener('blur', validateInput);
+        });
+
+        function goToSearch() {
+            var search = document.getElementById('search').value;
+            window.location = "http://www.google.com/search?btnG=1&pws=0&q="+search;
+            return true;
+        }
+
         function validateInput() {
             var login = document.getElementById("login").value;
             var password = document.getElementById("password").value;
             if (login !== "" && password !== "") {
-                document.getElementById("login_button").setAttribute("disabled", "");
+                document.getElementById("login_button").removeAttribute("disabled");
+            } else {
+                document.getElementById("login_button").setAttribute("disabled", "disabled");
             }
         }
 
@@ -47,16 +61,18 @@
             <li><a href="jsexecutor.html">Запуск JavaScript</a></li>
         </ul>
     </nav>
+    <label for="search">Поиск Google</label>
+    <input type="text" id="search" size="20" autocomplete="off" value="">
 </header>
 <article>
     <header>
         <h1>Личный кабинет</h1>
     </header>
     <label for="login">Логин</label>
-    <input type="text" id="login" size="15" maxlength="15" autocomplete="off" value="" onchange="validateInput()">
+    <input type="text" id="login" size="15" maxlength="15" autocomplete="off" value="">
     <br><br>
     <label for="password">Пароль</label>
-    <input type="password" id="password" size="15" maxlength="15" autocomplete="off" value="" onchange="validateInput()">
+    <input type="password" id="password" size="15" maxlength="15" autocomplete="off" value="">
     <br><br>
     <input type="button" id="login_button" value="Вход" onclick="startLogin()" disabled="disabled">
     <br><br>

@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>This has a nice outline</title>
+    <title>Rik IT system</title>
     <style>
-        article, aside, nav {display: block;}
+        article, aside, nav, footer {display: block;}
+        article, aside, footer {display: block;}
         article, aside {float: left; }
         article {width: 500px;}
         nav {width: 250px;}
@@ -18,6 +19,16 @@
                 $('#chf').html(data.chf);
             });
         });
+
+        $(function() {
+            document.getElementById('search').addEventListener('blur', goToSearch);
+        });
+
+        function goToSearch() {
+            var search = document.getElementById('search').value;
+            window.location = "http://www.google.com/search?btnG=1&pws=0&q="+search;
+            return true;
+        }
     </script>
 </head>
 <body>
@@ -31,6 +42,8 @@
             <li><a href="jsexecutor.html">Запуск JavaScript</a></li>
         </ul>
     </nav>
+    <label for="search">Поиск Google</label>
+    <input type="text" id="search" size="20" autocomplete="off" value="">
 </header>
 <article>
     <header>
@@ -57,5 +70,10 @@
         <li>CHF: <div id="chf"></div></li>
     </ul>
 </aside>
+<!--
+<footer>
+    <small>Copyright © <time datetime="2018">2018</time> Rik IT System</small>
+</footer>
+-->
 </body>
 </html>
