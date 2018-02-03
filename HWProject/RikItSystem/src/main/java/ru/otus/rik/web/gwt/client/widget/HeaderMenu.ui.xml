@@ -38,10 +38,12 @@
     </ui:style>
 
 
-    <g:DockLayoutPanel styleName='{style.outer}' unit='EM'>
-        <g:center>
+    <!--<g:DockLayoutPanel styleName='{style.outer}' unit='EM'>-->
+        <!--<g:center>-->
+    <g:VerticalPanel>
             <g:FlexTable ui:field='table' styleName='{style.table}' cellSpacing='0' cellPadding='0'/>
-        </g:center>
-    </g:DockLayoutPanel>
+    </g:VerticalPanel>
+        <!--</g:center>-->
+    <!--</g:DockLayoutPanel>-->
 
 </ui:UiBinder>

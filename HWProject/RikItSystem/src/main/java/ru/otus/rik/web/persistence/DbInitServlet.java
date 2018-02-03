@@ -8,6 +8,8 @@ import ru.otus.rik.domain.RoleEntity;
 import ru.otus.rik.domain.UserEntity;
 import ru.otus.rik.service.persistence.JpaPersistenceService;
 import ru.otus.rik.service.persistence.PersistenceService;
+import ru.otus.rik.service.persistence.helpers.HashGenerator;
+import ru.otus.rik.service.persistence.helpers.RandomString;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.Reader;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -32,15 +35,17 @@ public class DbInitServlet extends HttpServlet {
         initDepartments();
         initPositions();
         initRoles();
-        List<UserEntity> unsaved = initUsers();
 
         try (PrintWriter writer = resp.getWriter()) {
+            List<UserEntity> unsaved = initUsers();
             if (unsaved.size() != 0) {
                 writer.println("Unsaved users:");
                 unsaved.forEach(user -> writer.println(user.getName()));
             } else {
                 writer.println("Everything is saved");
             }
+        } catch (NoSuchAlgorithmException e) {
+            throw new ServletException(e.getCause());
         }
     }
 
@@ -84,14 +89,23 @@ public class DbInitServlet extends HttpServlet {
         });
     }
 
-    private List<UserEntity> initUsers() throws IOException {
+    private List<UserEntity> initUsers() throws IOException, NoSuchAlgorithmException {
         List<UserEntity> unsavedUsers = new ArrayList<>();
-        /* Name,Email,Phone,DepartmentName,DepartmentLocation,Position,Role */
+        RandomString randomString = new RandomString();
+        HashGenerator hashGenerator = new HashGenerator();
+        /* Name,Email,Phone,DepartmentName,DepartmentLocation,Position,Role,Password */
         processCsv("/WEB-INF/Users.csv", (record) -> {
             UserEntity user = new UserEntity();
             user.setName(record.get("Name"));
             user.setEmail(record.get("Email"));
             user.setPhone(record.get("Phone"));
+            String password = record.get("Password");
+            if (password != null) {
+                String salt = randomString.nextString();
+                String hash = hashGenerator.setSalt(salt).update(password).digest();
+                user.setSalt(salt);
+                user.setPwdHash(hash);
+            }
 
             DepartmentEntity department = persistenceService.findDepartmentByNameAndLocation(record.get("DepartmentName"), record.get("DepartmentLocation"));
             PositionEntity position = persistenceService.findPositionByTitle(record.get("Position"));

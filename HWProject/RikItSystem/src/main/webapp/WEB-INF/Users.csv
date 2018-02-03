@@ -1,10 +1,10 @@
-Name,Email,Phone,DepartmentName,DepartmentLocation,Position,Role
-Bob Marley,marley@rik.com,783456789,Development,Saint-Petersburg,Architector,DIRECTOR
-Bob Dillan,dillan@rik.com,784567890,Development,Saint-Petersburg,Senjor developer,ADMIN
-Elton John,john@rik.com,789456123,Development,Saint-Petersburg,Middle developer,NORMAL
-Michael Jacson,jackson@rik.com,782347890,Development,Saint-Petersburg,Middle developer,NORMAL
-Donald Duck,duck@rik.com,152130879,Sales,San-Francisco,Sales Director,DIRECTOR
-Mickey Mouse,mouse@rik.com,3234561001,Sales,Tallin,Manager,NORMAL
-Chip Dail,dail@rik.com,781534491,HR,Saint-Petersburg,Senjor HR,ACCOUNTANT
-Darkwing Duck,durkwing@rik.com,7451354879,Adminstration,Moscow,Manager,NORMAL
-Launchpad McQuack,mcquak@rik.com,7894561354,Adminstration,Moscow,Office keeper,NORMAL
+Name,Email,Phone,DepartmentName,DepartmentLocation,Position,Role,Password
+Bob Marley,marley@rik.com,783456789,Development,Saint-Petersburg,Architector,DIRECTOR,passwmarley
+Bob Dillan,dillan@rik.com,784567890,Development,Saint-Petersburg,Senjor developer,ADMIN,passwdillan
+Elton John,john@rik.com,789456123,Development,Saint-Petersburg,Middle developer,NORMAL,passwjohn
+Michael Jacson,jackson@rik.com,782347890,Development,Saint-Petersburg,Middle developer,NORMAL,passwjackson
+Donald Duck,duck@rik.com,152130879,Sales,San-Francisco,Sales Director,DIRECTOR,passwdonals
+Mickey Mouse,mouse@rik.com,3234561001,Sales,Tallin,Manager,NORMAL,passwmickey
+Chip Dail,dail@rik.com,781534491,HR,Saint-Petersburg,Senjor HR,ACCOUNTANT,passwdail
+Darkwing Duck,durkwing@rik.com,7451354879,Adminstration,Moscow,Manager,NORMAL,passwdarkwing
+Launchpad McQuack,mcquak@rik.com,7894561354,Adminstration,Moscow,Office keeper,NORMAL,passlaunchpad

@@ -35,6 +35,8 @@ public class UserEntity {
     private String email;
     @XmlElement
     private String phone;
+    private String pwdHash;
+    private String salt;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="departmentRef", referencedColumnName="idDepartment")
