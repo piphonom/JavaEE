@@ -1,0 +1,47 @@
+<ui:UiBinder
+    xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <ui:style>
+
+        .outer {
+            border-left: 1px solid #999;
+            border-bottom: 1px solid #999;
+            cursor: pointer;
+            /* @alternate */ cursor: hand;
+        }
+
+        .table {
+            table-layout: fixed;
+            /*width: 100%;*/
+            width: 200px;
+        }
+
+
+        .table td {
+            border-top: 1px solid #999;
+            border-bottom: 1px solid #999;
+            padding: 2px 0 2px 10px;
+        }
+    </ui:style>
+    <ui:style field='selectionStyle'
+              type='ru.otus.rik.web.gwt.client.widget.HeaderMenu.SelectionStyle'>
+
+        .selectedRow {
+            background: #adcce7;
+        }
+
+        .selectedRow td {
+            border-top: 1px solid #88a4d6;
+            border-bottom: 1px solid #7b97d0;
+        }
+    </ui:style>
+
+
+    <g:DockLayoutPanel styleName='{style.outer}' unit='EM'>
+        <g:center>
+            <g:FlexTable ui:field='table' styleName='{style.table}' cellSpacing='0' cellPadding='0'/>
+        </g:center>
+    </g:DockLayoutPanel>
+
+</ui:UiBinder>
