@@ -6,6 +6,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import ru.otus.rik.web.gwt.shared.model.RbcNewsDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

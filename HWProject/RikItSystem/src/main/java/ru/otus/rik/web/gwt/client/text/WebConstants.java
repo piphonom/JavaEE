@@ -7,17 +7,11 @@ public interface WebConstants extends Constants {
     @Key("login.label.alt")
     String login_label_alt();
 
-    @Key("login.placeholder.alt")
-    String login_placeholder_alt();
-
     @Key("password.label.alt")
     String password_label_alt();
 
     @Key("logon.button.alt")
     String logon_button_alt();
-
-    @Key("form.header")
-    String form_header();
 
     @Key("main.page")
     String main_page();
@@ -30,4 +24,13 @@ public interface WebConstants extends Constants {
 
     @Key("event.one")
     String event_one();
+
+    @Key("user.name")
+    String user_name();
+
+    @Key("user.email")
+    String user_email();
+
+    @Key("user.department")
+    String user_department();
 }

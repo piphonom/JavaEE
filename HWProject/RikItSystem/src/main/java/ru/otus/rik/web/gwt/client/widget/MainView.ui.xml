@@ -10,8 +10,5 @@
         <g:HorizontalPanel>
             <g:Label text="{res.event_one}" addStyleNames="firstColumnWidth"></g:Label>
         </g:HorizontalPanel>
-
-        <!--<g:DialogBox text="Hello" ui:field="dialog"></g:DialogBox>-->
-
     </g:VerticalPanel>
 </ui:UiBinder>

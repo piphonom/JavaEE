@@ -4,13 +4,6 @@
 
     <ui:style>
 
-        .outer {
-            border-left: 1px solid #999;
-            border-bottom: 1px solid #999;
-            cursor: pointer;
-            /* @alternate */ cursor: hand;
-        }
-
         .table {
             table-layout: fixed;
             /*width: 100%;*/

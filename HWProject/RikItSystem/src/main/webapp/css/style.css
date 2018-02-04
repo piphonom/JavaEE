@@ -6,3 +6,8 @@
 .inputWidth {
     width: 300px;
 }
+
+.redButton {
+    font-size: 10px;
+    color: red;
+}

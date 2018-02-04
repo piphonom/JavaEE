@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import ru.otus.rik.domain.currency.CbrValute;
 import ru.otus.rik.domain.currency.CbrValuteList;
 import ru.otus.rik.service.xml.XmlBinder;
+import ru.otus.rik.web.gwt.shared.model.CurrencyDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

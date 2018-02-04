@@ -1,10 +1,6 @@
 package ru.otus.rik.web.gwt.shared.model;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 

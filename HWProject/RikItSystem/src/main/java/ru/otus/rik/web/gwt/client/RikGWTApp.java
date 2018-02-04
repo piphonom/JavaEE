@@ -18,16 +18,6 @@ public class RikGWTApp implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
-        //GWT.<GlobalResources>create(GlobalResources.class).css().ensureInjected();
-        //initHeaderAndTitle();
-        //RootPanel rootPanel = RootPanel.get("slot");
-        //rootPanel.add(new GeneralView(clientService, webConstants));
         new GeneralView(clientService, webConstants);
-    }
-
-
-    private void initHeaderAndTitle(){
-        Document.get().getElementById("header").setInnerText(webConstants.form_header());
-        Document.get().getElementById("title").setInnerText(webConstants.title());
     }
 }
