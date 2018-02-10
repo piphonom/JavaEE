@@ -117,6 +117,21 @@ public class JpaPersistenceService implements PersistenceService {
         return runTransaction((entityManager -> new JpaRoleDAO(entityManager).delete(role)));
     }
 
+    @Override
+    public void dropAll() {
+        List<UserEntity> users = this.findAllUsers();
+        users.forEach(this::deleteUser);
+
+        List<DepartmentEntity> departments = this.findAllDepartments();
+        departments.forEach(this::deleteDepartment);
+
+        List<PositionEntity> positions = this.findAllPositions();
+        positions.forEach(this::deletePosition);
+
+        List<RoleEntity> roles = this.findAllRoles();
+        roles.forEach(this::deleteRole);
+    }
+
     private <T> T runTransaction(Function<EntityManager, T> function) {
         EntityManager manager = entityManagerFactory.createEntityManager();
         try {

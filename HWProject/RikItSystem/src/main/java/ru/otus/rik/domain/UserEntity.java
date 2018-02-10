@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.*;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @XmlAttribute(name = "id")
+    @XmlTransient
     private int idUser;
 
     @XmlElement
@@ -38,17 +38,17 @@ public class UserEntity {
     private String pwdHash;
     private String salt;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name="departmentRef", referencedColumnName="idDepartment")
     @XmlElement(name = "Department")
     private DepartmentEntity departmentRef;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name="positionRef", referencedColumnName="idPosition")
     @XmlElement(name = "Position")
     private PositionEntity positionRef;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name="roleRef", referencedColumnName="idRole")
     @XmlElement(name = "Role")
     private RoleEntity roleRef;

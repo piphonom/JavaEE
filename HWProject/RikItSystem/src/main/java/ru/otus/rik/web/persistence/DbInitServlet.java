@@ -31,7 +31,7 @@ public class DbInitServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        dropTables();
+        persistenceService.dropAll();
         initDepartments();
         initPositions();
         initRoles();
@@ -47,20 +47,6 @@ public class DbInitServlet extends HttpServlet {
         } catch (NoSuchAlgorithmException e) {
             throw new ServletException(e.getCause());
         }
-    }
-
-    private void dropTables() {
-        List<UserEntity> users = persistenceService.findAllUsers();
-        users.forEach(persistenceService::deleteUser);
-
-        List<DepartmentEntity> departments = persistenceService.findAllDepartments();
-        departments.forEach(persistenceService::deleteDepartment);
-
-        List<PositionEntity> positions = persistenceService.findAllPositions();
-        positions.forEach(persistenceService::deletePosition);
-
-        List<RoleEntity> roles = persistenceService.findAllRoles();
-        roles.forEach(persistenceService::deleteRole);
     }
 
     private void initDepartments() throws IOException {

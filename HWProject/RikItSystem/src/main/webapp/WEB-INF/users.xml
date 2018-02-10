@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Users>
+    <User>
+        <name>Bob Marley</name>
+        <email>marley@rik.com</email>
+        <phone>783456789</phone>
+        <pwdHash>wpdjpMSo9RGw1RPWn8zoQwra+9FRC8uAD1m1+3Kqixg=</pwdHash>
+        <salt>cGToJrgrAUPAu5s86ct8W</salt>
+        <Department>
+            <name>Development</name>
+            <location>Saint-Petersburg</location>
+        </Department>
+        <Position>
+            <title>Architector</title>
+            <salary>4000</salary>
+        </Position>
+        <Role>
+            <name>DIRECTOR</name>
+        </Role>
+    </User>
+    <User>
+        <name>Bob Dillan</name>
+        <email>dillan@rik.com</email>
+        <phone>784567890</phone>
+        <pwdHash>YwgEJm8rxgzPgF21W9Ntc93c5ZF4ei3scc423OCi1Ng=</pwdHash>
+        <salt>pBHhbk3uwOaZAUvrb82JS</salt>
+        <Department>
+            <name>Development</name>
+            <location>Saint-Petersburg</location>
+        </Department>
+        <Position>
+            <title>Senjor developer</title>
+            <salary>3000</salary>
+        </Position>
+        <Role>
+            <name>ADMIN</name>
+        </Role>
+    </User>
+    <User>
+        <name>Elton John</name>
+        <email>john@rik.com</email>
+        <phone>789456123</phone>
+        <pwdHash>46WHlTlhjihTcyErNGloGYptm01ZybK51YKmp52ujZ8=</pwdHash>
+        <salt>Q8y5ZWAGByeowSDF9hDEX</salt>
+        <Department>
+            <name>Development</name>
+            <location>Saint-Petersburg</location>
+        </Department>
+        <Position>
+            <title>Middle developer</title>
+            <salary>2000</salary>
+        </Position>
+        <Role>
+            <name>NORMAL</name>
+        </Role>
+    </User>
+    <User>
+        <name>Michael Jacson</name>
+        <email>jackson@rik.com</email>
+        <phone>782347890</phone>
+        <pwdHash>jRs2XzhM3NV+c6LXfdIHmk6LU+vXQU8WW8f+tES5hXw=</pwdHash>
+        <salt>zYs7vN4C1KnV28hTasUb2</salt>
+        <Department>
+            <name>Development</name>
+            <location>Saint-Petersburg</location>
+        </Department>
+        <Position>
+            <title>Middle developer</title>
+            <salary>2000</salary>
+        </Position>
+        <Role>
+            <name>NORMAL</name>
+        </Role>
+    </User>
+    <User>
+        <name>Donald Duck</name>
+        <email>duck@rik.com</email>
+        <phone>152130879</phone>
+        <pwdHash>EsQWuyvw/CH2q+273g2+KlkZPUkqwm49ZdnAkJ8S6xU=</pwdHash>
+        <salt>QyWPNR4VVs7lC5t8gaIml</salt>
+        <Department>
+            <name>Sales</name>
+            <location>San-Francisco</location>
+        </Department>
+        <Position>
+            <title>Sales Director</title>
+            <salary>3500</salary>
+        </Position>
+        <Role>
+            <name>DIRECTOR</name>
+        </Role>
+    </User>
+    <User>
+        <name>Mickey Mouse</name>
+        <email>mouse@rik.com</email>
+        <phone>3234561001</phone>
+        <pwdHash>QwB4RMBPp0sWcENkJ/TekyvKFNqHbuGHz0L1A8gWuA0=</pwdHash>
+        <salt>Ogd6arUTOpzL1FixxWXG7</salt>
+        <Department>
+            <name>Sales</name>
+            <location>Tallin</location>
+        </Department>
+        <Position>
+            <title>Manager</title>
+            <salary>2700</salary>
+        </Position>
+        <Role>
+            <name>NORMAL</name>
+        </Role>
+    </User>
+    <User>
+        <name>Chip Dail</name>
+        <email>dail@rik.com</email>
+        <phone>781534491</phone>
+        <pwdHash>766JmmKxO5r1EPYzjWcfsmi6c3FaqOBAToY58bCcrdo=</pwdHash>
+        <salt>pERLObjQHYPJFq3GtxvGT</salt>
+        <Department>
+            <name>HR</name>
+            <location>Saint-Petersburg</location>
+        </Department>
+        <Position>
+            <title>Senjor HR</title>
+            <salary>2500</salary>
+        </Position>
+        <Role>
+            <name>ACCOUNTANT</name>
+        </Role>
+    </User>
+    <User>
+        <name>Darkwing Duck</name>
+        <email>durkwing@rik.com</email>
+        <phone>7451354879</phone>
+        <pwdHash>L2o7yqhjWlotYy2vVCifwJ5xDjnTQghTrEjLzNtgtaU=</pwdHash>
+        <salt>rZPnTDegL94KpA81I5vNo</salt>
+        <Department>
+            <name>Adminstration</name>
+            <location>Moscow</location>
+        </Department>
+        <Position>
+            <title>Manager</title>
+            <salary>2700</salary>
+        </Position>
+        <Role>
+            <name>NORMAL</name>
+        </Role>
+    </User>
+    <User>
+        <name>Launchpad McQuack</name>
+        <email>mcquak@rik.com</email>
+        <phone>7894561354</phone>
+        <pwdHash>5Qz+nberELGMZCTVu8QRWMV6MuSscuLTIoYtjRdcIms=</pwdHash>
+        <salt>uDRJjzWSY7UKivvvNLqgX</salt>
+        <Department>
+            <name>Adminstration</name>
+            <location>Moscow</location>
+        </Department>
+        <Position>
+            <title>Office keeper</title>
+            <salary>1000</salary>
+        </Position>
+        <Role>
+            <name>NORMAL</name>
+        </Role>
+    </User>
+</Users>

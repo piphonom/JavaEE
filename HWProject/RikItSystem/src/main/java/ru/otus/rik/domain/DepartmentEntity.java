@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.*;
 public class DepartmentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @XmlAttribute(name = "id")
+    @XmlTransient
     private int idDepartment;
 
     @XmlElement

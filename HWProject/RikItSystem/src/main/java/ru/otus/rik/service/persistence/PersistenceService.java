@@ -31,4 +31,6 @@ public interface PersistenceService {
     List<RoleEntity> findAllRoles();
     RoleEntity saveRole(RoleEntity role);
     RoleEntity deleteRole(RoleEntity role);
+
+    void dropAll();
 }

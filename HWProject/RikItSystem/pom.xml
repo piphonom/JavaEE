@@ -97,6 +97,17 @@
           <artifactId>gwt-servlet</artifactId>
           <scope>runtime</scope>
       </dependency>
+      <dependency>
+          <groupId>javax.servlet</groupId>
+          <artifactId>jstl</artifactId>
+          <version>1.2</version>
+          <scope>runtime</scope>
+      </dependency>
+      <dependency>
+          <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
+          <version>24.0-jre</version>
+      </dependency>
   </dependencies>
   <build>
     <finalName>rik-it-system</finalName>
@@ -118,32 +129,32 @@
             </webResources>
         </configuration>
       </plugin>
-        <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>gwt-maven-plugin</artifactId>
-            <version>${gwt.version}</version>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>compile</goal>
-                    </goals>
-                </execution>
-            </executions>
-            <configuration>
-                <module>ru.otus.rik.web.gwt.RikGWTApp</module>
-                <extraJvmArgs>
-                    -Xss1024K -Xmx1024M -Duser.language=ru -Duser.country=RU -Djavax.xml.parsers.DocumentBuilderFactory=com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl -Djavax.xml.parsers.SAXParserFactory=com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl
-                </extraJvmArgs>
-                <logLevel>INFO</logLevel>
-                <copyWebapp>true</copyWebapp>
-                <hostedWebapp>${webappDirectory}</hostedWebapp>
-                <runTarget>RikGWTApp.html</runTarget>
-                <extraParam>true</extraParam>
-                <extra>extras</extra>
-                <optimizationLevel>9</optimizationLevel>
-                <deploy>${project.build.directory}/gwtDeploy</deploy>
-            </configuration>
-        </plugin>
+        <!--<plugin>-->
+            <!--<groupId>org.codehaus.mojo</groupId>-->
+            <!--<artifactId>gwt-maven-plugin</artifactId>-->
+            <!--<version>${gwt.version}</version>-->
+            <!--<executions>-->
+                <!--<execution>-->
+                    <!--<goals>-->
+                        <!--<goal>compile</goal>-->
+                    <!--</goals>-->
+                <!--</execution>-->
+            <!--</executions>-->
+            <!--<configuration>-->
+                <!--<module>ru.otus.rik.web.gwt.RikGWTApp</module>-->
+                <!--<extraJvmArgs>-->
+                    <!-- -Xss1024K -Xmx1024M -Duser.language=ru -Duser.country=RU -Djavax.xml.parsers.DocumentBuilderFactory=com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl -Djavax.xml.parsers.SAXParserFactory=com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl-->
+                <!--</extraJvmArgs>-->
+                <!--<logLevel>INFO</logLevel>-->
+                <!--<copyWebapp>true</copyWebapp>-->
+                <!--<hostedWebapp>${webappDirectory}</hostedWebapp>-->
+                <!--<runTarget>RikGWTApp.html</runTarget>-->
+                <!--<extraParam>true</extraParam>-->
+                <!--<extra>extras</extra>-->
+                <!--<optimizationLevel>9</optimizationLevel>-->
+                <!--<deploy>${project.build.directory}/gwtDeploy</deploy>-->
+            <!--</configuration>-->
+        <!--</plugin>-->
     </plugins>
   </build>
 </project>

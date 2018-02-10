@@ -1,0 +1,7 @@
+[
+      {"name" : "Firefox", "minVersion" : 45, "imageSource" : "/logo/Firefox.png", "link" : "http://www.mozilla.org/ru/firefox/fx"},
+      {"name" : "Chrome", "minVersion" : 50, "imageSource" : "/logo/Chrome.png", "link" : "https://www.google.ru/intl/ru/chrome/browser/"},
+      {"name" : "Chromium", "minVersion" : 50, "imageSource" : "/logo/Chromium.png", "link" : "https://www.google.ru/intl/ru/chrome/browser/"},
+      {"name" : "Safari", "minVersion" : 537, "imageSource" : "/logo/Safari.png", "link" : "http://www.apple.com/ru/safari/"},
+      {"name" : "Opera", "minVersion" : 38, "imageSource" : "/logo/Opera.png", "link" : "http://www.opera.com/ru"}
+]
