@@ -1,6 +1,7 @@
 package ru.otus.rik.service.persistence.dao.jpa;
 
 import ru.otus.rik.domain.UserEntity;
+import ru.otus.rik.service.persistence.SearchParams;
 import ru.otus.rik.service.persistence.dao.UserDAO;
 
 import javax.persistence.*;
@@ -44,13 +45,22 @@ public class JpaUserDAO implements UserDAO {
     }
 
     @Override
+    public List<UserEntity> findByParams(SearchParams params) {
+        Query query = entityManager.createQuery("from UserEntity u where u.name like :name " +
+                                                                          "and u.departmentRef.name like :department " +
+                                                                          "and u.departmentRef.location like :location")
+                .setParameter("name", params.getName())
+                .setParameter("department", params.getDepartment())
+                .setParameter("location", params.getLocation());
+        return query.getResultList();
+    }
+
+    @Override
     public double getAverageSalary() {
         Query query = entityManager.createQuery("select avg(u.positionRef.salary) from UserEntity u")
                 .setMaxResults(1);
         return (Double) query.getSingleResult();
     }
-
-
 
     @Override
     public UserEntity save(UserEntity user) {

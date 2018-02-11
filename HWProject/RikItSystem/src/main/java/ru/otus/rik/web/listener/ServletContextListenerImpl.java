@@ -16,10 +16,13 @@ import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
 @WebListener
 public class ServletContextListenerImpl implements ServletContextListener {
+
+    private static final String DEFAULT_DB_SNAPSHOT = "/WEB-INF/users.xml";
 
     private static final PersistenceService persistenceService = new JpaPersistenceService();
 
@@ -28,12 +31,16 @@ public class ServletContextListenerImpl implements ServletContextListener {
         try {
             URL xsd = sce.getServletContext().getResource(Constants.SCHEMA_RESOURCE);
             File usersFile = new File(Constants.XML_ALL_USERS_FILE);
-//            if (!usersFile.exists()) {
-//                InputStream inputStream = sce.getServletContext().getResourceAsStream("/WEB-INF/users.xml");
-//                usersFile = new File(inputStream);
-//            }
             XmlBinder<UserEntitiesList> binder = new XmlBinder<>(UserEntitiesList.class);
-            UserEntitiesList users = binder.fromXML(xsd, usersFile);
+            UserEntitiesList users;
+            if (!usersFile.exists()) {
+                InputStream inputStream = sce.getServletContext().getResourceAsStream(DEFAULT_DB_SNAPSHOT);
+                binder.validate(xsd, inputStream);
+                inputStream = sce.getServletContext().getResourceAsStream(DEFAULT_DB_SNAPSHOT);
+                users = binder.fromXML(inputStream);
+            } else {
+                users = binder.fromXML(xsd, usersFile);
+            }
             users.forEach(user -> {
                 /* Constraints will protect us from duplications */
                 /* We should care about it manually */

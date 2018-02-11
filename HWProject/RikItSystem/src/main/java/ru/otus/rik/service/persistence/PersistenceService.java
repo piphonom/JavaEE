@@ -13,6 +13,7 @@ public interface PersistenceService {
     List<UserEntity> findAllUsers();
     List<UserEntity> findUsersOrderBySalaryDesc();
     UserEntity findUserWithMaxSalary();
+    List<UserEntity> findUsersByParams(SearchParams params);
     double getAverageSalary();
     UserEntity saveUser(UserEntity user);
     void deleteUser(UserEntity user);

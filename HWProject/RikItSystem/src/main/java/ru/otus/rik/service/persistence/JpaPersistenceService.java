@@ -43,6 +43,11 @@ public class JpaPersistenceService implements PersistenceService {
     }
 
     @Override
+    public List<UserEntity> findUsersByParams(SearchParams params) {
+        return runTransaction(entityManager -> new JpaUserDAO(entityManager).findByParams(params));
+    }
+
+    @Override
     public double getAverageSalary() {
         return runTransaction(entityManager -> new JpaUserDAO(entityManager).getAverageSalary());
     }

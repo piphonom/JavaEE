@@ -37,6 +37,13 @@ public class XmlBinder<T> {
         return fromXML((new FileInputStream(data)));
     }
 
+    public void validate(URL xsd, InputStream data) throws SAXException, IOException {
+        SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        Schema schema = factory.newSchema(xsd);
+        Validator validator = schema.newValidator();
+        validator.validate(new StreamSource(data));
+    }
+
     public T fromXML(InputStream data) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(type);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();

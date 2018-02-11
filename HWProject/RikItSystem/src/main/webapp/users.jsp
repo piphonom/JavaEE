@@ -11,12 +11,28 @@
     <title>Users</title>
 </head>
 <body>
+
 <div class="container">
 
     <c:choose>
         <%--<c:when test="<c:out value='${user}' scope=session/>" != null}">--%>
         <c:when test="${pageContext.request.getSession(false).getAttribute(\"user\") != null}">
         <%--<c:when test="${session.getAttribute(\"user\") != null}">--%>
+
+            <form id="searchForm" method="POST" action="${contextPath}/search">
+                <table  class="table table-striped">
+                    <thead>
+                    <tr>
+                        <td><input name="name" type="text" class="form-control" placeholder="User name" autofocus="true"/></td>
+                        <td><input name="location" type="text" class="form-control" placeholder="Location"/></td>
+                        <td><input name="department" type="text" class="form-control" placeholder="Department"/></td>
+                        <td><button type="submit" class="btn btn-primary  btn-md">Search</button></td>
+                    </tr>
+                    </thead>
+                </table>
+                <input type="hidden" name="csrf" value="<c:out value='${csrf}'/>"/>
+            </form>
+
             <form id="logoutForm" method="POST" action="${contextPath}/logout">
                 <input type="hidden" name="csrf" value="<c:out value='${csrf}'/>"/>
             </form>
