@@ -3,8 +3,7 @@ package ru.otus.rik.web.listener;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import ru.otus.rik.domain.UserEntity;
-import ru.otus.rik.service.persistence.SearchParams;
-import ru.otus.rik.web.html.SearchResultWrapper;
+import ru.otus.rik.web.jsp.SearchResultWrapper;
 
 import javax.servlet.ServletRequestAttributeEvent;
 import javax.servlet.ServletRequestAttributeListener;
@@ -13,7 +12,7 @@ import javax.servlet.annotation.WebListener;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static ru.otus.rik.web.html.SearchServlet.SEARCH_RESULT_ATTRIBUTE_NAME;
+import static ru.otus.rik.web.jsp.SearchServlet.SEARCH_RESULT_ATTRIBUTE_NAME;
 
 @WebListener
 public class ServletRequestAttributeListenerImpl implements ServletRequestAttributeListener {

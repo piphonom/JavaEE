@@ -23,8 +23,8 @@
                 <table  class="table table-striped">
                     <thead>
                     <tr>
-                        <td><input name="name" type="text" class="form-control" placeholder="User name" autofocus="true"/></td>
-                        <td><input name="location" type="text" class="form-control" placeholder="Location"/></td>
+                        <td><input name="name" type="text" class="form-control" placeholder="Name" autofocus="true"/></td>
+                        <td><input name="location" type="text" class="form-control" placeholder="City"/></td>
                         <td><input name="department" type="text" class="form-control" placeholder="Department"/></td>
                         <td><button type="submit" class="btn btn-primary  btn-md">Search</button></td>
                     </tr>
@@ -49,12 +49,13 @@
                                 ${error}
                             </div>
             </c:if>
-            <form action="/users" method="POST" id="usersForm" role="form" >
-                <input type="hidden" id="userName" name="userName">
+            <form action="/edit" method="POST" id="usersForm" role="form" >
+                <input type="hidden" id="email" name="email">
                 <input type="hidden" id="action" name="action">
                 <input type="hidden" name="csrf" value="<c:out value='${csrf}'/>"/>
                 <c:choose>
                     <c:when test="${not empty usersList}">
+                        ${pageContext.request.getSession(false).setAttribute("usersList", usersList)}
                         <table  class="table table-striped">
                             <thead>
                                 <tr>
@@ -69,14 +70,19 @@
                             <c:forEach var="user" items="${usersList}">
                                 <c:set var="classSucess" value="info"/>
                                 <tr class="${classSucess}">
-                                    <td><a href="${contextPath}/edit-user?userName=${user.name}">${user.name}</a></td>
+                                    <td><a href="${contextPath}/edit-user.jsp?email=${user.email}">${user.name}</a></td>
+                                    <%--<td><a href="#" id="edit"--%>
+                                           <%--onclick="document.getElementById('action').value = 'edit';document.getElementById('userName').value = '${user.name}';--%>
+                                                   <%--document.getElementById('usersForm').submit();">--%>
+                                            <%--${user.name}--%>
+                                    <%--</a></td>--%>
                                     <td>${user.email}</td>
                                     <td>${user.departmentRef.location}</td>
                                     <td>${user.departmentRef.name}</td>
                                     <td>${user.positionRef.title}</td>
                                     <td>${user.positionRef.salary}</td>
                                     <td><a href="#" id="remove"
-                                           onclick="document.getElementById('action').value = 'remove';document.getElementById('groupName').value = '${user.name}';
+                                           onclick="document.getElementById('action').value = 'remove';document.getElementById('email').value = '${user.email}';
                                                 document.getElementById('usersForm').submit();">
                                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                         </a>

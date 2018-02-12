@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "CsrfValidateFilter", urlPatterns = {"/login", "/users"})
+@WebFilter(filterName = "CsrfValidateFilter", urlPatterns = {"/login", "/users", "/edit"})
 public class CsrfValidateFilter implements Filter {
 
     private static final String CSRF_REQUEST_PARAMETER_NAME = "csrf";
@@ -22,7 +22,7 @@ public class CsrfValidateFilter implements Filter {
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) req;
-        String csrf = (String) httpRequest.getParameter(CSRF_REQUEST_PARAMETER_NAME);
+        String csrf = httpRequest.getParameter(CSRF_REQUEST_PARAMETER_NAME);
         if (csrf == null) {
             ((HttpServletResponse) resp).sendError(HttpServletResponse.SC_FORBIDDEN);
         }

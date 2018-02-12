@@ -1,4 +1,4 @@
-package ru.otus.rik.web.html;
+package ru.otus.rik.web.jsp;
 
 import com.google.common.cache.Cache;
 import ru.otus.rik.domain.UserEntity;

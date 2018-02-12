@@ -44,6 +44,16 @@ public class CsrfGenerateFilter implements Filter {
 
         httpRequest.setAttribute(CSRF_ATTRIBUTE_NAME, csrf);
 
+        /* session control */
+        String path =  httpRequest.getServletPath();
+        if (!path.endsWith("/login")) {
+            session = httpRequest.getSession(false);
+            if (session == null || session.getAttribute("user") == null) {
+                httpRequest.getRequestDispatcher(httpRequest.getContextPath() + "/login.jsp").forward(req, resp);
+                return;
+            }
+        }
+
         chain.doFilter(req, resp);
     }
 
