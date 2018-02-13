@@ -24,4 +24,22 @@ public class PositionEntity {
     private String title;
     @XmlElement
     private int salary;
+
+    @Override
+    public int hashCode() {
+        return idPosition ^ title.hashCode() ^ salary;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (obj == null)
+            return false;
+
+        return obj instanceof PositionEntity &&
+                this.idPosition == ((PositionEntity) obj).idPosition &&
+                this.title.equals(((PositionEntity) obj).title) &&
+                this.salary == ((PositionEntity) obj).salary;
+    }
 }

@@ -42,17 +42,6 @@ public class BrowserFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
         JsonBinder<ListOfSupportedBrowser> binder = new JsonBinder<>(ListOfSupportedBrowser.class);
         InputStream browsersStream = config.getServletContext().getResourceAsStream("/WEB-INF/supported-browsers.json");
-
-//        SupportedBrowser br = new SupportedBrowser();
-//        br.setName("br");
-//        br.setMinVersion(5);
-//        br.setLink("");
-//        br.setImageSource("");
-//
-//        browsers = new ListOfSupportedBrowser();
-//        browsers.add(br);
-//        String json = binder.toJson(browsers);
-
         browsers = binder.fromJson(new InputStreamReader(browsersStream));
     }
 

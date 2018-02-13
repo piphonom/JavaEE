@@ -7,6 +7,7 @@ import ru.otus.rik.service.persistence.helpers.RandomString;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -46,10 +47,10 @@ public class CsrfGenerateFilter implements Filter {
 
         /* session control */
         String path =  httpRequest.getServletPath();
-        if (!path.endsWith("/login")) {
+        if (!path.endsWith("/login") && !path.endsWith("/login.jsp")) {
             session = httpRequest.getSession(false);
             if (session == null || session.getAttribute("user") == null) {
-                httpRequest.getRequestDispatcher(httpRequest.getContextPath() + "/login.jsp").forward(req, resp);
+                ((HttpServletResponse) resp).sendRedirect(httpRequest.getContextPath() + "/login.jsp");
                 return;
             }
         }

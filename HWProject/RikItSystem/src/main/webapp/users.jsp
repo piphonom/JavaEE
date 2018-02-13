@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="session" value="${pageContext.request.getSession(false)}"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,8 +17,8 @@
 
     <c:choose>
         <%--<c:when test="<c:out value='${user}' scope=session/>" != null}">--%>
-        <c:when test="${pageContext.request.getSession(false).getAttribute(\"user\") != null}">
-        <%--<c:when test="${session.getAttribute(\"user\") != null}">--%>
+        <%--<c:when test="${pageContext.request.getSession(false).getAttribute(\"user\") != null}">--%>
+        <c:when test="${session != null && session.getAttribute(\"user\") != null}">
 
             <form id="searchForm" method="POST" action="${contextPath}/search">
                 <table  class="table table-striped">
@@ -37,7 +38,7 @@
                 <input type="hidden" name="csrf" value="<c:out value='${csrf}'/>"/>
             </form>
 
-            <h2>List of users for ${pageContext.request.getSession(false).getAttribute("user")} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+            <h2>List of users for ${session.getAttribute("user")} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
 
             <c:if test="${not empty message}">
                             <div class="alert alert-success">
@@ -54,8 +55,8 @@
                 <input type="hidden" id="action" name="action">
                 <input type="hidden" name="csrf" value="<c:out value='${csrf}'/>"/>
                 <c:choose>
-                    <c:when test="${not empty usersList}">
-                        ${pageContext.request.getSession(false).setAttribute("usersList", usersList)}
+                    <c:when test="${not empty session.getAttribute(\"usersList\")}">
+                        <%--${pageContext.request.getSession(false).setAttribute("usersList", usersList)}--%>
                         <table  class="table table-striped">
                             <thead>
                                 <tr>
@@ -67,15 +68,10 @@
                                     <td>Salary</td>
                                 </tr>
                             </thead>
-                            <c:forEach var="user" items="${usersList}">
+                            <c:forEach var="user" items="${session.getAttribute(\"usersList\")}">
                                 <c:set var="classSucess" value="info"/>
                                 <tr class="${classSucess}">
                                     <td><a href="${contextPath}/edit-user.jsp?email=${user.email}">${user.name}</a></td>
-                                    <%--<td><a href="#" id="edit"--%>
-                                           <%--onclick="document.getElementById('action').value = 'edit';document.getElementById('userName').value = '${user.name}';--%>
-                                                   <%--document.getElementById('usersForm').submit();">--%>
-                                            <%--${user.name}--%>
-                                    <%--</a></td>--%>
                                     <td>${user.email}</td>
                                     <td>${user.departmentRef.location}</td>
                                     <td>${user.departmentRef.name}</td>

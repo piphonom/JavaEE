@@ -53,8 +53,10 @@ public class LoginServlet extends HttpServlet {
 
         /* TODO: get the list depending on user's rights */
         List<UserEntity> usersList = persistenceService.findAllUsers();
-        req.setAttribute("usersList", usersList);
+//        req.setAttribute("usersList", usersList);
+        session.setAttribute("usersList", usersList);
         req.getRequestDispatcher(req.getContextPath() + USERS_JSP).forward(req, resp);
+//        resp.sendRedirect(req.getContextPath() + USERS_JSP);
     }
 
     private void redirectToLoginPage(HttpServletRequest req, HttpServletResponse resp, String email, String error) throws IOException, ServletException {

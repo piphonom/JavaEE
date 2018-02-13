@@ -24,4 +24,22 @@ public class DepartmentEntity {
 
     @XmlElement
     private String location;
+
+    @Override
+    public int hashCode() {
+        return idDepartment ^ name.hashCode() ^ location.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        if (obj == null)
+            return false;
+
+        return obj instanceof DepartmentEntity &&
+               this.idDepartment == ((DepartmentEntity) obj).idDepartment &&
+               this.name.equals(((DepartmentEntity) obj).name) &&
+               this.location.equals(((DepartmentEntity) obj).location);
+    }
 }
