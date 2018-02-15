@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
             try {
                 user = authenticationService.authenticateByEmail(email, password);
             } catch (AuthenticationException e) {
-                redirectToLoginPage(req, resp, email, "Failed: " + e.getMessage());
+                forwardToLoginPage(req, resp, email, "Failed: " + e.getMessage());
                 return;
             }
             session = req.getSession(true);
@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
             try {
                 user = persistenceService.findUserByEmail(email);
             } catch (Exception e) {
-                redirectToLoginPage(req, resp, null, null);
+                forwardToLoginPage(req, resp, null, null);
                 return;
             }
         }
@@ -59,7 +59,7 @@ public class LoginServlet extends HttpServlet {
 //        resp.sendRedirect(req.getContextPath() + USERS_JSP);
     }
 
-    private void redirectToLoginPage(HttpServletRequest req, HttpServletResponse resp, String email, String error) throws IOException, ServletException {
+    private void forwardToLoginPage(HttpServletRequest req, HttpServletResponse resp, String email, String error) throws IOException, ServletException {
         req.setAttribute("error", error);
         req.setAttribute("email", email);
         req.getRequestDispatcher(req.getContextPath() + LOGIN_JSP).forward(req, resp);

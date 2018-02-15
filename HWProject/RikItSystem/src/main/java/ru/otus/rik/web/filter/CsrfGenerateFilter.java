@@ -47,7 +47,8 @@ public class CsrfGenerateFilter implements Filter {
 
         /* session control */
         String path =  httpRequest.getServletPath();
-        if (!path.endsWith("/login") && !path.endsWith("/login.jsp")) {
+        if (!path.endsWith("/login") && !path.endsWith("/login.jsp")
+            && !path.endsWith(".css") && !path.endsWith(".js")) {
             session = httpRequest.getSession(false);
             if (session == null || session.getAttribute("user") == null) {
                 ((HttpServletResponse) resp).sendRedirect(httpRequest.getContextPath() + "/login.jsp");
