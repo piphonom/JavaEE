@@ -3,6 +3,7 @@ package ru.otus.rik.web.listener;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import ru.otus.rik.domain.UserEntity;
+import ru.otus.rik.service.persistence.SearchParams;
 import ru.otus.rik.web.jsp.SearchResultWrapper;
 
 import javax.servlet.ServletRequestAttributeEvent;
@@ -26,7 +27,7 @@ public class ServletRequestAttributeListenerImpl implements ServletRequestAttrib
     public void attributeAdded(ServletRequestAttributeEvent srae) {
         if (srae.getName().equals(SEARCH_RESULT_ATTRIBUTE_NAME)) {
             @SuppressWarnings("unchecked cast")
-            Cache<String, List<UserEntity>> cache = (Cache<String, List<UserEntity>>)
+            Cache<SearchParams, List<UserEntity>> cache = (Cache<SearchParams, List<UserEntity>>)
                     srae.getServletContext().getAttribute(SEARCH_CACHE_ATTRIBUTE_NAME);
 
             if (cache == null) {
@@ -39,7 +40,7 @@ public class ServletRequestAttributeListenerImpl implements ServletRequestAttrib
             }
 
             SearchResultWrapper wrapper = (SearchResultWrapper) srae.getValue();
-            cache.put(wrapper.getSearchParams().toString(), wrapper.getResult());
+            cache.put(wrapper.getSearchParams(), wrapper.getResult());
         }
     }
 

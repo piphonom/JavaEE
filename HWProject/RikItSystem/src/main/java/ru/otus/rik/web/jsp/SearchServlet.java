@@ -36,7 +36,7 @@ public class SearchServlet extends HttpServlet {
         if (usersList == null)
             usersList = persistenceService.findUsersByParams(searchParams);
 
-        request.setAttribute("usersList", usersList);
+        request.getSession(false).setAttribute("usersList", usersList);
         SearchResultWrapper wrapper = new SearchResultWrapper(searchParams, usersList);
         request.setAttribute(SEARCH_RESULT_ATTRIBUTE_NAME, wrapper);
         request.getRequestDispatcher(request.getContextPath() + USERS_JSP).forward(request, response);
@@ -47,10 +47,10 @@ public class SearchServlet extends HttpServlet {
         ServletContext context = this.getServletContext();
 
         @SuppressWarnings("unchecked cast")
-        Cache<String, List<UserEntity>> cache = (Cache<String, List<UserEntity>>) context.getAttribute(SEARCH_CACHE_ATTRIBUTE_NAME);
+        Cache<SearchParams, List<UserEntity>> cache = (Cache<SearchParams, List<UserEntity>>) context.getAttribute(SEARCH_CACHE_ATTRIBUTE_NAME);
 
         if (cache != null)
-            return cache.getIfPresent(params.toString());
+            return cache.getIfPresent(params);
 
         return null;
     }

@@ -42,13 +42,13 @@
                 <div class="form-group ${error != null ? 'has-error' : ''}">
                     <input name="name" type="text" class="form-control" placeholder="Name" disabled="disabled" value="${user.name}"/>
                     <input name="email" type="text" class="form-control" placeholder="Email" disabled="disabled" value="${user.email}"/>
-                    <select id="department" class="selectpicker" data-width="300px">
+                    <select id="department" name="department" class="selectpicker" data-width="300px">
                         <c:forEach var="department" items="${departmentsList}">
                             <option value="${department.location}&${department.name}"
                                     ${user.departmentRef.equals(department) ? 'selected' : ''}>${department.location}, ${department.name}</option>
                         </c:forEach>
                     </select>
-                    <select id="role" class="selectpicker" data-width="300px">
+                    <select id="position" name="position" class="selectpicker" data-width="300px">
                         <c:forEach var="position" items="${positionsList}">
                             <option value="${position.title}"
                                     ${user.positionRef.equals(position) ? 'selected' : ''}>${position.title}</option>

@@ -3,7 +3,7 @@ package ru.otus.rik.service.persistence;
 import lombok.Getter;
 
 @Getter
-public class SearchParams implements Comparable<SearchParams> {
+public final class SearchParams implements Comparable<SearchParams> {
     private String name;
     private String department;
     private String location;
@@ -26,6 +26,25 @@ public class SearchParams implements Comparable<SearchParams> {
             return this.location.compareTo(compareArg.location);
         }
         return 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode() ^ department.hashCode() ^ location.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+
+        if (obj == null)
+            return false;
+
+        return (obj instanceof SearchParams) &&
+                this.name.equals(((SearchParams) obj).name) &&
+                this.department.equals(((SearchParams) obj).department) &&
+                this.location.equals(((SearchParams) obj).location);
     }
 
     public void setName(String name) {
@@ -55,10 +74,5 @@ public class SearchParams implements Comparable<SearchParams> {
 
     private String getPartialMatchesPrepared(String initial) {
         return "%" + initial + "%";
-    }
-
-    @Override
-    public String toString() {
-        return name + department + location;
     }
 }
