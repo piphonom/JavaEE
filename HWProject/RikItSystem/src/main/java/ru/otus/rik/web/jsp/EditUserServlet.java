@@ -25,37 +25,41 @@ public class EditUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
-        if (action.equals("edit")) {
-            String emailParameter = req.getParameter("email");
-            UserEntity user = persistenceService.findUserByEmail(emailParameter);
-            if (user == null) {
-                forwardToUsersPage(req, resp, null, "User not found");
-                return;
-            }
-            String departmentNameParameter = req.getParameter("department");
-            String positionTitleParameter = req.getParameter("position");
-            if (emailParameter == null ||
-                    departmentNameParameter == null ||
+        if (action != null) {
+            if (action.equals("edit")) {
+                String emailParameter = req.getParameter("email");
+                String departmentNameParameter = req.getParameter("department");
+                String positionTitleParameter = req.getParameter("position");
+
+                if (emailParameter == null ||
+                        departmentNameParameter == null ||
                         positionTitleParameter == null) {
-                forwardToUsersPage(req, resp, null, "Wrong request parameters");
-                return;
-            }
+                    forwardToUsersPage(req, resp, null, "Wrong request parameters");
+                    return;
+                }
 
-            String error = changeDepartment(user, departmentNameParameter);
-            if (error != null) {
-                forwardToUsersPage(req, resp, null, error);
-                return;
-            }
+                UserEntity user = persistenceService.findUserByEmail(emailParameter);
+                if (user == null) {
+                    forwardToUsersPage(req, resp, null, "User not found");
+                    return;
+                }
 
-            error = changePosition(user, positionTitleParameter);
-            if (error != null) {
-                forwardToUsersPage(req, resp, null, error);
-                return;
-            }
+                String error = changeDepartment(user, departmentNameParameter);
+                if (error != null) {
+                    forwardToUsersPage(req, resp, null, error);
+                    return;
+                }
 
-            persistenceService.saveUser(user);
-            updateSession(req.getSession(false), user);
-            forwardToUsersPage(req, resp, "User was updated", null);
+                error = changePosition(user, positionTitleParameter);
+                if (error != null) {
+                    forwardToUsersPage(req, resp, null, error);
+                    return;
+                }
+
+                persistenceService.saveUser(user);
+                updateSession(req.getSession(false), user);
+                forwardToUsersPage(req, resp, "User was updated", null);
+            }
         }
     }
 

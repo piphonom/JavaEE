@@ -18,7 +18,7 @@
     <c:choose>
         <%--<c:when test="<c:out value='${user}' scope=session/>" != null}">--%>
         <%--<c:when test="${pageContext.request.getSession(false).getAttribute(\"user\") != null}">--%>
-        <c:when test="${session != null && session.getAttribute(\"user\") != null}">
+        <c:when test="${not empty session && not empty session.getAttribute(\"user\")}">
 
             <form id="searchForm" method="POST" action="${contextPath}/search">
                 <table  class="table table-striped">
@@ -96,7 +96,7 @@
                 </c:choose>
             </form>
 
-            <c:if test="${pageContext.request.getSession(false).getAttribute(\"role-hr\") != null}">
+            <c:if test="${not empty session.getAttribute(\"role-hr\")}">
                 <form action ="${contextPath}/new-user">
                     <input type="hidden" name="csrf" value="<c:out value='${csrf}'/>"/>
                     <br></br>
