@@ -1,9 +1,6 @@
 package ru.otus.rik.service.persistence;
 
-import ru.otus.rik.domain.DepartmentEntity;
-import ru.otus.rik.domain.PositionEntity;
-import ru.otus.rik.domain.RoleEntity;
-import ru.otus.rik.domain.UserEntity;
+import ru.otus.rik.domain.*;
 
 import java.util.List;
 
@@ -32,6 +29,10 @@ public interface PersistenceService {
     List<RoleEntity> findAllRoles();
     RoleEntity saveRole(RoleEntity role);
     RoleEntity deleteRole(RoleEntity role);
+
+    StatisticsEntity findStatisticsById(int id);
+    StatisticsEntity saveStatistics(StatisticsEntity statistics);
+    StatisticsEntity deleteStatistics(StatisticsEntity statistics);
 
     void dropAll();
 }

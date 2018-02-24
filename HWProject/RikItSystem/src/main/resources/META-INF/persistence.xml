@@ -7,6 +7,7 @@
         <class>ru.otus.rik.domain.DepartmentEntity</class>
         <class>ru.otus.rik.domain.PositionEntity</class>
         <class>ru.otus.rik.domain.RoleEntity</class>
+        <class>ru.otus.rik.domain.StatisticsEntity</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/Rik?noAccessToProcedureBodies=true&amp;useTimezone=true&amp;serverTimezone=UTC"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>

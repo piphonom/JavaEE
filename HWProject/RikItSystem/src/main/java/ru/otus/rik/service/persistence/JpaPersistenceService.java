@@ -1,13 +1,7 @@
 package ru.otus.rik.service.persistence;
 
-import ru.otus.rik.domain.DepartmentEntity;
-import ru.otus.rik.domain.PositionEntity;
-import ru.otus.rik.domain.RoleEntity;
-import ru.otus.rik.domain.UserEntity;
-import ru.otus.rik.service.persistence.dao.jpa.JpaDepartmentDAO;
-import ru.otus.rik.service.persistence.dao.jpa.JpaPositionDAO;
-import ru.otus.rik.service.persistence.dao.jpa.JpaRoleDAO;
-import ru.otus.rik.service.persistence.dao.jpa.JpaUserDAO;
+import ru.otus.rik.domain.*;
+import ru.otus.rik.service.persistence.dao.jpa.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -119,7 +113,22 @@ public class JpaPersistenceService implements PersistenceService {
 
     @Override
     public RoleEntity deleteRole(RoleEntity role) {
-        return runTransaction((entityManager -> new JpaRoleDAO(entityManager).delete(role)));
+        return runTransaction(entityManager -> new JpaRoleDAO(entityManager).delete(role));
+    }
+
+    @Override
+    public StatisticsEntity findStatisticsById(int id) {
+        return runTransaction((entityManager -> new JpaStatisticsDAO(entityManager).findById(id)));
+    }
+
+    @Override
+    public StatisticsEntity saveStatistics(StatisticsEntity statistics) {
+        return runTransaction(entityManager -> new JpaStatisticsDAO(entityManager).save(statistics));
+    }
+
+    @Override
+    public StatisticsEntity deleteStatistics(StatisticsEntity statistics) {
+        return runTransaction(entityManager -> new JpaStatisticsDAO(entityManager).delete(statistics));
     }
 
     @Override

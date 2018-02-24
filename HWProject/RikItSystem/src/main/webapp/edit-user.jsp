@@ -9,6 +9,7 @@
     <title>Edit</title>
 </head>
 <body>
+<rik:statistics/>
 <div class="container">
         <rik:user email="${param.email}"/>
     <c:choose>
@@ -16,7 +17,7 @@
             <rik:departments/>
             <rik:positions/>
             <form id="editForm" method="POST" action="${contextPath}/edit" class="form-signin">
-                <div class="form-group ${error != null ? 'has-error' : ''}">
+                <div class="form-group ${error ne null ? 'has-error' : ''}">
                     <input name="name" type="text" class="form-control" placeholder="Name" disabled="disabled" value="${user.name}"/>
                     <input name="email" type="text" class="form-control" placeholder="Email" disabled="disabled" value="${user.email}"/>
                     <select id="department" name="department" class="selectpicker" data-width="300px">

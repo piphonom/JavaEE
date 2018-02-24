@@ -31,5 +31,11 @@
         <tag-class>ru.otus.rik.service.taglib.RikPositionsTagHandler</tag-class>
         <body-content>empty</body-content>
     </tag>
+
+    <tag>
+        <name>statistics</name>
+        <tag-class>ru.otus.rik.service.taglib.RikStatisticsTagHandler</tag-class>
+        <body-content>empty</body-content>
+    </tag>
     
 </taglib>
