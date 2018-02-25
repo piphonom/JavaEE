@@ -23,15 +23,16 @@ public class StatisticsServiceImpl implements StatisticsService {
     private final static String DATE_FORMAT = "EEE, d MMM yyyy HH:mm:ss Z";
     private final static DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
 
-    private final MBeanEnableStatistics enableStatistics;
+    private final EnableStatisticsMBean enableStatistics;
 
     public StatisticsServiceImpl() {
         MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
 
-        enableStatistics = new MBeanEnableStatisticsImpl();
+        enableStatistics = new EnableStatisticsImpl();
         try {
-            ObjectName mbeanName = new ObjectName("ru.otus.rik.statistics:type=MBeanEnableStatistics");
-            mbs.registerMBean(enableStatistics, mbeanName);
+            StandardMBean mbean = new StandardMBean(enableStatistics, EnableStatisticsMBean.class);
+            ObjectName mbeanName = new ObjectName("ru.otus.rik.statistics:type=EnableStatisticsMBean");
+            mbs.registerMBean(mbean, mbeanName);
         } catch (MalformedObjectNameException |
                 InstanceAlreadyExistsException |
                 MBeanRegistrationException |
@@ -88,7 +89,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public List<StatisticsEntity> getAllStatistics() {
-        return null;
+        return PersistenceServiceHolder.getPersistenceService().findAllStatistics();
     }
 
     private Integer getSessionData(HttpServletRequest request) {

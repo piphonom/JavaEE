@@ -4,6 +4,7 @@ import ru.otus.rik.domain.StatisticsEntity;
 import ru.otus.rik.service.persistence.dao.StatisticsDAO;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class JpaStatisticsDAO implements StatisticsDAO {
 
@@ -16,6 +17,11 @@ public class JpaStatisticsDAO implements StatisticsDAO {
     @Override
     public StatisticsEntity findById(int id) {
         return baseDAO.findSingleResultByOneParameter("idStat", String.valueOf(id));
+    }
+
+    @Override
+    public List<StatisticsEntity> findAll() {
+        return baseDAO.findAll();
     }
 
     @Override

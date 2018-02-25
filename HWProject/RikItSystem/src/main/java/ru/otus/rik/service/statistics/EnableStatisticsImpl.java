@@ -1,6 +1,6 @@
 package ru.otus.rik.service.statistics;
 
-public class MBeanEnableStatisticsImpl implements MBeanEnableStatistics {
+public class EnableStatisticsImpl implements EnableStatisticsMBean {
     private volatile boolean enabled = true;
 
     @Override

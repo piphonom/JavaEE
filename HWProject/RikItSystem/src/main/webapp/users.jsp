@@ -104,6 +104,8 @@
                     <button type="submit" class="btn btn-primary  btn-md">New user</button>
                 </form>
             </c:if>
+
+            <a href="${contextPath}/statistics">Statistics</a>
         </c:when>
         <c:otherwise>
             <jsp:forward page="${contextPath}/login.jsp"/>

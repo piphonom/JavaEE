@@ -31,6 +31,7 @@ public interface PersistenceService {
     RoleEntity deleteRole(RoleEntity role);
 
     StatisticsEntity findStatisticsById(int id);
+    List<StatisticsEntity> findAllStatistics();
     StatisticsEntity saveStatistics(StatisticsEntity statistics);
     StatisticsEntity deleteStatistics(StatisticsEntity statistics);
 

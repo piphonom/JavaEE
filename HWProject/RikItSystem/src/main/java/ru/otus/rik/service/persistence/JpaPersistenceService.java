@@ -118,7 +118,12 @@ public class JpaPersistenceService implements PersistenceService {
 
     @Override
     public StatisticsEntity findStatisticsById(int id) {
-        return runTransaction((entityManager -> new JpaStatisticsDAO(entityManager).findById(id)));
+        return runTransaction(entityManager -> new JpaStatisticsDAO(entityManager).findById(id));
+    }
+
+    @Override
+    public List<StatisticsEntity> findAllStatistics() {
+        return runTransaction(entityManager -> new JpaStatisticsDAO(entityManager).findAll());
     }
 
     @Override
