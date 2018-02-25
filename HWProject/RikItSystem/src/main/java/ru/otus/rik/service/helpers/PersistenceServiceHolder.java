@@ -1,4 +1,4 @@
-package ru.otus.rik.service.persistence.helpers;
+package ru.otus.rik.service.helpers;
 
 import ru.otus.rik.service.persistence.JpaPersistenceService;
 import ru.otus.rik.service.persistence.PersistenceService;

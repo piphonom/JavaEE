@@ -1,4 +1,4 @@
-package ru.otus.rik.service.persistence.helpers;
+package ru.otus.rik.service.helpers;
 
 /*
 * https://stackoverflow.com/questions/41107/how-to-generate-a-random-alpha-numeric-string

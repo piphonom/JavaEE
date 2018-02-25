@@ -3,7 +3,7 @@ package ru.otus.rik.service.taglib;
 import lombok.Getter;
 import lombok.Setter;
 import ru.otus.rik.domain.UserEntity;
-import ru.otus.rik.service.persistence.helpers.PersistenceServiceHolder;
+import ru.otus.rik.service.helpers.PersistenceServiceHolder;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;

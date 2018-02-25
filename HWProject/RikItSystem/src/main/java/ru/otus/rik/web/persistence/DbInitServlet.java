@@ -8,8 +8,8 @@ import ru.otus.rik.domain.RoleEntity;
 import ru.otus.rik.domain.UserEntity;
 import ru.otus.rik.service.persistence.JpaPersistenceService;
 import ru.otus.rik.service.persistence.PersistenceService;
-import ru.otus.rik.service.persistence.helpers.HashGenerator;
-import ru.otus.rik.service.persistence.helpers.RandomString;
+import ru.otus.rik.service.helpers.HashGenerator;
+import ru.otus.rik.service.helpers.RandomString;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

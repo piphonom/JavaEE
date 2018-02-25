@@ -1,6 +1,7 @@
 package ru.otus.rik.service.taglib;
 
 import org.apache.http.HttpRequest;
+import ru.otus.rik.service.helpers.StatisticsServiceHolder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
@@ -20,9 +21,11 @@ public class RikStatisticsTagHandler extends SimpleTagSupport {
 
     @Override
     public void doTag() throws JspException, IOException {
-        PageContext context = (PageContext)getJspContext();
-        String name = ((HttpServletRequest)context.getRequest()).getServletPath();
-        String jsCodeSnippet = String.format(GET_STATISTICS_JS_TEMPLATE, name);
-        getJspContext().getOut().print(jsCodeSnippet);
+        if (StatisticsServiceHolder.getStatisticsService().getEnabled()) {
+            PageContext context = (PageContext) getJspContext();
+            String pageName = ((HttpServletRequest) context.getRequest()).getServletPath();
+            String jsCodeSnippet = String.format(GET_STATISTICS_JS_TEMPLATE, pageName);
+            getJspContext().getOut().print(jsCodeSnippet);
+        }
     }
 }

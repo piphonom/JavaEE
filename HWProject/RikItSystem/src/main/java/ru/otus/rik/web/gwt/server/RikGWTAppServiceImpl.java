@@ -4,7 +4,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import ru.otus.rik.domain.UserEntity;
 import ru.otus.rik.service.persistence.JpaPersistenceService;
 import ru.otus.rik.service.persistence.PersistenceService;
-import ru.otus.rik.service.persistence.helpers.HashGenerator;
+import ru.otus.rik.service.helpers.HashGenerator;
 import ru.otus.rik.web.gwt.client.service.RikGWTAppService;
 import ru.otus.rik.web.gwt.shared.exception.AuthorizeException;
 import ru.otus.rik.web.gwt.shared.model.LoginFormDTO;

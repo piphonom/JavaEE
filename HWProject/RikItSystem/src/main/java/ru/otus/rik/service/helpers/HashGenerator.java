@@ -1,4 +1,4 @@
-package ru.otus.rik.service.persistence.helpers;
+package ru.otus.rik.service.helpers;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;

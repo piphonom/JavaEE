@@ -2,7 +2,7 @@ package ru.otus.rik.web.filter;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import ru.otus.rik.service.persistence.helpers.RandomString;
+import ru.otus.rik.service.helpers.RandomString;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
