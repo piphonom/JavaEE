@@ -65,7 +65,7 @@
         <init-param>
             <param-name>output_encoding</param-name>
             <!-- The encoding of the template output; Note that you must set
-                 "ResponseCharacterEncodring" to "fromTemplate" for this to work! -->
+                 "ResponseCharacterEncoding" to "fromTemplate" for this to work! -->
             <param-value>UTF-8</param-value>
         </init-param>
         <init-param>
@@ -88,4 +88,9 @@
         <url-pattern>*.ftlh</url-pattern>
         <url-pattern>*.ftlx</url-pattern>
     </servlet-mapping>
+
+    <context-param>
+        <param-name>defaultUsersSnapshotLocation</param-name>
+        <param-value>/WEB-INF/users.xml</param-value>
+    </context-param>
 </web-app>

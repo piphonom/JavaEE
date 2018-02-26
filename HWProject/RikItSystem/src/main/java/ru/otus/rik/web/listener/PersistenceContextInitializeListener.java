@@ -3,6 +3,7 @@ package ru.otus.rik.web.listener;
 import ru.otus.rik.domain.DepartmentEntity;
 import ru.otus.rik.domain.PositionEntity;
 import ru.otus.rik.domain.RoleEntity;
+import ru.otus.rik.service.helpers.PersistenceServiceHolder;
 import ru.otus.rik.service.persistence.JpaPersistenceService;
 import ru.otus.rik.service.persistence.PersistenceService;
 import ru.otus.rik.service.xml.XmlBinder;
@@ -20,11 +21,9 @@ import java.io.InputStream;
 import java.net.URL;
 
 @WebListener
-public class ServletContextListenerImpl implements ServletContextListener {
+public class PersistenceContextInitializeListener implements ServletContextListener {
 
-    private static final String DEFAULT_DB_SNAPSHOT = "/WEB-INF/users.xml";
-
-    private static final PersistenceService persistenceService = new JpaPersistenceService();
+    private static final PersistenceService persistenceService = PersistenceServiceHolder.getPersistenceService();
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -34,10 +33,15 @@ public class ServletContextListenerImpl implements ServletContextListener {
             XmlBinder<UserEntitiesList> binder = new XmlBinder<>(UserEntitiesList.class);
             UserEntitiesList users;
             if (!usersFile.exists()) {
-                InputStream inputStream = sce.getServletContext().getResourceAsStream(DEFAULT_DB_SNAPSHOT);
-                binder.validate(xsd, inputStream);
-                inputStream = sce.getServletContext().getResourceAsStream(DEFAULT_DB_SNAPSHOT);
-                users = binder.fromXML(inputStream);
+                String defaultSnapshotLocation = sce.getServletContext().getInitParameter("defaultUsersSnapshotLocation");
+                if (defaultSnapshotLocation != null) {
+                    InputStream inputStream = sce.getServletContext().getResourceAsStream(defaultSnapshotLocation);
+                    binder.validate(xsd, inputStream);
+                    inputStream = sce.getServletContext().getResourceAsStream(defaultSnapshotLocation);
+                    users = binder.fromXML(inputStream);
+                } else {
+                    throw new Exception();
+                }
             } else {
                 users = binder.fromXML(xsd, usersFile);
             }
@@ -76,6 +80,4 @@ public class ServletContextListenerImpl implements ServletContextListener {
         }
         persistenceService.dropAll();
     }
-
-
 }
