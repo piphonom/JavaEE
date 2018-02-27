@@ -54,12 +54,6 @@ public class StatisticsServiceImpl implements StatisticsService {
         if (!enableStatistics.getEnabled()) {
             throw new StatisticsDisabledException("Statistics is disabled");
         }
-
-        Enumeration<String> headers = request.getHeaderNames();
-        while (headers.hasMoreElements()) {
-            String name = headers.nextElement();
-            System.out.println(name + " : " + request.getHeader(name));
-        }
         String markerName = System.getenv(MARKER_ENV_NAME);
         String userTime = request.getParameter("userTime");
         String pageName = request.getParameter("page");
