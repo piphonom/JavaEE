@@ -5,11 +5,13 @@ import ru.otus.rik.service.helpers.PersistenceServiceHolder;
 
 import javax.management.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.lang.management.ManagementFactory;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
 
@@ -53,12 +55,18 @@ public class StatisticsServiceImpl implements StatisticsService {
             throw new StatisticsDisabledException("Statistics is disabled");
         }
 
+        Enumeration<String> headers = request.getHeaderNames();
+        while (headers.hasMoreElements()) {
+            String name = headers.nextElement();
+            System.out.println(name + " : " + request.getHeader(name));
+        }
         String markerName = System.getenv(MARKER_ENV_NAME);
         String userTime = request.getParameter("userTime");
         String pageName = request.getParameter("page");
         String prevId = request.getParameter("prevId");
         String clientName = request.getHeader("user-agent");
         String clientIP = request.getRemoteAddr();
+        String origin = request.getHeader("origin");
 
         String serverTime = dateFormat.format(Calendar.getInstance().getTime());
 
@@ -67,6 +75,7 @@ public class StatisticsServiceImpl implements StatisticsService {
         statistics.setPageName(pageName);
         statistics.setClientName(clientName.substring(0, MAX_CLIENT_NAME_SIZE));
         statistics.setClientIP(clientIP);
+        statistics.setOrigin(origin);
 
         statistics.setClientTime(userTime);
         statistics.setServerTime(serverTime);
@@ -90,6 +99,13 @@ public class StatisticsServiceImpl implements StatisticsService {
     @Override
     public List<StatisticsEntity> getAllStatistics() {
         return PersistenceServiceHolder.getPersistenceService().findAllStatistics();
+    }
+
+    @Override
+    public void processOptions(HttpServletRequest request, HttpServletResponse response) {
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        response.addHeader("Access-Control-Allow-Methods", "POST");
+        response.addHeader("Access-Control-Request-Headers", "");
     }
 
     private Integer getSessionData(HttpServletRequest request) {

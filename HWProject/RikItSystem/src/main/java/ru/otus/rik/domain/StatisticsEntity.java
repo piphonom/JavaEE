@@ -23,4 +23,5 @@ public class StatisticsEntity {
     private String clientTime;
     private String serverTime;
     private Integer prevIdStat;
+    private String origin;
 }

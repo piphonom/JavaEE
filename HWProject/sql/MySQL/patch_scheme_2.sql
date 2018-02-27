@@ -9,6 +9,7 @@ CREATE TABLE `Statistics` (
   `clientTime` varchar(50) DEFAULT NULL,
   `serverTime` varchar(50) DEFAULT NULL,
   `prevIdStat` int(11) DEFAULT NULL,
+  `origin` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idStat`),
   UNIQUE KEY `uk_prevIdStat` (`prevIdStat`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8

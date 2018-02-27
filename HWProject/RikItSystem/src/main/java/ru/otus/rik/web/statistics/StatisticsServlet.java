@@ -24,6 +24,11 @@ public class StatisticsServlet extends HttpServlet {
     private final static Gson jsonBuilder = new GsonBuilder().create();
 
     @Override
+    protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        StatisticsServiceHolder.getStatisticsService().processOptions(req, resp);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try(PrintWriter writer = resp.getWriter()) {
             int prevId = StatisticsServiceHolder.getStatisticsService().processStatistics(req);

@@ -16,6 +16,7 @@
                 <td>Client Time</td>
                 <td>Server Time</td>
                 <td>Prev Record ID</td>
+                <td>Origin (CORS)</td>
             </tr>
         </thead>
         <#list statistics as record>
@@ -27,6 +28,7 @@
                 <td>${record.clientTime!}</td>
                 <td>${record.serverTime!}</td>
                 <td>${record.prevIdStat!}</td>
+                <td>${record.origin!}</td>
             </tr>
         </#list>
     </table>
