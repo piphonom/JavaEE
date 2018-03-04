@@ -10,10 +10,8 @@ import javax.servlet.http.HttpSession;
 import java.lang.management.ManagementFactory;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class StatisticsServiceImpl implements StatisticsService {
     private final static int MAX_CLIENT_NAME_SIZE = 49;
@@ -26,9 +24,11 @@ public class StatisticsServiceImpl implements StatisticsService {
     private final static DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.US);
 
     private final EnableStatisticsMBean enableStatistics;
+    private Set<StatisticsListener> listeners;
 
     public StatisticsServiceImpl() {
         MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
+        listeners = ConcurrentHashMap.newKeySet();
 
         enableStatistics = new EnableStatisticsImpl();
         try {
@@ -86,6 +86,9 @@ public class StatisticsServiceImpl implements StatisticsService {
         if (saved == null) {
             throw new ProcessStatisticsException("Failed to save statistics");
         }
+
+        notifyListeners(saved);
+
         setSessionData(request, saved.getIdStat());
         return saved.getIdStat();
     }
@@ -93,6 +96,23 @@ public class StatisticsServiceImpl implements StatisticsService {
     @Override
     public List<StatisticsEntity> getAllStatistics() {
         return PersistenceServiceHolder.getPersistenceService().findAllStatistics();
+    }
+
+    @Override
+    public void addListener(StatisticsListener listener) {
+        listeners.add(listener);
+    }
+
+    @Override
+    public void removeListener(StatisticsListener listener) throws StatisticsListenerNotFoundException {
+        if (!listeners.remove(listener))
+            throw new StatisticsListenerNotFoundException("Specified listener not registered");
+    }
+
+    private void notifyListeners(StatisticsEntity statistics) {
+        List<StatisticsEntity> toSend = new ArrayList<>(1);
+        toSend.add(statistics);
+        listeners.forEach(listener -> listener.onUpdateStatistics(toSend));
     }
 
     @Override
