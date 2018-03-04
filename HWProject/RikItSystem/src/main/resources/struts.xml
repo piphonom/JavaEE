@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <include file="struts-default.xml"/>
+    <package name="default" extends="struts-default">
+        <!--<action name="">-->
+        <!--<result>/index.jsp</result>-->
+        <!--</action>-->
+        <!--<action name="struts">-->
+            <!--<result>/WEB-INF/struts/struts.jsp</result>-->
+        <!--</action>-->
+        <action name="statistics" class="ru.otus.rik.domain.action.GetStatistics">
+            <result name="success">/WEB-INF/struts/statistics.jsp</result>
+            <!--<result name="error">/WEB-INF/struts/statistics-error.jsp</result>-->
+        </action>
+    </package>
+</struts>

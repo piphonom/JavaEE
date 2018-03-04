@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%@include file="head.jsp"%>
+    <%@include file="/WEB-INF/common-jsp/head.jsp"%>
     <title>Users</title>
 </head>
 <body>
@@ -105,7 +105,7 @@
                 </form>
             </c:if>
 
-            <a href="${contextPath}/statistics">Statistics</a>
+            <a href="${contextPath}/statistics.action">Statistics</a>
         </c:when>
         <c:otherwise>
             <jsp:forward page="${contextPath}/login.jsp"/>

@@ -89,6 +89,16 @@
         <url-pattern>*.ftlx</url-pattern>
     </servlet-mapping>
 
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>*.action</url-pattern>
+    </filter-mapping>
+
     <context-param>
         <param-name>defaultUsersSnapshotLocation</param-name>
         <param-value>/WEB-INF/users.xml</param-value>

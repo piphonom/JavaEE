@@ -50,7 +50,7 @@ public class DbInitServlet extends HttpServlet {
     }
 
     private void initDepartments() throws IOException {
-        processCsv("/WEB-INF/Departments.csv", (record) -> {
+        processCsv("/WEB-INF/csv/Departments.csv", (record) -> {
             DepartmentEntity department = new DepartmentEntity();
             department.setName(record.get("Name"));
             department.setLocation(record.get("Location"));
@@ -59,7 +59,7 @@ public class DbInitServlet extends HttpServlet {
     }
 
     private void initPositions() throws IOException {
-        processCsv("/WEB-INF/Positions.csv", (record) -> {
+        processCsv("/WEB-INF/csv/Positions.csv", (record) -> {
             PositionEntity position = new PositionEntity();
             position.setTitle(record.get("Title"));
             position.setSalary(Integer.valueOf(record.get("Salary")));
@@ -68,7 +68,7 @@ public class DbInitServlet extends HttpServlet {
     }
 
     private void initRoles() throws IOException {
-        processCsv("/WEB-INF/Roles.csv", (record) -> {
+        processCsv("/WEB-INF/csv/Roles.csv", (record) -> {
             RoleEntity role = new RoleEntity();
             role.setName(record.get("Name"));
             persistenceService.saveRole(role);
@@ -80,7 +80,7 @@ public class DbInitServlet extends HttpServlet {
         RandomString randomString = new RandomString();
         HashGenerator hashGenerator = new HashGenerator();
         /* Name,Email,Phone,DepartmentName,DepartmentLocation,Position,Role,Password */
-        processCsv("/WEB-INF/Users.csv", (record) -> {
+        processCsv("/WEB-INF/csv/Users.csv", (record) -> {
             UserEntity user = new UserEntity();
             user.setName(record.get("Name"));
             user.setEmail(record.get("Email"));

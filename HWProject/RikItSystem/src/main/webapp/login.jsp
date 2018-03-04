@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%@include file="head.jsp"%>
+    <%@include file="/WEB-INF/common-jsp/head.jsp"%>
     <title>Log in with your account</title>
 </head>
 
