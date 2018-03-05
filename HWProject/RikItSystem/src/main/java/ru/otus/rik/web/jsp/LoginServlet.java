@@ -1,6 +1,7 @@
 package ru.otus.rik.web.jsp;
 
 import ru.otus.rik.domain.UserEntity;
+import ru.otus.rik.service.helpers.AuthenticationServiceHolder;
 import ru.otus.rik.service.persistence.JpaPersistenceService;
 import ru.otus.rik.service.persistence.PersistenceService;
 import ru.otus.rik.service.security.AuthenticationService;
@@ -45,6 +46,9 @@ public class LoginServlet extends HttpServlet {
             String email = (String) session.getAttribute("user");
             try {
                 user = persistenceService.findUserByEmail(email);
+                if (user == null)
+                    throw new Exception();
+                AuthenticationServiceHolder.getAuthenticationService().setCurrentUser(user);
             } catch (Exception e) {
                 forwardToLoginPage(req, resp, null, null);
                 return;

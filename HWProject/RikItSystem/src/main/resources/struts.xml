@@ -11,5 +11,8 @@
             <result name="success">/WEB-INF/struts/statistics.jsp</result>
             <!--<result name="error">/WEB-INF/struts/statistics-error.jsp</result>-->
         </action>
+        <action name="chat" class="ru.otus.rik.domain.action.GetChat">
+            <result name="success">/WEB-INF/struts/chat.jsp</result>
+        </action>
     </package>
 </struts>

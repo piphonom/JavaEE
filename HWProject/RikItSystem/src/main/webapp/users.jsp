@@ -106,6 +106,7 @@
             </c:if>
 
             <a href="${contextPath}/statistics.action">Statistics</a>
+            <a href="${contextPath}/chat.action">Chat</a>
         </c:when>
         <c:otherwise>
             <jsp:forward page="${contextPath}/login.jsp"/>
