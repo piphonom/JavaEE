@@ -1,5 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="session" value="${pageContext.request.getSession(false)}"/>
+
 <html>
 <head>
     <%@include file="/WEB-INF/common-jsp/head.jsp"%>
@@ -10,27 +14,39 @@
         webSocket.onmessage = function(evt) {
             var table = document.getElementById("messages");
             var data = JSON.parse(evt.data);
-            for (var i = 0; i < data.length; i++) {
-                var row = table.insertRow();
-                row.classList.add("text-error");
-                var recordId = row.insertCell(0);
-                recordId.innerHTML = data[i].user;
-                var pageName = row.insertCell(1);
-                pageName.innerHTML = data[i].message;
-            }
+
+            var row = table.insertRow(1);
+            row.classList.add("text-success");
+            var user = row.insertCell(0);
+            user.innerHTML = data.user;
+            var message = row.insertCell(1);
+            message.innerHTML = data.message;
         };
 
         function sendMessage() {
             var messageField = document.getElementById('newMessage');
-            webSocket.send(messageField.value);
+            var dataToSend = JSON.stringify({
+                user: "${session.getAttribute('user')}",
+                message: messageField.value
+            });
+            webSocket.send(dataToSend);
             messageField.value = "";
         }
     </script>
 </head>
 <body>
 <div class="container">
-<h2>Chat</h2>
-<table id="messages" class="table table-striped">
+    <form class="form-signin">
+        <div class="form-group">
+            <textarea name="newMessage" id="newMessage" type="text" class="inputWidth form-control" placeholder="Type message"
+                    autofocus="true"></textarea>
+            <input type="button" class="btn btn-lg btn-primary btn-block" value="Send" onclick="sendMessage()">
+        </div>
+    </form>
+</div>
+<div class="container">
+    <h2>Chat</h2>
+    <table id="messages" class="table table-striped">
     <thead>
     <tr>
         <td>User</td>
@@ -44,13 +60,6 @@
         </tr>
     </s:iterator>
 </table>
-</div>
-<div class="container">
-    <div class="form-group">
-        <input name="newMessage" id="newMessage" type="text" class="form-control" placeholder="Type message"
-               autofocus="true"/>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="sendMessage()">Send</button>
-    </div>
 </div>
 </body>
 </html>

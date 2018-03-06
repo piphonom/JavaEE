@@ -1,7 +1,6 @@
 package ru.otus.rik.service.security;
 
 import lombok.Getter;
-import lombok.Setter;
 import ru.otus.rik.domain.UserEntity;
 import ru.otus.rik.service.persistence.JpaPersistenceService;
 import ru.otus.rik.service.persistence.PersistenceService;
@@ -11,7 +10,6 @@ import javax.security.sasl.AuthenticationException;
 import java.security.NoSuchAlgorithmException;
 
 @Getter
-@Setter
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     private static final PersistenceService persistenceService = new JpaPersistenceService();

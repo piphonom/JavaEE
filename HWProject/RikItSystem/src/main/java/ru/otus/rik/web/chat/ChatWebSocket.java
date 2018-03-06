@@ -21,7 +21,7 @@ public class ChatWebSocket {
 
     private static final Gson jsonBuilder = new GsonBuilder().create();
 
-    private Set<Session> sessions = ConcurrentHashMap.newKeySet();
+    private static Set<Session> sessions = ConcurrentHashMap.newKeySet();
 
     @OnOpen
     public void onOpen(Session session) {

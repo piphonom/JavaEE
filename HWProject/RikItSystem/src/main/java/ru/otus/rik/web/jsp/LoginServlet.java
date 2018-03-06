@@ -48,7 +48,6 @@ public class LoginServlet extends HttpServlet {
                 user = persistenceService.findUserByEmail(email);
                 if (user == null)
                     throw new Exception();
-                AuthenticationServiceHolder.getAuthenticationService().setCurrentUser(user);
             } catch (Exception e) {
                 forwardToLoginPage(req, resp, null, null);
                 return;
