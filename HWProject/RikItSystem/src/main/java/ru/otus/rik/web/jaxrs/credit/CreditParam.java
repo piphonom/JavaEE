@@ -1,4 +1,4 @@
-package ru.otus.rik.web.jaxrs;
+package ru.otus.rik.web.jaxrs.credit;
 
 import javax.ws.rs.QueryParam;
 

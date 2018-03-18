@@ -1,9 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="session" value="${pageContext.request.getSession(false)}"/>
-
 <html>
 <head>
     <%@include file="/WEB-INF/common-jsp/head.jsp"%>

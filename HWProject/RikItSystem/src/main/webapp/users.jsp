@@ -1,11 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="rik" uri="/rik-tld"%>
-
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="session" value="${pageContext.request.getSession(false)}"/>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

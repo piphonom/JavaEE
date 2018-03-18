@@ -1,8 +1,7 @@
-package ru.otus.rik.web.jaxrs;
+package ru.otus.rik.web.jaxrs.credit;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.apache.http.HttpStatus;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -13,15 +12,8 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
-@Path("/calculator")
+@Path("/credit/calculator")
 public class CreditCalculator {
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    @Path("/test")
-    public Response test() {
-        return Response.status(HttpStatus.SC_OK).entity("Hello").build();
-    }
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/annuity")
@@ -32,7 +24,7 @@ public class CreditCalculator {
         percent /= 1200;
         double payment = (total * percent) / (1 - (1 / Math.pow(1 + percent, period)));
         AnnuityPayment annuityPayment = new AnnuityPayment(payment);
-        return Response.status(HttpStatus.SC_OK).entity(annuityPayment).build();
+        return Response.status(Response.Status.OK).entity(annuityPayment).build();
     }
 
     @GET
@@ -52,7 +44,7 @@ public class CreditCalculator {
             payed += payment;
         }
         DifferentialPayment paymentsSchedule = new DifferentialPayment(payments);
-        return Response.status(HttpStatus.SC_OK).entity(paymentsSchedule).build();
+        return Response.status(Response.Status.OK).entity(paymentsSchedule).build();
     }
 
     @AllArgsConstructor

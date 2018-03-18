@@ -17,5 +17,9 @@
         <action name="credit" class="ru.otus.rik.domain.action.GetCreditCalculator">
             <result name="success">/WEB-INF/struts/credit.jsp</result>
         </action>
+        <action name="login" class="ru.otus.rik.domain.action.Login">
+            <result name="success">/WEB-INF/struts/users.jsp</result>
+            <result name="error">/WEB-INF/struts/login.jsp</result>
+        </action>
     </package>
 </struts>

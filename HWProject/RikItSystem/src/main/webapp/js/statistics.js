@@ -1,6 +1,7 @@
 function getStatistics(pageName) {
-    var urlCtl = "/statistics";
-    var self = this;       
+    // var urlCtl = document.location.host + "/statistics";
+    var urlCtl = "/rik-it-system/statistics"; // TODO: fix hardcoded context path
+    var self = this;
     var statusTimeout = 300000; // timeout form message
     var pageName = pageName;
         

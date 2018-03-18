@@ -12,7 +12,7 @@ import java.io.IOException;
 public class RikStatisticsTagHandler extends SimpleTagSupport {
 
     private final String GET_STATISTICS_JS_TEMPLATE =
-            "<script type=\"text/javascript\" src=\"/js/statistics.js\"></script>\n" +
+            "<script type=\"text/javascript\" src=\"%s/js/statistics.js\"></script>\n" +
             "<script lang=\"javascript\">\n" +
             "setTimeout(function () { \n" +
             "        new getStatistics(\"%s\");\n" +
@@ -24,7 +24,8 @@ public class RikStatisticsTagHandler extends SimpleTagSupport {
         if (StatisticsServiceHolder.getStatisticsService().getEnabled()) {
             PageContext context = (PageContext) getJspContext();
             String pageName = ((HttpServletRequest) context.getRequest()).getServletPath();
-            String jsCodeSnippet = String.format(GET_STATISTICS_JS_TEMPLATE, pageName);
+            String contextPath =  ((HttpServletRequest) context.getRequest()).getContextPath();
+            String jsCodeSnippet = String.format(GET_STATISTICS_JS_TEMPLATE, contextPath, pageName);
             getJspContext().getOut().print(jsCodeSnippet);
         }
     }
