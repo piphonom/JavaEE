@@ -107,6 +107,7 @@
 
             <a href="${contextPath}/statistics.action">Statistics</a>
             <a href="${contextPath}/chat.action">Chat</a>
+            <a href="${contextPath}/credit.action">Credit</a>
         </c:when>
         <c:otherwise>
             <jsp:forward page="${contextPath}/login.jsp"/>

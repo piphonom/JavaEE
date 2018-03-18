@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-@WebFilter(filterName = "CsrfGenerateFilter", urlPatterns = "*")
+@WebFilter(filterName = "CsrfGenerateFilter", urlPatterns = "/*")
 public class CsrfGenerateFilter implements Filter {
 
     private final static int CACHE_CAPACITY = 1000;

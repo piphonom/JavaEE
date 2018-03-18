@@ -21,21 +21,24 @@ public class CsrfValidateFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest httpRequest = (HttpServletRequest) req;
-        String csrf = httpRequest.getParameter(CSRF_REQUEST_PARAMETER_NAME);
-        if (csrf == null) {
-            ((HttpServletResponse) resp).sendError(HttpServletResponse.SC_FORBIDDEN);
-        }
 
-        HttpSession session = httpRequest.getSession();
-        @SuppressWarnings("unchecked cast")
-        Cache<String, Boolean> csrfCache = (Cache<String, Boolean>) session.getAttribute(CsrfGenerateFilter.CACHE_ATTRIBUTE_NAME);
+        chain.doFilter(req, resp);
 
-        if (csrfCache != null && csrfCache.getIfPresent(csrf) != null) {
-            chain.doFilter(req, resp);
-        }
-
-        ((HttpServletResponse) resp).sendError(HttpServletResponse.SC_BAD_REQUEST);
+//        HttpServletRequest httpRequest = (HttpServletRequest) req;
+//        String csrf = httpRequest.getParameter(CSRF_REQUEST_PARAMETER_NAME);
+//        if (csrf == null) {
+//            ((HttpServletResponse) resp).sendError(HttpServletResponse.SC_FORBIDDEN);
+//        }
+//
+//        HttpSession session = httpRequest.getSession();
+//        @SuppressWarnings("unchecked cast")
+//        Cache<String, Boolean> csrfCache = (Cache<String, Boolean>) session.getAttribute(CsrfGenerateFilter.CACHE_ATTRIBUTE_NAME);
+//
+//        if (csrfCache != null && csrfCache.getIfPresent(csrf) != null) {
+//            chain.doFilter(req, resp);
+//        }
+//
+//        ((HttpServletResponse) resp).sendError(HttpServletResponse.SC_BAD_REQUEST);
     }
 
     @Override

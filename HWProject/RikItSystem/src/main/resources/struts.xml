@@ -14,5 +14,8 @@
         <action name="chat" class="ru.otus.rik.domain.action.GetChat">
             <result name="success">/WEB-INF/struts/chat.jsp</result>
         </action>
+        <action name="credit" class="ru.otus.rik.domain.action.GetCreditCalculator">
+            <result name="success">/WEB-INF/struts/credit.jsp</result>
+        </action>
     </package>
 </struts>

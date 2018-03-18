@@ -58,13 +58,14 @@ public class LoginServlet extends HttpServlet {
         List<UserEntity> usersList = persistenceService.findAllUsers();
 //        req.setAttribute("usersList", usersList);
         session.setAttribute("usersList", usersList);
-        req.getRequestDispatcher(req.getContextPath() + USERS_JSP).forward(req, resp);
+        String contextPath = req.getContextPath();
+        req.getRequestDispatcher(USERS_JSP).forward(req, resp);
 //        resp.sendRedirect(req.getContextPath() + USERS_JSP);
     }
 
     private void forwardToLoginPage(HttpServletRequest req, HttpServletResponse resp, String email, String error) throws IOException, ServletException {
         req.setAttribute("error", error);
         req.setAttribute("email", email);
-        req.getRequestDispatcher(req.getContextPath() + LOGIN_JSP).forward(req, resp);
+        req.getRequestDispatcher(LOGIN_JSP).forward(req, resp);
     }
 }
