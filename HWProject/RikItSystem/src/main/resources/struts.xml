@@ -21,5 +21,9 @@
             <result name="success">/WEB-INF/struts/users.jsp</result>
             <result name="error">/WEB-INF/struts/login.jsp</result>
         </action>
+        <action name="edit-user" class="ru.otus.rik.domain.action.EditUser">
+            <result name="success">/WEB-INF/struts/edit-user.jsp</result>
+            <result name="error">/WEB-INF/struts/users.jsp</result>
+        </action>
     </package>
 </struts>

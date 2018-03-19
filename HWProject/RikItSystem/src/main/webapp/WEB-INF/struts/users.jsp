@@ -16,7 +16,7 @@
         getUsers();
 
         function removeUser (email) {
-            
+
         }
 
         function getUsers() {
@@ -86,7 +86,7 @@
                 <input type="hidden" name="csrf" value="<c:out value='${csrf}'/>"/>
             </form>
 
-            <h2>List of users for <s:property value="user.name" /> | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+            <h2>List of users for ${user.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
 
             <c:if test="${not empty message}">
                 <div class="alert alert-success">
@@ -113,23 +113,6 @@
                             <td>Salary</td>
                         </tr>
                     </thead>
-                    <c:forEach var="user" items="${session.getAttribute(\"usersList\")}">
-                        <c:set var="classSucess" value="info"/>
-                        <tr class="${classSucess}">
-                            <td><a href="${contextPath}/edit-user.jsp?email=${user.email}">${user.name}</a></td>
-                            <td>${user.email}</td>
-                            <td>${user.departmentRef.location}</td>
-                            <td>${user.departmentRef.name}</td>
-                            <td>${user.positionRef.title}</td>
-                            <td>${user.positionRef.salary}</td>
-                            <td><a href="#" id="remove"
-                                   onclick="document.getElementById('action').value = 'remove';document.getElementById('email').value = '${user.email}';
-                                        document.getElementById('usersForm').submit();">
-                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                </a>
-                            </td>
-                        </tr>
-                    </c:forEach>
                 </table>
             </form>
 
