@@ -163,6 +163,11 @@
           <artifactId>jersey-bean-validation</artifactId>
           <version>${jersy.version}</version>
       </dependency>
+      <dependency>
+          <groupId>org.glassfish.jersey.media</groupId>
+          <artifactId>jersey-media-json-jackson</artifactId>
+          <version>${jersy.version}</version>
+      </dependency>
   </dependencies>
   <build>
     <finalName>rik-it-system</finalName>

@@ -9,8 +9,8 @@
     <%@include file="/WEB-INF/common-jsp/head.jsp"%>
     <title>Users</title>
     <script>
-        var restBaseUrl = "http://" + document.location.host + "/rik-it-system/api/v1/user";
-        var userListUrl = restBaseUrl + "/list";
+        var catalogBaseUrl = "http://" + document.location.host + "/rik-it-system/api/v1/catalog";
+        var userListUrl = catalogBaseUrl + "/users";
         var statusTimeout = 300000; // timeout form message
 
         getUsers();

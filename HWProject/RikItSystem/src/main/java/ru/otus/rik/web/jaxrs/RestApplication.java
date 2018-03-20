@@ -1,7 +1,9 @@
 package ru.otus.rik.web.jaxrs;
 
 import ru.otus.rik.web.jaxrs.credit.CreditCalculator;
+import ru.otus.rik.web.jaxrs.user.CatalogService;
 import ru.otus.rik.web.jaxrs.user.UserService;
+import ru.otus.rik.web.jaxrs.user.exceptions.RestServiceExceptionMapper;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -14,7 +16,9 @@ public class RestApplication extends Application {
         return new HashSet<Class<?>>() {
             {
                 add(CreditCalculator.class);
+                add(CatalogService.class);
                 add(UserService.class);
+                add(RestServiceExceptionMapper.class);
             }
         };
     }

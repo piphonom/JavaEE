@@ -8,16 +8,33 @@
     <%@include file="/WEB-INF/common-jsp/head.jsp"%>
     <title>Edit</title>
     <script>
-        var restBaseUrl = "http://" + document.location.host + "/rik-it-system/api/v1/user";
-        var departmentsListUrl = restBaseUrl + "/departments";
-        var positionsListUrl = restBaseUrl + "/positions";
+        var catalogBaseUrl = "http://" + document.location.host + "/rik-it-system/api/v1/catalog";
+        var departmentsListUrl = catalogBaseUrl + "/departments";
+        var positionsListUrl = catalogBaseUrl + "/positions";
+        var userBaseUrl = "http://" + document.location.host + "/rik-it-system/api/v1/user";
         var statusTimeout = 300000; // timeout form message
 
         getDepartments();
         getPositions();
 
         function editUser() {
+            var email = document.getElementById('email').value;
+            var departmentSelect = document.getElementById('department');
+            var department = departmentSelect.options[departmentSelect.selectedIndex].value;
+            var positionSelect = document.getElementById('position');
+            var position = positionSelect.options[positionSelect.selectedIndex].value;
+            var request = {email:email, department:department, position:position};
 
+            $.ajax({
+                url: userBaseUrl,
+                cache: false,
+                data: JSON.stringify(request),
+                contentType: 'application/json; charset=utf-8',
+                dataType: "json",
+                timeout: statusTimeout,
+                type: "put",
+                error: errorHandler,
+                success: editHandler});
         }
 
         function getDepartments() {
@@ -27,7 +44,7 @@
                 dataType: "json",
                 timeout: statusTimeout,
                 type: "get",
-                error: departmentsErrorHandler,
+                error: errorHandler,
                 success: departmentsHandler});
         }
 
@@ -38,12 +55,23 @@
                 dataType: "json",
                 timeout: statusTimeout,
                 type: "get",
-                error: positionsErrorHandler,
+                error: errorHandler,
                 success: positionsHandler});
         }
 
-        function departmentsErrorHandler(data) {
+        function errorHandler(data) {
 
+        }
+
+        function editHandler(data) {
+            var errorField = document.getElementById('error');
+            errorField.classList.remove("alert-warning");
+            errorField.innerHTML = "";
+
+            var messageField = document.getElementById('message');
+            messageField.classList.add("alert-success");
+
+            messageField.innerHTML = "Updated";
         }
 
         function departmentsHandler(data) {
@@ -61,10 +89,6 @@
                 selection.appendChild(opt);
             }
             $("#department").selectpicker('refresh');
-        }
-
-        function positionsErrorHandler(data) {
-
         }
 
         function positionsHandler(data) {
@@ -89,10 +113,11 @@
     <form id="editForm" class="form-signin">
         <div class="form-group ${error ne null ? 'has-error' : ''}">
             <input name="name" type="text" class="form-control" placeholder="Name" disabled="disabled" value="${user.name}"/>
-            <input name="email" type="text" class="form-control" placeholder="Email" disabled="disabled" value="${user.email}"/>
+            <input id="email" name="email" type="text" class="form-control" placeholder="Email" disabled="disabled" value="${user.email}"/>
             <select id="department" name="department" class="selectpicker" data-width="300px"></select>
             <select id="position" name="position" class="selectpicker" data-width="300px"></select>
-            <span id="error" name="error">${error}</span>
+            <span id="message" name="message" class="alert">${message}</span>
+            <span id="error" name="error" class="alert">${error}</span>
         </div>
         <input type="button" class="btn btn-lg btn-primary btn-block" value="Edit" onclick="editUser()">
         <input type="hidden" name="csrf" value="<c:out value='${csrf}'/>"/>
