@@ -1,6 +1,7 @@
 package ru.otus.rik.web.jaxrs.user.parameters;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,24 +24,29 @@ public class CreateUserParameters {
 
     @JsonProperty("name")
     @NotBlank
+    @ApiParam(value = "User name", required = true)
     private String name;
 
     @JsonProperty("email")
     @Email
     @NotBlank
+    @ApiParam(value = "User email", required = true)
     private String email;
 
     @JsonProperty("department")
     @NotBlank
     // TODO: add @Pattern with regexp instead of check in parseDepartment()
+    @ApiParam(value = "Existed department location and name separated by &", required = true)
     private String department;
 
     @JsonProperty("position")
     @NotBlank
+    @ApiParam(value = "Existed position name", required = true)
     private String position;
 
     @JsonProperty("role")
     @NotBlank
+    @ApiParam(value = "Existed role name", required = true)
     private String role;
 
     public String getDepartmentName() {

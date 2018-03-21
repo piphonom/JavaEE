@@ -19,6 +19,9 @@ public class RestApplication extends Application {
                 add(CatalogService.class);
                 add(UserService.class);
                 add(RestServiceExceptionMapper.class);
+                add(DummySwaggerDefinition.class);
+                add(io.swagger.jaxrs.listing.ApiListingResource.class);
+                add(io.swagger.jaxrs.listing.SwaggerSerializers.class);
             }
         };
     }

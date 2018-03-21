@@ -1,5 +1,6 @@
 package ru.otus.rik.web.jaxrs.user;
 
+import io.swagger.annotations.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import ru.otus.rik.domain.DepartmentEntity;
@@ -15,6 +16,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+@Api(tags={"rik_catalog"})
 @Path("/catalog")
 @Produces(MediaType.APPLICATION_JSON)
 public class CatalogService {
@@ -22,6 +24,10 @@ public class CatalogService {
 
     @GET
     @Path("/users")
+    @ApiOperation("Get users list")
+    @ApiResponses(
+            @ApiResponse(response = UsersListResponse.class, code = 200, message = "Users list")
+    )
     public Response getUsers() {
         List<UserEntity> users = persistenceService.findAllUsers();
         UsersListResponse response = new UsersListResponse(users);
@@ -30,6 +36,10 @@ public class CatalogService {
 
     @GET
     @Path("/departments")
+    @ApiOperation("Get departments list")
+    @ApiResponses(
+            @ApiResponse(response = DepartmentsListResponse.class, code = 200, message = "Departments list")
+    )
     public Response getDepartments() {
         List<DepartmentEntity> departments = persistenceService.findAllDepartments();
         DepartmentsListResponse response = new DepartmentsListResponse(departments);
@@ -38,6 +48,10 @@ public class CatalogService {
 
     @GET
     @Path("/positions")
+    @ApiOperation("Get positions list")
+    @ApiResponses(
+            @ApiResponse(response = PositionsListResponse.class, code = 200, message = "Positions list")
+    )
     public Response getPositions() {
         List<PositionEntity> positions = persistenceService.findAllPositions();
         PositionsListResponse response = new PositionsListResponse(positions);

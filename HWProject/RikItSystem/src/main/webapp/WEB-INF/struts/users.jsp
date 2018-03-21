@@ -127,6 +127,7 @@
             <a href="${contextPath}/statistics.action">Statistics</a>
             <a href="${contextPath}/chat.action">Chat</a>
             <a href="${contextPath}/credit.action">Credit</a>
+            <a href="${contextPath}/swagger.html">Swagger</a>
         <%--</s:if>--%>
         <%--<s:else>--%>
             <%--<jsp:forward page="${contextPath}/login.action"/>--%>

@@ -1,5 +1,6 @@
 package ru.otus.rik.web.jaxrs.credit;
 
+import io.swagger.annotations.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -12,14 +13,23 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
+@Api(tags={"calculator"})
 @Path("/credit/calculator")
+@Produces(MediaType.APPLICATION_JSON)
 public class CreditCalculator {
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
     @Path("/annuity")
-    public Response annuityPayment(@QueryParam("total") int total,
-                                  @QueryParam("period") int period,
-                                  @QueryParam("percent") double percent) {
+    @ApiOperation("Annuity credit calculation")
+    @ApiResponses(
+        @ApiResponse(response = AnnuityPayment.class, code = 200, message = "Returns monthly payment")
+    )
+    public Response annuityPayment(
+            @ApiParam(value = "Credit amount", required = true)
+            @QueryParam("total") int total,
+            @ApiParam(value = "Period of credit as number of months", required = true)
+            @QueryParam("period") int period,
+            @ApiParam(value = "Percent of the credit", required = true)
+            @QueryParam("percent") double percent) {
 
         percent /= 1200;
         double payment = (total * percent) / (1 - (1 / Math.pow(1 + percent, period)));
@@ -28,11 +38,18 @@ public class CreditCalculator {
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
     @Path("/differential")
-    public Response differentialPayment(@QueryParam("total") int total,
-                                  @QueryParam("period") int period,
-                                  @QueryParam("percent") double percent) {
+    @ApiOperation("Differential credit calculation")
+    @ApiResponses(
+            @ApiResponse(response = DifferentialPayment.class, code = 200, message = "Returns schedule of monthly payments")
+    )
+    public Response differentialPayment(
+            @ApiParam(value = "Credit amount", required = true)
+            @QueryParam("total") int total,
+            @ApiParam(value = "Period of credit as number of months", required = true)
+            @QueryParam("period") int period,
+            @ApiParam(value = "Percent of the credit", required = true)
+            @QueryParam("percent") double percent) {
 
         percent /= 1200;
         List<Double> payments = new ArrayList<>();
