@@ -1,6 +1,7 @@
 package ru.otus.rik.web.jaxrs;
 
 import ru.otus.rik.web.jaxrs.credit.CreditCalculator;
+import ru.otus.rik.web.jaxrs.soap.SoapOverRest;
 import ru.otus.rik.web.jaxrs.user.CatalogService;
 import ru.otus.rik.web.jaxrs.user.UserService;
 import ru.otus.rik.web.jaxrs.user.exceptions.RestServiceExceptionMapper;
@@ -20,6 +21,7 @@ public class RestApplication extends Application {
                 add(UserService.class);
                 add(RestServiceExceptionMapper.class);
                 add(DummySwaggerDefinition.class);
+                add(SoapOverRest.class);
                 add(io.swagger.jaxrs.listing.ApiListingResource.class);
                 add(io.swagger.jaxrs.listing.SwaggerSerializers.class);
             }

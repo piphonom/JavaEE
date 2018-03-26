@@ -17,7 +17,8 @@ import io.swagger.annotations.*;
         tags = {
                 @Tag(name = "rik_users", description = "User related operations"),
                 @Tag(name = "rik_catalog", description = "Common querying operations"),
-                @Tag(name = "calculator", description = "Different credit calculators")
+                @Tag(name = "calculator", description = "Different credit calculators"),
+                @Tag(name = "soap", description = "Test SOAP services mapped to REST")
         },
         host = "localhost:8080",
         basePath = "/rik-it-system/api/v1",

@@ -20,4 +20,12 @@ public final class RiseSetDateHolder {
         minutes = (int)(60 * (lonLanDate.getSunSetTime() - hours));
         set = new GregorianCalendar(lonLanDate.getYear(), lonLanDate.getMonth(), lonLanDate.getDay(), hours, minutes);
     }
+
+    public String riseAsString() {
+        return String.format("%02d:%02d", rise.get(Calendar.HOUR_OF_DAY), rise.get(Calendar.MINUTE));
+    }
+
+    public String setAsString() {
+        return String.format("%02d:%02d", set.get(Calendar.HOUR_OF_DAY), set.get(Calendar.MINUTE));
+    }
 }
