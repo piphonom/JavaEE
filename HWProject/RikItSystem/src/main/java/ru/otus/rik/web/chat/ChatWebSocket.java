@@ -4,8 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.extern.slf4j.Slf4j;
 import ru.otus.rik.service.chat.ChatMessage;
-import ru.otus.rik.service.helpers.ChatServiceHolder;
+import ru.otus.rik.service.chat.ChatService;
 
+import javax.ejb.EJB;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -23,6 +24,9 @@ public class ChatWebSocket {
 
     private static Set<Session> sessions = ConcurrentHashMap.newKeySet();
 
+    @EJB
+    private ChatService chatService;
+
     @OnOpen
     public void onOpen(Session session) {
         sessions.add(session);
@@ -30,7 +34,7 @@ public class ChatWebSocket {
 
     @OnMessage
     public void onMessage(Session session, String message) {
-        ChatMessage chatMessage = ChatServiceHolder.getChatService().addMessage(message);
+        ChatMessage chatMessage = chatService.addMessage(message);
         String result = jsonBuilder.toJson(chatMessage);
         sessions.forEach(s -> {
             try {

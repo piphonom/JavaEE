@@ -8,7 +8,7 @@
     <%@include file="/WEB-INF/common-jsp/head.jsp"%>
     <title>Chat</title>
     <script>
-        var webSocket = new WebSocket("ws://" + document.location.host + "/chat");
+        var webSocket = new WebSocket("ws://" + document.location.host + "/rik-it-system/chat");
 
         webSocket.onmessage = function(evt) {
             var table = document.getElementById("messages");

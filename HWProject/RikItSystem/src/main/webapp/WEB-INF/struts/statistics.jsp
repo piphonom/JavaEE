@@ -7,7 +7,7 @@
     <%@include file="/WEB-INF/common-jsp/head.jsp"%>
     <title>Statistics</title>
     <script>
-        var webSocket = new WebSocket("ws://" + document.location.host + "/statistics");
+        var webSocket = new WebSocket("ws://" + document.location.host + "/rik-it-system/statistics");
         webSocket.onmessage = function(evt) {
             var table = document.getElementById("statistics");
             var data = JSON.parse(evt.data);

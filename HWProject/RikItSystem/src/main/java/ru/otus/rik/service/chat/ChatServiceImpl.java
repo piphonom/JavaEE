@@ -1,13 +1,18 @@
 package ru.otus.rik.service.chat;
 
-import ru.otus.rik.domain.UserEntity;
-import ru.otus.rik.service.helpers.AuthenticationServiceHolder;
 import ru.otus.rik.service.json.JsonBinder;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Remote;
+import javax.ejb.Singleton;
+import javax.ejb.Stateless;
 import java.io.StringReader;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+@Remote(ChatService.class)
+@LocalBean
+@Stateless
 public class ChatServiceImpl implements ChatService {
 
     private static final JsonBinder<ChatMessage> jsonBinder = new JsonBinder<>(ChatMessage.class);

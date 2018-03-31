@@ -173,6 +173,11 @@
           <artifactId>swagger-jersey-jaxrs</artifactId>
           <version>1.5.18</version>
       </dependency>
+      <dependency>
+          <groupId>javax.ejb</groupId>
+          <artifactId>javax.ejb-api</artifactId>
+          <version>3.2</version>
+      </dependency>
   </dependencies>
   <build>
     <finalName>rik-it-system</finalName>

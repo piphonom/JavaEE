@@ -3,7 +3,9 @@ package ru.otus.rik.web.jaxrs.credit;
 import io.swagger.annotations.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import ru.otus.rik.service.creadit.CreditService;
 
+import javax.ejb.EJB;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -17,6 +19,10 @@ import java.util.List;
 @Path("/credit/calculator")
 @Produces(MediaType.APPLICATION_JSON)
 public class CreditCalculator {
+
+    @EJB
+    private CreditService creditService;
+
     @GET
     @Path("/annuity")
     @ApiOperation("Annuity credit calculation")
@@ -31,8 +37,7 @@ public class CreditCalculator {
             @ApiParam(value = "Percent of the credit", required = true)
             @QueryParam("percent") double percent) {
 
-        percent /= 1200;
-        double payment = (total * percent) / (1 - (1 / Math.pow(1 + percent, period)));
+        double payment = creditService.calculateAnnuityCreditPayment(total, period, percent);
         AnnuityPayment annuityPayment = new AnnuityPayment(payment);
         return Response.status(Response.Status.OK).entity(annuityPayment).build();
     }
@@ -51,15 +56,7 @@ public class CreditCalculator {
             @ApiParam(value = "Percent of the credit", required = true)
             @QueryParam("percent") double percent) {
 
-        percent /= 1200;
-        List<Double> payments = new ArrayList<>();
-        double payed = 0;
-        int i = 1;
-        while (i <= period) {
-            double payment = total/period + (total * (period - i++ + 1) * percent / period);
-            payments.add(payment);
-            payed += payment;
-        }
+        List<Double> payments = creditService.calculateDifferentialCreditPayment(total, period, percent);
         DifferentialPayment paymentsSchedule = new DifferentialPayment(payments);
         return Response.status(Response.Status.OK).entity(paymentsSchedule).build();
     }
