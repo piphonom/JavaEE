@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
+import java.io.Serializable;
 
 @Entity
 @Table (name = "Position",
@@ -15,7 +16,7 @@ import javax.xml.bind.annotation.*;
 @Setter
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class PositionEntity {
+public class PositionEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @XmlTransient

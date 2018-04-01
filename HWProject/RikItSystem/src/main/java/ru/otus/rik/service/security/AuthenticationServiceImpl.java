@@ -6,13 +6,19 @@ import ru.otus.rik.service.persistence.JpaPersistenceService;
 import ru.otus.rik.service.persistence.PersistenceService;
 import ru.otus.rik.service.helpers.HashGenerator;
 
+import javax.ejb.*;
 import javax.security.sasl.AuthenticationException;
 import java.security.NoSuchAlgorithmException;
 
+@Stateful
+@Remote(AuthenticationService.class)
+@LocalBean
 @Getter
 public class AuthenticationServiceImpl implements AuthenticationService {
 
-    private static final PersistenceService persistenceService = new JpaPersistenceService();
+    //private static final PersistenceService persistenceService = new JpaPersistenceService();
+    @EJB
+    private PersistenceService persistenceService;
     private volatile UserEntity currentUser;
 
     @Override

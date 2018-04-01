@@ -6,6 +6,7 @@ import ru.otus.rik.domain.UserEntity;
 import ru.otus.rik.service.persistence.JpaPersistenceService;
 import ru.otus.rik.service.persistence.PersistenceService;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +21,8 @@ public class EditUserServlet extends HttpServlet {
 
     private static final String USERS_JSP = "/users.jsp";
 
-    private static final PersistenceService persistenceService = new JpaPersistenceService();
+    @EJB
+    private PersistenceService persistenceService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -3,13 +3,20 @@ package ru.otus.rik.service.persistence;
 import ru.otus.rik.domain.*;
 import ru.otus.rik.service.persistence.dao.jpa.*;
 
+import javax.ejb.*;
 import javax.persistence.*;
 import java.util.List;
 import java.util.function.Function;
 
+@Stateless
+@Remote(PersistenceService.class)
+@LocalBean
+@TransactionManagement
 public class JpaPersistenceService implements PersistenceService {
     private static final String PERSISTENCE_UNIT_NAME = "RikPersistenceWithMySql";
-    private final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+    //private final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+    @PersistenceContext(unitName = "jpaRikDataSource")
+    private EntityManager entityManager;
 
     @Override
     public UserEntity findUserByName(String name) {
@@ -151,19 +158,20 @@ public class JpaPersistenceService implements PersistenceService {
         roles.forEach(this::deleteRole);
     }
 
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     private <T> T runTransaction(Function<EntityManager, T> function) {
-        EntityManager manager = entityManagerFactory.createEntityManager();
-        try {
-            manager.setFlushMode(FlushModeType.COMMIT);
-            manager.getTransaction().begin();
-            T result = function.apply(manager);
-            manager.getTransaction().commit();
+        //EntityManager manager = entityManagerFactory.createEntityManager();
+        //try {
+            //manager.setFlushMode(FlushModeType.COMMIT);
+            //manager.getTransaction().begin();
+            T result = function.apply(entityManager);
+            //manager.getTransaction().commit();
             return result;
-        } catch (Exception ex) {
-            manager.getTransaction().rollback();
-            return null;
-        } finally {
-            manager.close();
-        }
+        //} catch (Exception ex) {
+        //    manager.getTransaction().rollback();
+        //    return null;
+        //} finally {
+        //    manager.close();
+        //}
     }
 }

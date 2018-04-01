@@ -1,8 +1,12 @@
 package ru.otus.rik.service.statistics;
 
 import ru.otus.rik.domain.StatisticsEntity;
-import ru.otus.rik.service.helpers.PersistenceServiceHolder;
+import ru.otus.rik.service.persistence.PersistenceService;
 
+import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Remote;
+import javax.ejb.Singleton;
 import javax.management.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +17,9 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Singleton
+@Remote(StatisticsService.class)
+@LocalBean
 public class StatisticsServiceImpl implements StatisticsService {
     private final static int MAX_CLIENT_NAME_SIZE = 49;
     private final static String DEFAULT_MAKER_NAME = "statMarker";
@@ -25,6 +32,9 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     private final EnableStatisticsMBean enableStatistics;
     private Set<StatisticsListener> listeners;
+
+    @EJB
+    private PersistenceService persistenceService;
 
     public StatisticsServiceImpl() {
         MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
@@ -49,53 +59,43 @@ public class StatisticsServiceImpl implements StatisticsService {
     }
 
     @Override
-    public int processStatistics(HttpServletRequest request) throws ProcessStatisticsException, StatisticsDisabledException {
+    public int processStatistics(StatisticsData data) throws ProcessStatisticsException, StatisticsDisabledException {
 
         if (!enableStatistics.getEnabled()) {
             throw new StatisticsDisabledException("Statistics is disabled");
         }
+
         String markerName = System.getenv(MARKER_ENV_NAME);
-        String userTime = request.getParameter("userTime");
-        String pageName = request.getParameter("page");
-        String prevId = request.getParameter("prevId");
-        String clientName = request.getHeader("user-agent");
-        String clientIP = request.getRemoteAddr();
-        String origin = request.getHeader("origin");
 
         String serverTime = dateFormat.format(Calendar.getInstance().getTime());
 
         StatisticsEntity statistics = new StatisticsEntity();
         statistics.setMarkerName(markerName != null ? markerName : DEFAULT_MAKER_NAME);
-        statistics.setPageName(pageName);
-        statistics.setClientName(clientName.substring(0, MAX_CLIENT_NAME_SIZE));
-        statistics.setClientIP(clientIP);
-        statistics.setOrigin(origin);
+        statistics.setPageName(data.getPageName());
+        statistics.setClientName(data.getClientName().substring(0, MAX_CLIENT_NAME_SIZE));
+        statistics.setClientIP(data.getClientIP());
+        statistics.setOrigin(data.getOrigin());
 
-        statistics.setClientTime(userTime);
+        statistics.setClientTime(data.getUserTime());
         statistics.setServerTime(serverTime);
 
-        /* disable cookie style id saving */
-//        try {
-//            statistics.setPrevIdStat(Integer.valueOf(prevId));
-//        } catch (NumberFormatException e) {}
-
         /* use session style id saving */
-        statistics.setPrevIdStat(getSessionData(request));
+        //statistics.setPrevIdStat(getSessionData(data));
 
-        StatisticsEntity saved = PersistenceServiceHolder.getPersistenceService().saveStatistics(statistics);
+        StatisticsEntity saved = persistenceService.saveStatistics(statistics);
         if (saved == null) {
             throw new ProcessStatisticsException("Failed to save statistics");
         }
 
         notifyListeners(saved);
 
-        setSessionData(request, saved.getIdStat());
-        return saved.getIdStat();
+        //setSessionData(data, saved.getIdStat());
+        return saved.getIdStat() == null ? 0 : saved.getIdStat();
     }
 
     @Override
     public List<StatisticsEntity> getAllStatistics() {
-        return PersistenceServiceHolder.getPersistenceService().findAllStatistics();
+        return persistenceService.findAllStatistics();
     }
 
     @Override

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "Statistics",
@@ -11,7 +12,7 @@ import javax.persistence.*;
       )
 @Getter
 @Setter
-public class StatisticsEntity {
+public class StatisticsEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idStat;

@@ -8,7 +8,9 @@ import ru.otus.rik.domain.StatisticsEntity;
 import ru.otus.rik.service.helpers.StatisticsServiceHolder;
 import ru.otus.rik.service.statistics.StatisticsListenerNotFoundException;
 import ru.otus.rik.service.statistics.StatisticsListener;
+import ru.otus.rik.service.statistics.StatisticsService;
 
+import javax.ejb.EJB;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -24,10 +26,13 @@ public class StatisticsWebSocket implements StatisticsListener {
     private final static Gson jsonBuilder = new GsonBuilder().create();
     private Session session;
 
+    @EJB
+    private StatisticsService statisticsService;
+
     @OnOpen
     public void onOpen(Session session) {
         this.session = session;
-        StatisticsServiceHolder.getStatisticsService().addListener(this);
+        statisticsService.addListener(this);
     }
 
     @OnMessage
@@ -38,7 +43,7 @@ public class StatisticsWebSocket implements StatisticsListener {
     @OnClose
     public void onClose(Session session) {
         try {
-            StatisticsServiceHolder.getStatisticsService().removeListener(this);
+            statisticsService.removeListener(this);
         } catch (StatisticsListenerNotFoundException e) {
             e.printStackTrace();
             log.error(e.getMessage());
@@ -50,7 +55,7 @@ public class StatisticsWebSocket implements StatisticsListener {
         if (session != null) {
             try {
                 if (!session.isOpen()) {
-                    StatisticsServiceHolder.getStatisticsService().removeListener(this);
+                    statisticsService.removeListener(this);
                     return;
                 }
                 this.session.getBasicRemote().sendText(jsonBuilder.toJson(statistics));

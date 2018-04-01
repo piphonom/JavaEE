@@ -15,17 +15,7 @@ import java.util.Queue;
 public class GetChat extends ActionSupport {
 
     private Queue<ChatMessage> messages;
-    private ChatService chatService;
-
-    public GetChat() {
-        try {
-            InitialContext context = new InitialContext();
-            chatService = (ChatService) context.lookup("java:global/rik-it-system/ChatServiceImpl!ru.otus.rik.service.chat.ChatService");
-        } catch (NamingException e) {
-            e.printStackTrace();
-            chatService = ChatServiceHolder.getChatService();
-        }
-    }
+    private ChatService chatService = ChatServiceHolder.getChatService();
 
     @Override
     public String execute() throws Exception {

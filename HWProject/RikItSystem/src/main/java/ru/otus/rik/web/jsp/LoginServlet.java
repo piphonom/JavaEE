@@ -7,6 +7,7 @@ import ru.otus.rik.service.persistence.PersistenceService;
 import ru.otus.rik.service.security.AuthenticationService;
 import ru.otus.rik.service.security.AuthenticationServiceImpl;
 
+import javax.ejb.EJB;
 import javax.security.sasl.AuthenticationException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,8 +23,13 @@ public class LoginServlet extends HttpServlet {
 
     private static final String LOGIN_JSP = "/login.jsp";
     private static final String USERS_JSP = "/users.jsp";
-    private static final AuthenticationService authenticationService = new AuthenticationServiceImpl();
-    private static final PersistenceService persistenceService = new JpaPersistenceService();
+
+    @EJB
+    private PersistenceService persistenceService;
+
+    @EJB
+    private AuthenticationService authenticationService;
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

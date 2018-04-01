@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
 @Setter
 public class Login extends ActionSupport {
 
-    private final static PersistenceService persistenceService = PersistenceServiceHolder.getPersistenceService();
-    private final static AuthenticationService authenticationService = AuthenticationServiceHolder.getAuthenticationService();
+    private PersistenceService persistenceService = PersistenceServiceHolder.getPersistenceService();
+    private AuthenticationService authenticationService = AuthenticationServiceHolder.getAuthenticationService();
 
     private String email;
     private String password;
