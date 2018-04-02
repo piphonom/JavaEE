@@ -41,7 +41,7 @@
         </c:when>
         <c:otherwise>
             ${pageContext.request.setAttribute("error", "User not found")}
-            <jsp:forward page="${contextPath}/users.jsp"/>
+            <jsp:forward page="${contextPath}/search-result.jsp"/>
         </c:otherwise>
     </c:choose>
 </div>

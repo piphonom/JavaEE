@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <%@include file="/WEB-INF/common-jsp/head.jsp"%>
-    <title>Users</title>
+    <title>Search result</title>
 </head>
 <body>
 <rik:statistics/>
@@ -32,11 +32,7 @@
                 <input type="hidden" name="csrf" value="<c:out value='${csrf}'/>"/>
             </form>
 
-            <form id="logoutForm" method="POST" action="${contextPath}/logout">
-                <input type="hidden" name="csrf" value="<c:out value='${csrf}'/>"/>
-            </form>
-
-            <h2>List of users for ${session.getAttribute("user")} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+            <h2>Search result</h2>
 
             <c:if test="${not empty message}">
                             <div class="alert alert-success">
@@ -69,7 +65,7 @@
                             <c:forEach var="user" items="${session.getAttribute(\"usersList\")}">
                                 <c:set var="classSucess" value="info"/>
                                 <tr class="${classSucess}">
-                                    <td><a href="${contextPath}/edit-user.jsp?email=${user.email}">${user.name}</a></td>
+                                    <td><a href="${contextPath}/edit-user.action?email=${user.email}">${user.name}</a></td>
                                     <td>${user.email}</td>
                                     <td>${user.departmentRef.location}</td>
                                     <td>${user.departmentRef.name}</td>
@@ -97,14 +93,10 @@
             <c:if test="${not empty session.getAttribute(\"role-hr\")}">
                 <form action ="${contextPath}/new-user">
                     <input type="hidden" name="csrf" value="<c:out value='${csrf}'/>"/>
-                    <br></br>
-                    <button type="submit" class="btn btn-primary  btn-md">New user</button>
+                    <br>
+                    <button type="submit" class="btn btn-primary btn-md">New user</button>
                 </form>
             </c:if>
-
-            <a href="${contextPath}/statistics.action">Statistics</a>
-            <a href="${contextPath}/chat.action">Chat</a>
-            <a href="${contextPath}/credit.action">Credit</a>
         </c:when>
         <c:otherwise>
             <jsp:forward page="${contextPath}/login.jsp"/>

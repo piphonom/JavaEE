@@ -22,7 +22,7 @@ import java.util.List;
 public class LoginServlet extends HttpServlet {
 
     private static final String LOGIN_JSP = "/login.jsp";
-    private static final String USERS_JSP = "/users.jsp";
+    private static final String USERS_JSP = "/search-result.jsp";
 
     @EJB
     private PersistenceService persistenceService;

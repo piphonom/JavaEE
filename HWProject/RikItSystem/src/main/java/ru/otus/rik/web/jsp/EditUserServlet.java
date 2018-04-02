@@ -19,7 +19,7 @@ import java.util.List;
 @WebServlet(name = "EditUserServlet", urlPatterns = "/edit")
 public class EditUserServlet extends HttpServlet {
 
-    private static final String USERS_JSP = "/users.jsp";
+    private static final String USERS_JSP = "/search-result.jsp";
 
     @EJB
     private PersistenceService persistenceService;

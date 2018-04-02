@@ -1,4 +1,4 @@
-package ru.otus.rik.web.jsp;
+package ru.otus.rik.service.search;
 
 import lombok.Getter;
 import ru.otus.rik.domain.UserEntity;

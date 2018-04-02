@@ -4,7 +4,7 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import ru.otus.rik.domain.UserEntity;
 import ru.otus.rik.service.persistence.SearchParams;
-import ru.otus.rik.web.jsp.SearchResultWrapper;
+import ru.otus.rik.service.search.SearchResultWrapper;
 
 import javax.servlet.ServletRequestAttributeEvent;
 import javax.servlet.ServletRequestAttributeListener;
@@ -13,12 +13,13 @@ import javax.servlet.annotation.WebListener;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static ru.otus.rik.web.jsp.SearchServlet.SEARCH_RESULT_ATTRIBUTE_NAME;
+import static ru.otus.rik.service.search.SearchServiceImpl.SEARCH_CACHE_ATTRIBUTE_NAME;
+import static ru.otus.rik.service.search.SearchServiceImpl.SEARCH_RESULT_ATTRIBUTE_NAME;
 
 @WebListener
 public class ServletRequestAttributeListenerImpl implements ServletRequestAttributeListener {
 
-    public static final String SEARCH_CACHE_ATTRIBUTE_NAME = "searchCache";
+
 
     private final static int CACHE_CAPACITY = 1000;
     private final static long LIFETIME_MINUTES = 1;

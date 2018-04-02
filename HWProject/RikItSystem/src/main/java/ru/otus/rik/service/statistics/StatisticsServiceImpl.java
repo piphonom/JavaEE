@@ -44,7 +44,8 @@ public class StatisticsServiceImpl implements StatisticsService {
         try {
             StandardMBean mbean = new StandardMBean(enableStatistics, EnableStatisticsMBean.class);
             ObjectName mbeanName = new ObjectName("ru.otus.rik.statistics:type=EnableStatisticsMBean");
-            mbs.registerMBean(mbean, mbeanName);
+            if (!mbs.isRegistered(mbeanName))
+                mbs.registerMBean(mbean, mbeanName);
         } catch (MalformedObjectNameException |
                 InstanceAlreadyExistsException |
                 MBeanRegistrationException |
