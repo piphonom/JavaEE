@@ -6,9 +6,9 @@ import ru.otus.rik.service.persistence.PersistenceService;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-public final class PersistenceServiceHolder {
+public final class RemotePersistenceServiceHolder {
 
-    private PersistenceServiceHolder() {
+    private RemotePersistenceServiceHolder() {
     }
 
     public static PersistenceService getPersistenceService() {

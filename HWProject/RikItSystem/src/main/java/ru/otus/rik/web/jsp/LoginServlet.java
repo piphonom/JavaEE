@@ -1,11 +1,8 @@
 package ru.otus.rik.web.jsp;
 
 import ru.otus.rik.domain.UserEntity;
-import ru.otus.rik.service.helpers.AuthenticationServiceHolder;
-import ru.otus.rik.service.persistence.JpaPersistenceService;
 import ru.otus.rik.service.persistence.PersistenceService;
 import ru.otus.rik.service.security.AuthenticationService;
-import ru.otus.rik.service.security.AuthenticationServiceImpl;
 
 import javax.ejb.EJB;
 import javax.security.sasl.AuthenticationException;

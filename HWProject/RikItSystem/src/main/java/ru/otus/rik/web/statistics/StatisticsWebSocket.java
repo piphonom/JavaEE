@@ -2,10 +2,8 @@ package ru.otus.rik.web.statistics;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import ru.otus.rik.domain.StatisticsEntity;
-import ru.otus.rik.service.helpers.StatisticsServiceHolder;
 import ru.otus.rik.service.statistics.StatisticsListenerNotFoundException;
 import ru.otus.rik.service.statistics.StatisticsListener;
 import ru.otus.rik.service.statistics.StatisticsService;

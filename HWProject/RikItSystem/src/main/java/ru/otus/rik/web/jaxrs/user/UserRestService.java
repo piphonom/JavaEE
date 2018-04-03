@@ -4,13 +4,15 @@ import io.swagger.annotations.*;
 import ru.otus.rik.domain.DepartmentEntity;
 import ru.otus.rik.domain.PositionEntity;
 import ru.otus.rik.domain.UserEntity;
-import ru.otus.rik.service.helpers.PersistenceServiceHolder;
 import ru.otus.rik.service.persistence.PersistenceService;
+import ru.otus.rik.service.user.UserService;
+import ru.otus.rik.service.user.exceptions.UserModificationException;
 import ru.otus.rik.web.jaxrs.user.exceptions.ResourceNotFoundException;
 import ru.otus.rik.web.jaxrs.user.parameters.CreateUserParameters;
 import ru.otus.rik.web.jaxrs.user.parameters.UserEmailParameter;
 import ru.otus.rik.web.jaxrs.user.parameters.EditUserParameters;
 
+import javax.ejb.EJB;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -19,11 +21,10 @@ import javax.ws.rs.core.Response;
 @Api(tags={"rik_users"})
 @Path("/user")
 @Produces(MediaType.APPLICATION_JSON)
-public class UserService {
+public class UserRestService {
 
-    private final static PersistenceService persistenceService = PersistenceServiceHolder.getPersistenceService();
-
-    /* TODO: move methods internals into separate service */
+    @EJB
+    private UserService userService;
 
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
@@ -33,7 +34,7 @@ public class UserService {
         @ApiResponse(code = 403, message = "Bad request parameters")
     })
     public Response getUser(@Valid UserEmailParameter userEmailParameter) {
-        UserEntity user = persistenceService.findUserByEmail(userEmailParameter.getEmail());
+        UserEntity user = userService.findUserByEmail(userEmailParameter.getEmail());
         if (user == null) {
             throw new ResourceNotFoundException("User not found");
         }
@@ -60,28 +61,15 @@ public class UserService {
         @ApiResponse(code = 403, message = "Bad request parameters")
     })
     public Response editUser(@Valid EditUserParameters editParameters) {
-        UserEntity user = persistenceService.findUserByEmail(editParameters.getEmail());
-        if (user == null) {
-            throw new ResourceNotFoundException("User not found");
-        }
-        if (editParameters.getDepartment() != null) {
-            DepartmentEntity departmentEntity = persistenceService.findDepartmentByNameAndLocation(
+        try {
+            userService.editUser(
+                    editParameters.getEmail(),
+                    editParameters.getDepartmentLocation(),
                     editParameters.getDepartmentName(),
-                    editParameters.getDepartmentLocation());
-            if (departmentEntity == null) {
-                throw new ResourceNotFoundException("Department not found");
-            }
-            user.setDepartmentRef(departmentEntity);
+                    editParameters.getPosition());
+        } catch (UserModificationException e) {
+            throw new ResourceNotFoundException(e.getMessage());
         }
-        if (editParameters.getPosition() != null) {
-            PositionEntity positionEntity = persistenceService.findPositionByTitle(editParameters.getPosition());
-            if (positionEntity == null) {
-                throw new ResourceNotFoundException("Position not found");
-            }
-            user.setPositionRef(positionEntity);
-        }
-        persistenceService.saveUser(user);
-
         return Response.status(Response.Status.OK).type(MediaType.APPLICATION_JSON).build();
     }
 
@@ -93,11 +81,11 @@ public class UserService {
         @ApiResponse(code = 403, message = "Bad request parameters")
     })
     public Response deleteUser(@Valid UserEmailParameter userEmailParameter) {
-        UserEntity user = persistenceService.findUserByEmail(userEmailParameter.getEmail());
-        if (user == null) {
-            throw new ResourceNotFoundException("User not found");
+        try {
+            userService.deleteUser(userEmailParameter.getEmail());
+        } catch (UserModificationException e) {
+            throw new ResourceNotFoundException(e.getMessage());
         }
-        persistenceService.deleteUser(user);
         return Response.status(Response.Status.OK).type(MediaType.APPLICATION_JSON).build();
     }
 }

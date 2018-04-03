@@ -5,9 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.ServletActionContext;
 import ru.otus.rik.domain.UserEntity;
-import ru.otus.rik.service.helpers.AuthenticationServiceHolder;
-import ru.otus.rik.service.helpers.PersistenceServiceHolder;
-import ru.otus.rik.service.persistence.PersistenceService;
+import ru.otus.rik.service.helpers.RemoteAuthenticationServiceHolder;
 import ru.otus.rik.service.security.AuthenticationService;
 
 import javax.security.sasl.AuthenticationException;
@@ -18,8 +16,7 @@ import javax.servlet.http.HttpSession;
 @Setter
 public class Login extends ActionSupport {
 
-    private PersistenceService persistenceService = PersistenceServiceHolder.getPersistenceService();
-    private AuthenticationService authenticationService = AuthenticationServiceHolder.getAuthenticationService();
+    private AuthenticationService authenticationService = RemoteAuthenticationServiceHolder.getAuthenticationService();
 
     private String email;
     private String password;
@@ -33,8 +30,7 @@ public class Login extends ActionSupport {
         HttpServletRequest request = ServletActionContext.getRequest();
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("user") == null) {
-        //if (user == null) {
-            try {
+        try {
                 user = authenticationService.authenticateByEmail(email, password);
             } catch (AuthenticationException e) {
                 error = e.getMessage();

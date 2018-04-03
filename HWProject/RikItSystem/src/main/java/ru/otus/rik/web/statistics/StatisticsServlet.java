@@ -5,7 +5,6 @@ import com.google.gson.GsonBuilder;
 import lombok.Getter;
 import lombok.Setter;
 import ru.otus.rik.domain.StatisticsEntity;
-import ru.otus.rik.service.helpers.StatisticsServiceHolder;
 import ru.otus.rik.service.statistics.ProcessStatisticsException;
 import ru.otus.rik.service.statistics.StatisticsData;
 import ru.otus.rik.service.statistics.StatisticsDisabledException;

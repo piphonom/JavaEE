@@ -2,8 +2,8 @@ package ru.otus.rik.web.jaxrs;
 
 import ru.otus.rik.web.jaxrs.credit.CreditCalculator;
 import ru.otus.rik.web.jaxrs.soap.SoapOverRest;
-import ru.otus.rik.web.jaxrs.user.CatalogService;
-import ru.otus.rik.web.jaxrs.user.UserService;
+import ru.otus.rik.web.jaxrs.user.CatalogRestService;
+import ru.otus.rik.web.jaxrs.user.UserRestService;
 import ru.otus.rik.web.jaxrs.user.exceptions.RestServiceExceptionMapper;
 
 import javax.ws.rs.ApplicationPath;
@@ -17,8 +17,8 @@ public class RestApplication extends Application {
         return new HashSet<Class<?>>() {
             {
                 add(CreditCalculator.class);
-                add(CatalogService.class);
-                add(UserService.class);
+                add(CatalogRestService.class);
+                add(UserRestService.class);
                 add(RestServiceExceptionMapper.class);
                 add(DummySwaggerDefinition.class);
                 add(SoapOverRest.class);

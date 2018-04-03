@@ -4,7 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import lombok.Getter;
 import lombok.Setter;
 import ru.otus.rik.domain.StatisticsEntity;
-import ru.otus.rik.service.helpers.StatisticsServiceHolder;
+import ru.otus.rik.service.helpers.RemoteStatisticsServiceHolder;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class GetStatistics extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
-        statistics = StatisticsServiceHolder.getStatisticsService().getAllStatistics();
+        statistics = RemoteStatisticsServiceHolder.getStatisticsService().getAllStatistics();
         if (statistics != null) {
             return SUCCESS;
         }

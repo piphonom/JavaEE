@@ -1,6 +1,6 @@
 package ru.otus.rik.web.listener;
 
-import ru.otus.rik.service.helpers.StatisticsServiceHolder;
+import ru.otus.rik.service.helpers.RemoteStatisticsServiceHolder;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -11,7 +11,7 @@ public class StatisticsContextInitializeListener implements ServletContextListen
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         /* To initialize MBean */
-        StatisticsServiceHolder.getStatisticsService();
+        RemoteStatisticsServiceHolder.getStatisticsService();
     }
 
     @Override

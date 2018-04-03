@@ -4,18 +4,13 @@ import com.opensymphony.xwork2.ActionSupport;
 import lombok.Getter;
 import lombok.Setter;
 import ru.otus.rik.domain.UserEntity;
-import ru.otus.rik.service.chat.ChatService;
-import ru.otus.rik.service.helpers.ChatServiceHolder;
-import ru.otus.rik.service.helpers.PersistenceServiceHolder;
-import ru.otus.rik.service.persistence.PersistenceService;
-
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
+import ru.otus.rik.service.helpers.RemoteUserServiceHolder;
+import ru.otus.rik.service.user.UserService;
 
 @Getter
 @Setter
 public class EditUser extends ActionSupport {
-    private PersistenceService persistenceService = PersistenceServiceHolder.getPersistenceService();
+    private UserService userService = RemoteUserServiceHolder.getUserService();
 
     private String email;
     private String department;
@@ -26,7 +21,7 @@ public class EditUser extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
-        user = persistenceService.findUserByEmail(email);
+        user = userService.findUserByEmail(email);
         if (user == null) {
             error = "User not found";
             return ERROR;

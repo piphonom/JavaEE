@@ -3,13 +3,12 @@ package ru.otus.rik.web.listener;
 import ru.otus.rik.domain.DepartmentEntity;
 import ru.otus.rik.domain.PositionEntity;
 import ru.otus.rik.domain.RoleEntity;
-import ru.otus.rik.service.helpers.PersistenceServiceHolder;
-import ru.otus.rik.service.persistence.JpaPersistenceService;
 import ru.otus.rik.service.persistence.PersistenceService;
 import ru.otus.rik.service.xml.XmlBinder;
 import ru.otus.rik.web.xml.Constants;
 import ru.otus.rik.web.xml.UserEntitiesList;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -23,7 +22,8 @@ import java.net.URL;
 @WebListener
 public class PersistenceContextInitializeListener implements ServletContextListener {
 
-    private static final PersistenceService persistenceService = PersistenceServiceHolder.getPersistenceService();
+    @EJB
+    private PersistenceService persistenceService;
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {

@@ -9,10 +9,10 @@ import ru.otus.rik.service.security.AuthenticationServiceImpl;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-public class AuthenticationServiceHolder {
+public class RemoteAuthenticationServiceHolder {
     //private static final AuthenticationService authenticationService = new AuthenticationServiceImpl();
 
-    private AuthenticationServiceHolder() {
+    private RemoteAuthenticationServiceHolder() {
     }
 
     public static AuthenticationService getAuthenticationService() {

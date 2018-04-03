@@ -6,9 +6,9 @@ import ru.otus.rik.service.chat.ChatServiceImpl;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-public class ChatServiceHolder {
+public class RemoteChatServiceHolder {
 
-    private ChatServiceHolder() {
+    private RemoteChatServiceHolder() {
     }
 
     public static ChatService getChatService() {

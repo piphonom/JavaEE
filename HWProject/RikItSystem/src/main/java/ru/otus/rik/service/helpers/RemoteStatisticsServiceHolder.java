@@ -7,9 +7,9 @@ import ru.otus.rik.service.statistics.StatisticsServiceImpl;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-public class StatisticsServiceHolder {
+public class RemoteStatisticsServiceHolder {
 
-    private StatisticsServiceHolder() {
+    private RemoteStatisticsServiceHolder() {
     }
 
     public static StatisticsService getStatisticsService() {
