@@ -1,4 +1,4 @@
-package ru.otus.rik.domain;
+package ru.otus.rikapi.entities;
 
 import lombok.Getter;
 import lombok.Setter;

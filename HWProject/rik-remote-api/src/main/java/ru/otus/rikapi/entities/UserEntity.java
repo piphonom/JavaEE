@@ -1,11 +1,13 @@
-package ru.otus.rik.domain;
+package ru.otus.rikapi.entities;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 @Entity
@@ -53,4 +55,27 @@ public class UserEntity implements Serializable {
     @JoinColumn(name="roleRef", referencedColumnName="idRole")
     @XmlElement(name = "Role")
     private RoleEntity roleRef;
+
+    /*
+    void writeObject(ObjectOutputStream outStream) throws IOException {
+        outStream.defaultWriteObject();
+        outStream.writeObject(name);
+        outStream.writeObject(email);
+    }
+
+    void readObject(ObjectInputStream inStream) throws IOException, ClassNotFoundException {
+        inStream.defaultReadObject();
+        Object userName = inStream.readObject();
+        if (userName == null || !(userName instanceof String)) {
+            throw new IOException("Bad deserialization");
+        }
+        name = (String) userName;
+
+        Object userEmail = inStream.readObject();
+        if (userEmail == null || !(userEmail instanceof String)) {
+            throw new IOException("Bad deserialization");
+        }
+        email = (String) userEmail;
+    }
+    */
 }

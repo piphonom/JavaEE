@@ -1,7 +1,7 @@
 package ru.otus.rik.web.gwt.server;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import ru.otus.rik.domain.UserEntity;
+import ru.otus.rikapi.entities.UserEntity;
 import ru.otus.rik.service.persistence.JpaPersistenceService;
 import ru.otus.rik.service.persistence.PersistenceService;
 import ru.otus.rik.service.helpers.HashGenerator;

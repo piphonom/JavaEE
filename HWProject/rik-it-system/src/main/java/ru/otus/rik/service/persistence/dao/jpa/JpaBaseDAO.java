@@ -1,7 +1,5 @@
 package ru.otus.rik.service.persistence.dao.jpa;
 
-import ru.otus.rik.domain.UserEntity;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;

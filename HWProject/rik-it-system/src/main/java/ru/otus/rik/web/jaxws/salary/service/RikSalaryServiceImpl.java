@@ -1,6 +1,6 @@
 package ru.otus.rik.web.jaxws.salary.service;
 
-import ru.otus.rik.service.user.UserService;
+import ru.otus.rikapi.service.UserService;
 
 import javax.ejb.EJB;
 import javax.jws.WebService;

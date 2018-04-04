@@ -1,6 +1,6 @@
 package ru.otus.rik.service.persistence.dao.jpa;
 
-import ru.otus.rik.domain.UserEntity;
+import ru.otus.rikapi.entities.UserEntity;
 import ru.otus.rik.service.persistence.SearchParams;
 import ru.otus.rik.service.persistence.dao.UserDAO;
 

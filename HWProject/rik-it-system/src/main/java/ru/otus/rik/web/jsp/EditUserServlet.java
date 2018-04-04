@@ -1,9 +1,8 @@
 package ru.otus.rik.web.jsp;
 
-import ru.otus.rik.domain.DepartmentEntity;
-import ru.otus.rik.domain.PositionEntity;
-import ru.otus.rik.domain.UserEntity;
-import ru.otus.rik.service.persistence.JpaPersistenceService;
+import ru.otus.rikapi.entities.DepartmentEntity;
+import ru.otus.rikapi.entities.PositionEntity;
+import ru.otus.rikapi.entities.UserEntity;
 import ru.otus.rik.service.persistence.PersistenceService;
 
 import javax.ejb.EJB;

@@ -1,7 +1,7 @@
 package ru.otus.rik.service.persistence;
 
-import ru.otus.rik.domain.*;
 import ru.otus.rik.service.persistence.dao.jpa.*;
+import ru.otus.rikapi.entities.*;
 
 import javax.ejb.*;
 import javax.persistence.*;

@@ -1,7 +1,7 @@
 package ru.otus.rik.service.search;
 
 import com.google.common.cache.Cache;
-import ru.otus.rik.domain.UserEntity;
+import ru.otus.rikapi.entities.UserEntity;
 import ru.otus.rik.service.persistence.PersistenceService;
 import ru.otus.rik.service.persistence.SearchParams;
 

@@ -2,9 +2,7 @@ package ru.otus.rik.web.gwt.server;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gwt.json.client.JSONObject;
-import ru.otus.rik.domain.UserEntity;
-import ru.otus.rik.service.json.JsonBinder;
+import ru.otus.rikapi.entities.UserEntity;
 import ru.otus.rik.service.persistence.JpaPersistenceService;
 import ru.otus.rik.service.persistence.PersistenceService;
 import ru.otus.rik.web.gwt.shared.model.UserDTO;

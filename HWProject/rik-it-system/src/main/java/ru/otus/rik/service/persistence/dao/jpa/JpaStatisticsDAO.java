@@ -1,6 +1,6 @@
 package ru.otus.rik.service.persistence.dao.jpa;
 
-import ru.otus.rik.domain.StatisticsEntity;
+import ru.otus.rikapi.entities.StatisticsEntity;
 import ru.otus.rik.service.persistence.dao.StatisticsDAO;
 
 import javax.persistence.EntityManager;

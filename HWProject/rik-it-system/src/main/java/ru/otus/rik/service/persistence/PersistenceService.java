@@ -1,6 +1,6 @@
 package ru.otus.rik.service.persistence;
 
-import ru.otus.rik.domain.*;
+import ru.otus.rikapi.entities.*;
 
 import java.util.List;
 

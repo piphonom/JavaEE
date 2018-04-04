@@ -1,12 +1,9 @@
 package ru.otus.rik.web.jaxrs.user;
 
 import io.swagger.annotations.*;
-import ru.otus.rik.domain.DepartmentEntity;
-import ru.otus.rik.domain.PositionEntity;
-import ru.otus.rik.domain.UserEntity;
-import ru.otus.rik.service.persistence.PersistenceService;
-import ru.otus.rik.service.user.UserService;
-import ru.otus.rik.service.user.exceptions.UserModificationException;
+import ru.otus.rikapi.entities.UserEntity;
+import ru.otus.rikapi.service.UserService;
+import ru.otus.rikapi.service.exceptions.UserModificationException;
 import ru.otus.rik.web.jaxrs.user.exceptions.ResourceNotFoundException;
 import ru.otus.rik.web.jaxrs.user.parameters.CreateUserParameters;
 import ru.otus.rik.web.jaxrs.user.parameters.UserEmailParameter;

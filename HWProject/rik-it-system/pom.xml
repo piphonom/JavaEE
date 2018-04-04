@@ -1,41 +1,32 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>ru.otus.rik</groupId>
+
   <artifactId>rik-it-system</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>rik-it-system Maven Webapp</name>
+  <name>rik-it-system</name>
   <url>http://maven.apache.org</url>
-  <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <!--<servlet.version>3.1.0</servlet.version>-->
-    <servlet.version>4.0.0</servlet.version>
 
+  <properties>
+      <maven.compiler.source>1.8</maven.compiler.source>
+      <maven.compiler.target>1.8</maven.compiler.target>
+      <!--<servlet.version>3.1.0</servlet.version>-->
       <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
       <jersy.version>2.25.1</jersy.version>
   </properties>
 
-    <parent>
-        <groupId>ru.otus.rik</groupId>
-        <artifactId>rik-reactor</artifactId>
-        <version>1.0</version>
-    </parent>
-
-
+  <parent>
+      <groupId>ru.otus.rik</groupId>
+      <artifactId>rik-reactor</artifactId>
+      <version>1.0</version>
+  </parent>
 
   <dependencies>
       <dependency>
           <groupId>ru.otus.rik</groupId>
           <artifactId>rik-remote-api</artifactId>
           <version>1.0</version>
-      </dependency>
-      <dependency>
-          <groupId>javax.servlet</groupId>
-          <artifactId>javax.servlet-api</artifactId>
-          <version>${servlet.version}</version>
-          <scope>provided</scope>
       </dependency>
       <dependency>
           <groupId>mysql</groupId>

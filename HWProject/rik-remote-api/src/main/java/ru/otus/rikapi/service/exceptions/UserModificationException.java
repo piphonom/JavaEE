@@ -1,4 +1,4 @@
-package ru.otus.rik.service.user.exceptions;
+package ru.otus.rikapi.service.exceptions;
 
 public class UserModificationException extends Exception {
     public UserModificationException() {

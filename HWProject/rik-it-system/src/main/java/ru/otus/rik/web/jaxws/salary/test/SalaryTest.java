@@ -8,6 +8,6 @@ public class SalaryTest {
     RikSalaryWebService webService = new RikSalaryWebService();
     public static void main(String[] args) {
         RikSalaryService service = new SalaryTest().webService.getRikSalaryServicePort();
-        System.out.println(service.averageSalary());
+        System.out.println("Average salary: " + service.averageSalary());
     }
 }

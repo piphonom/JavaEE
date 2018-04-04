@@ -1,6 +1,6 @@
-package ru.otus.rik.service.helpers;
+package ru.otus.rikapi.remoteloaders;
 
-import ru.otus.rik.service.security.AuthenticationService;
+import ru.otus.rikapi.service.AuthenticationService;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -14,7 +14,7 @@ public class RemoteAuthenticationServiceHolder {
     public static AuthenticationService getAuthenticationService() {
         try {
             InitialContext context = new InitialContext();
-            AuthenticationService authenticationService = (AuthenticationService) context.lookup("java:global/rik-it-system/AuthenticationServiceImpl!ru.otus.rik.service.security.AuthenticationService");
+            AuthenticationService authenticationService = (AuthenticationService) context.lookup("java:global/rik-it-system/AuthenticationServiceImpl!ru.otus.rikapi.service.AuthenticationService");
             return authenticationService;
         } catch (NamingException e) {
             e.printStackTrace();

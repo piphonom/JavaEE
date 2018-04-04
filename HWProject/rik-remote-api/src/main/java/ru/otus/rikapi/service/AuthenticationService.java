@@ -1,6 +1,6 @@
-package ru.otus.rik.service.security;
+package ru.otus.rikapi.service;
 
-import ru.otus.rik.domain.UserEntity;
+import ru.otus.rikapi.entities.UserEntity;
 
 import javax.security.sasl.AuthenticationException;
 

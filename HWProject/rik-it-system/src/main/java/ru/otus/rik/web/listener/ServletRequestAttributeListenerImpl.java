@@ -2,7 +2,7 @@ package ru.otus.rik.web.listener;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import ru.otus.rik.domain.UserEntity;
+import ru.otus.rikapi.entities.UserEntity;
 import ru.otus.rik.service.persistence.SearchParams;
 import ru.otus.rik.service.search.SearchResultWrapper;
 

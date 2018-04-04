@@ -3,10 +3,10 @@ package ru.otus.rik.web.jaxrs.user;
 import io.swagger.annotations.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import ru.otus.rik.domain.DepartmentEntity;
-import ru.otus.rik.domain.PositionEntity;
-import ru.otus.rik.domain.UserEntity;
-import ru.otus.rik.service.user.UserService;
+import ru.otus.rikapi.entities.DepartmentEntity;
+import ru.otus.rikapi.entities.PositionEntity;
+import ru.otus.rikapi.entities.UserEntity;
+import ru.otus.rikapi.service.UserService;
 
 import javax.ejb.EJB;
 import javax.ws.rs.GET;

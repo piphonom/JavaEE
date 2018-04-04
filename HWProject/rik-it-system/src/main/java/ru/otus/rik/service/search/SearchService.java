@@ -1,6 +1,6 @@
 package ru.otus.rik.service.search;
 
-import ru.otus.rik.domain.UserEntity;
+import ru.otus.rikapi.entities.UserEntity;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;

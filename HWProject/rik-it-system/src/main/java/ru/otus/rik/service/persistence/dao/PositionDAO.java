@@ -1,6 +1,6 @@
 package ru.otus.rik.service.persistence.dao;
 
-import ru.otus.rik.domain.PositionEntity;
+import ru.otus.rikapi.entities.PositionEntity;
 
 import java.util.List;
 

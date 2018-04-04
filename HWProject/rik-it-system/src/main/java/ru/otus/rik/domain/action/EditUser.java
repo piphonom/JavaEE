@@ -3,9 +3,9 @@ package ru.otus.rik.domain.action;
 import com.opensymphony.xwork2.ActionSupport;
 import lombok.Getter;
 import lombok.Setter;
-import ru.otus.rik.domain.UserEntity;
-import ru.otus.rik.service.helpers.RemoteUserServiceHolder;
-import ru.otus.rik.service.user.UserService;
+import ru.otus.rikapi.entities.UserEntity;
+import ru.otus.rikapi.remoteloaders.RemoteUserServiceHolder;
+import ru.otus.rikapi.service.UserService;
 
 @Getter
 @Setter

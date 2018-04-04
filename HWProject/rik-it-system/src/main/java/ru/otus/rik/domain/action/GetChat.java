@@ -4,7 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import lombok.Getter;
 import ru.otus.rikapi.service.ChatMessage;
 import ru.otus.rikapi.service.ChatService;
-import ru.otus.rik.service.helpers.RemoteChatServiceHolder;
+import ru.otus.rikapi.remoteloaders.RemoteChatServiceHolder;
 
 import java.util.Queue;
 

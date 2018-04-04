@@ -1,6 +1,6 @@
 package ru.otus.rik.service.persistence.dao;
 
-import ru.otus.rik.domain.DepartmentEntity;
+import ru.otus.rikapi.entities.DepartmentEntity;
 
 import java.util.List;
 

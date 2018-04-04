@@ -2,8 +2,8 @@ package ru.otus.rik.service.taglib;
 
 import lombok.Getter;
 import lombok.Setter;
-import ru.otus.rik.domain.UserEntity;
-import ru.otus.rik.service.user.UserService;
+import ru.otus.rikapi.entities.UserEntity;
+import ru.otus.rikapi.service.UserService;
 
 import javax.ejb.EJB;
 import javax.servlet.jsp.JspException;

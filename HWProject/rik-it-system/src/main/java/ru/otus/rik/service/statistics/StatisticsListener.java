@@ -1,6 +1,6 @@
 package ru.otus.rik.service.statistics;
 
-import ru.otus.rik.domain.StatisticsEntity;
+import ru.otus.rikapi.entities.StatisticsEntity;
 
 import java.util.List;
 

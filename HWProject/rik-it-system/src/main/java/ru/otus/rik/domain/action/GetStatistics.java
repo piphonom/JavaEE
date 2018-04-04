@@ -3,7 +3,7 @@ package ru.otus.rik.domain.action;
 import com.opensymphony.xwork2.ActionSupport;
 import lombok.Getter;
 import lombok.Setter;
-import ru.otus.rik.domain.StatisticsEntity;
+import ru.otus.rikapi.entities.StatisticsEntity;
 import ru.otus.rik.service.helpers.RemoteStatisticsServiceHolder;
 
 import java.util.List;

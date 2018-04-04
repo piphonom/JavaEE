@@ -1,7 +1,5 @@
 package ru.otus.rik.domain.currency;
 
-import ru.otus.rik.domain.UserEntity;
-
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;

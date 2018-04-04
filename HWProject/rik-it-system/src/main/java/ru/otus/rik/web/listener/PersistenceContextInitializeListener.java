@@ -1,23 +1,11 @@
 package ru.otus.rik.web.listener;
 
-import ru.otus.rik.domain.DepartmentEntity;
-import ru.otus.rik.domain.PositionEntity;
-import ru.otus.rik.domain.RoleEntity;
 import ru.otus.rik.service.persistence.PersistenceService;
-import ru.otus.rik.service.xml.XmlBinder;
-import ru.otus.rik.web.xml.Constants;
-import ru.otus.rik.web.xml.UserEntitiesList;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import javax.xml.bind.JAXBException;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 
 @WebListener
 public class PersistenceContextInitializeListener implements ServletContextListener {

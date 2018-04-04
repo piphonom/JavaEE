@@ -1,6 +1,6 @@
 package ru.otus.rik.service.statistics;
 
-import ru.otus.rik.domain.StatisticsEntity;
+import ru.otus.rikapi.entities.StatisticsEntity;
 import ru.otus.rik.service.persistence.PersistenceService;
 
 import javax.ejb.EJB;

@@ -4,9 +4,9 @@ import com.opensymphony.xwork2.ActionSupport;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.ServletActionContext;
-import ru.otus.rik.domain.UserEntity;
-import ru.otus.rik.service.helpers.RemoteAuthenticationServiceHolder;
-import ru.otus.rik.service.security.AuthenticationService;
+import ru.otus.rikapi.entities.UserEntity;
+import ru.otus.rikapi.remoteloaders.RemoteAuthenticationServiceHolder;
+import ru.otus.rikapi.service.AuthenticationService;
 
 import javax.security.sasl.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;

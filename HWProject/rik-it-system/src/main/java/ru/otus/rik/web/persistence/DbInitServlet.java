@@ -2,10 +2,10 @@ package ru.otus.rik.web.persistence;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
-import ru.otus.rik.domain.DepartmentEntity;
-import ru.otus.rik.domain.PositionEntity;
-import ru.otus.rik.domain.RoleEntity;
-import ru.otus.rik.domain.UserEntity;
+import ru.otus.rikapi.entities.DepartmentEntity;
+import ru.otus.rikapi.entities.PositionEntity;
+import ru.otus.rikapi.entities.RoleEntity;
+import ru.otus.rikapi.entities.UserEntity;
 import ru.otus.rik.service.persistence.JpaPersistenceService;
 import ru.otus.rik.service.persistence.PersistenceService;
 import ru.otus.rik.service.helpers.HashGenerator;

@@ -1,7 +1,7 @@
 package ru.otus.rik.service.taglib;
 
-import ru.otus.rik.domain.PositionEntity;
-import ru.otus.rik.service.user.UserService;
+import ru.otus.rikapi.entities.PositionEntity;
+import ru.otus.rikapi.service.UserService;
 
 import javax.ejb.EJB;
 import javax.servlet.jsp.JspException;

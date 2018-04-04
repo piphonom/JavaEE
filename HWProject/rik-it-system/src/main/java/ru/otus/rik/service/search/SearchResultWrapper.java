@@ -1,7 +1,7 @@
 package ru.otus.rik.service.search;
 
 import lombok.Getter;
-import ru.otus.rik.domain.UserEntity;
+import ru.otus.rikapi.entities.UserEntity;
 import ru.otus.rik.service.persistence.SearchParams;
 
 import java.util.List;

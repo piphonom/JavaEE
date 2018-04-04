@@ -1,4 +1,4 @@
-package ru.otus.rik.service.helpers;
+package ru.otus.rikapi.remoteloaders;
 
 import ru.otus.rikapi.service.ChatService;
 

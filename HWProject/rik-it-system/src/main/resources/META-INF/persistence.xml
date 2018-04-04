@@ -3,11 +3,11 @@
     <persistence-unit name="RikPersistenceWithMySql" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!--<non-jta-data-source>java:comp/env/jdbc/OracleDS</non-jta-data-source>-->
-        <class>ru.otus.rik.domain.UserEntity</class>
-        <class>ru.otus.rik.domain.DepartmentEntity</class>
-        <class>ru.otus.rik.domain.PositionEntity</class>
-        <class>ru.otus.rik.domain.RoleEntity</class>
-        <class>ru.otus.rik.domain.StatisticsEntity</class>
+        <class>ru.otus.rikapi.entities.UserEntity</class>
+        <class>ru.otus.rikapi.entities.DepartmentEntity</class>
+        <class>ru.otus.rikapi.entities.PositionEntity</class>
+        <class>ru.otus.rikapi.entities.RoleEntity</class>
+        <class>ru.otus.rikapi.entities.StatisticsEntity</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/Rik?noAccessToProcedureBodies=true&amp;useTimezone=true&amp;serverTimezone=UTC"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
@@ -20,17 +20,18 @@
         </properties>
     </persistence-unit>
     <persistence-unit name="jpaRikDataSource" transaction-type="JTA">
-        <jta-data-source>jpa/RikMySQL_DataSource</jta-data-source>
-        <class>ru.otus.rik.domain.UserEntity</class>
-        <class>ru.otus.rik.domain.DepartmentEntity</class>
-        <class>ru.otus.rik.domain.PositionEntity</class>
-        <class>ru.otus.rik.domain.RoleEntity</class>
-        <class>ru.otus.rik.domain.StatisticsEntity</class>
+        <jta-data-source>jpa/RikMysqlDataSource</jta-data-source>
+        <class>ru.otus.rikapi.entities.UserEntity</class>
+        <class>ru.otus.rikapi.entities.DepartmentEntity</class>
+        <class>ru.otus.rikapi.entities.PositionEntity</class>
+        <class>ru.otus.rikapi.entities.RoleEntity</class>
+        <class>ru.otus.rikapi.entities.StatisticsEntity</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="validate" />
+            <property name="eclipselink.weaving" value="false"/>
         </properties>
     </persistence-unit>
 </persistence>

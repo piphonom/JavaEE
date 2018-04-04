@@ -1,4 +1,4 @@
-package ru.otus.rik.service.user.exceptions;
+package ru.otus.rikapi.service.exceptions;
 
 public class UserCreationException extends Exception {
     public UserCreationException() {

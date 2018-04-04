@@ -1,6 +1,6 @@
 package ru.otus.rik.service.persistence.dao.jpa;
 
-import ru.otus.rik.domain.RoleEntity;
+import ru.otus.rikapi.entities.RoleEntity;
 import ru.otus.rik.service.persistence.dao.RoleDAO;
 
 import javax.persistence.EntityManager;
