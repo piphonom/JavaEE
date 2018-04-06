@@ -23,6 +23,7 @@
         <module>rik-it-system</module>
         <module>rik-remote-api</module>
         <module>rik-remote-client</module>
+        <module>guess-the-number</module>
     </modules>
 
     <dependencyManagement>

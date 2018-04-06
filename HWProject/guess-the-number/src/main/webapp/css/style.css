@@ -1,0 +1,35 @@
+.firstColumnWidth {
+    width: 200px;
+    display: inline-block;
+}
+
+.inputWidth {
+    width: 300px;
+    heiht: 40px;
+}
+
+.redButton {
+    font-size: 10px;
+    color: red;
+}
+
+.mix__link {
+    position: relative;
+    z-index: 3;
+    display: inline-block;
+    width: 128px;
+    height: 128px;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #ebebeb;
+    box-sizing: border-box;
+    -webkit-transition: border-color .3s ease-out;
+    -moz-transition: border-color .3s ease-out;
+    -ms-transition: border-color .3s ease-out;
+    -o-transition: border-color .3s ease-out;
+    transition: border-color .3s ease-out;
+}
+
+.mix__link:hover{
+    border-color:#d8d7d7;
+}
