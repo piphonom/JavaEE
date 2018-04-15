@@ -26,6 +26,7 @@
         <class>ru.otus.rikapi.entities.PositionEntity</class>
         <class>ru.otus.rikapi.entities.RoleEntity</class>
         <class>ru.otus.rikapi.entities.StatisticsEntity</class>
+        <class>ru.otus.rikapi.entities.InvocationStatisticsEntity</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
             <property name="hibernate.format_sql" value="true"/>

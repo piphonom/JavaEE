@@ -9,6 +9,8 @@ import ru.otus.rikapi.entities.UserEntity;
 import ru.otus.rikapi.service.UserService;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -21,7 +23,9 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class CatalogRestService {
 
-    @EJB
+    //@EJB
+    @Inject
+    @Named("userService")
     private UserService userService;
 
     @GET

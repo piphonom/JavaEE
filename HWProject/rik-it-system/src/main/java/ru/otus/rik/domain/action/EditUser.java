@@ -7,10 +7,14 @@ import ru.otus.rikapi.entities.UserEntity;
 import ru.otus.rikapi.remoteloaders.RemoteUserServiceHolder;
 import ru.otus.rikapi.service.UserService;
 
+import javax.inject.Inject;
+
 @Getter
 @Setter
 public class EditUser extends ActionSupport {
-    private UserService userService = RemoteUserServiceHolder.getUserService();
+    //private UserService userService = RemoteUserServiceHolder.getUserService();
+    @Inject
+    private UserService userService;
 
     private String email;
     private String department;

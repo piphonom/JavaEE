@@ -6,6 +6,7 @@ import ru.otus.rikapi.entities.UserEntity;
 import ru.otus.rikapi.service.UserService;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
@@ -15,7 +16,8 @@ import java.io.IOException;
 public class RikUserTagHandler extends SimpleTagSupport {
     private String email;
 
-    @EJB
+    //@EJB
+    @Inject
     private UserService userService;
 
     @Override

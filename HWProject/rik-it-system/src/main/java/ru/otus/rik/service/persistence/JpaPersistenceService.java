@@ -14,7 +14,6 @@ import java.util.function.Function;
 @TransactionManagement
 public class JpaPersistenceService implements PersistenceService {
     private static final String PERSISTENCE_UNIT_NAME = "RikPersistenceWithMySql";
-    //private final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
     @PersistenceContext(unitName = "jpaRikDataSource")
     private EntityManager entityManager;
 
@@ -141,6 +140,16 @@ public class JpaPersistenceService implements PersistenceService {
     @Override
     public StatisticsEntity deleteStatistics(StatisticsEntity statistics) {
         return runTransaction(entityManager -> new JpaStatisticsDAO(entityManager).delete(statistics));
+    }
+
+    @Override
+    public InvocationStatisticsEntity saveInvocationStatistics(InvocationStatisticsEntity invocationStatistics) {
+        return runTransaction(entityManager1 -> new JpaInvocationStatisticsDAO(entityManager1).save(invocationStatistics));
+    }
+
+    @Override
+    public List<InvocationStatisticsEntity> findAllInvocationStatistics() {
+        return runTransaction(entityManager -> new JpaInvocationStatisticsDAO(entityManager).findAll());
     }
 
     @Override

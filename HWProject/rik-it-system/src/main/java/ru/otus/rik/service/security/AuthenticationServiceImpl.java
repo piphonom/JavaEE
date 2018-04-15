@@ -7,14 +7,17 @@ import ru.otus.rik.service.helpers.HashGenerator;
 import ru.otus.rikapi.service.AuthenticationService;
 
 import javax.ejb.*;
+import javax.enterprise.context.SessionScoped;
 import javax.security.sasl.AuthenticationException;
+import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 
-@Stateful
-@Remote(AuthenticationService.class)
-@LocalBean
+//@Stateful
+//@Remote(AuthenticationService.class)
+//@LocalBean
+@SessionScoped
 @Getter
-public class AuthenticationServiceImpl implements AuthenticationService {
+public class AuthenticationServiceImpl implements AuthenticationService, Serializable {
 
     //private static final PersistenceService persistenceService = new JpaPersistenceService();
     @EJB

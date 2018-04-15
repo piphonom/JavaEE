@@ -10,6 +10,7 @@ import ru.otus.rik.web.jaxrs.user.parameters.UserEmailParameter;
 import ru.otus.rik.web.jaxrs.user.parameters.EditUserParameters;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -20,7 +21,8 @@ import javax.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON)
 public class UserRestService {
 
-    @EJB
+    //@EJB
+    @Inject
     private UserService userService;
 
     @GET

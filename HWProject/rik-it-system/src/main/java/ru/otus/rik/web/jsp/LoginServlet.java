@@ -5,6 +5,7 @@ import ru.otus.rik.service.persistence.PersistenceService;
 import ru.otus.rikapi.service.AuthenticationService;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.security.sasl.AuthenticationException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +25,8 @@ public class LoginServlet extends HttpServlet {
     @EJB
     private PersistenceService persistenceService;
 
-    @EJB
+    //@EJB
+    @Inject
     private AuthenticationService authenticationService;
 
 

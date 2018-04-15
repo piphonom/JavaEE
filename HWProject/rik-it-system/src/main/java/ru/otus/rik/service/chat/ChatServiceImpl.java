@@ -7,13 +7,15 @@ import ru.otus.rikapi.service.ChatService;
 import javax.ejb.LocalBean;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.enterprise.context.ApplicationScoped;
 import java.io.StringReader;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-@Remote(ChatService.class)
-@LocalBean
-@Stateless
+//@Remote(ChatService.class)
+//@LocalBean
+//@Stateless
+@ApplicationScoped
 public class ChatServiceImpl implements ChatService {
 
     private static final JsonBinder<ChatMessage> jsonBinder = new JsonBinder<>(ChatMessage.class);

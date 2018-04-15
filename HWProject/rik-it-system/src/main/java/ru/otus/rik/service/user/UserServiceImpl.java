@@ -13,12 +13,17 @@ import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 
 
-@Stateless
-@Remote(UserService.class)
-@LocalBean
+//@Stateless
+//@Remote(UserService.class)
+//@LocalBean
+@Named("userService")
+@RequestScoped
 public class UserServiceImpl implements UserService {
     @EJB
     private PersistenceService persistenceService;

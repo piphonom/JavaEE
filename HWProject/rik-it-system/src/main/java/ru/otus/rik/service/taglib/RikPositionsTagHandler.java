@@ -4,6 +4,7 @@ import ru.otus.rikapi.entities.PositionEntity;
 import ru.otus.rikapi.service.UserService;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
@@ -11,7 +12,8 @@ import java.util.List;
 
 public class RikPositionsTagHandler extends SimpleTagSupport {
 
-    @EJB
+    //EJB
+    @Inject
     private UserService userService;
 
     @Override

@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import ru.otus.rikapi.service.CreditService;
 
-import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -19,7 +19,8 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class CreditCalculator {
 
-    @EJB
+    //@EJB
+    @Inject
     private CreditService creditService;
 
     @GET

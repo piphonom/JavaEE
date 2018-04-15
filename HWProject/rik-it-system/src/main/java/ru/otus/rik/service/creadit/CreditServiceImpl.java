@@ -1,16 +1,17 @@
 package ru.otus.rik.service.creadit;
 
+import ru.otus.rik.service.interceptors.InvocationTimeProfile;
 import ru.otus.rikapi.service.CreditService;
 
-import javax.ejb.LocalBean;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import java.util.ArrayList;
 import java.util.List;
 
-@Remote(CreditService.class)
-@LocalBean
-@Stateless
+//@Remote(CreditService.class)
+//@LocalBean
+//@Stateless
+@RequestScoped
+@InvocationTimeProfile
 public class CreditServiceImpl implements CreditService {
     @Override
     public double calculateAnnuityCreditPayment(int total, int period, double percent) {

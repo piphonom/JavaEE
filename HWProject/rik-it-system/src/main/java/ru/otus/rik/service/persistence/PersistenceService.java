@@ -35,5 +35,8 @@ public interface PersistenceService {
     StatisticsEntity saveStatistics(StatisticsEntity statistics);
     StatisticsEntity deleteStatistics(StatisticsEntity statistics);
 
+    InvocationStatisticsEntity saveInvocationStatistics(InvocationStatisticsEntity invocationStatistics);
+    List<InvocationStatisticsEntity> findAllInvocationStatistics();
+
     void dropAll();
 }

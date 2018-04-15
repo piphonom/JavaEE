@@ -7,6 +7,7 @@ import ru.otus.rikapi.service.ChatMessage;
 import ru.otus.rikapi.service.ChatService;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -24,7 +25,8 @@ public class ChatWebSocket {
 
     private static Set<Session> sessions = ConcurrentHashMap.newKeySet();
 
-    @EJB
+    //@EJB
+    @Inject
     private ChatService chatService;
 
     @OnOpen
