@@ -4,6 +4,7 @@ import ru.otus.rikapi.entities.DepartmentEntity;
 import ru.otus.rik.service.persistence.dao.DepartmentDAO;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.List;
 
@@ -33,8 +34,11 @@ public class JpaDepartmentDAO implements DepartmentDAO {
                 .setParameter("name", name)
                 .setParameter("location", location)
                 .setMaxResults(1);
-
-        return (DepartmentEntity) query.getSingleResult();
+        DepartmentEntity result = null;
+        try {
+            result = (DepartmentEntity) query.getSingleResult();
+        } catch (NoResultException e) { }
+        return result;
     }
 
     @Override
