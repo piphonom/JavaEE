@@ -1,12 +1,10 @@
 package ru.otus.rik.domain.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.ServletActionContext;
 import ru.otus.rikapi.entities.UserEntity;
-import ru.otus.rikapi.remoteloaders.RemoteAuthenticationServiceHolder;
 import ru.otus.rikapi.service.AuthenticationService;
 
 import javax.inject.Inject;
@@ -18,7 +16,6 @@ import javax.servlet.http.HttpSession;
 @Setter
 public class Login extends ActionSupport {
 
-    //private AuthenticationService authenticationService = RemoteAuthenticationServiceHolder.getAuthenticationService();
     @Inject
     private AuthenticationService authenticationService;
 

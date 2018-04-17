@@ -4,7 +4,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import lombok.Getter;
 import ru.otus.rikapi.service.ChatMessage;
 import ru.otus.rikapi.service.ChatService;
-import ru.otus.rikapi.remoteloaders.RemoteChatServiceHolder;
 
 import javax.inject.Inject;
 import java.util.Queue;
@@ -13,7 +12,7 @@ import java.util.Queue;
 public class GetChat extends ActionSupport {
 
     private Queue<ChatMessage> messages;
-    //private ChatService chatService = RemoteChatServiceHolder.getChatService();
+
     @Inject
     private ChatService chatService;
 
