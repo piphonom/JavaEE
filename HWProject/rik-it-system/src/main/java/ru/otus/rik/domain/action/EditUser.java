@@ -4,7 +4,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import lombok.Getter;
 import lombok.Setter;
 import ru.otus.rikapi.entities.UserEntity;
-import ru.otus.rikapi.remoteloaders.RemoteUserServiceHolder;
 import ru.otus.rikapi.service.UserService;
 
 import javax.inject.Inject;
@@ -12,7 +11,7 @@ import javax.inject.Inject;
 @Getter
 @Setter
 public class EditUser extends ActionSupport {
-    //private UserService userService = RemoteUserServiceHolder.getUserService();
+
     @Inject
     private UserService userService;
 

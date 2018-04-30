@@ -1,7 +1,6 @@
 package ru.otus.rik.domain.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.struts2.ServletActionContext;

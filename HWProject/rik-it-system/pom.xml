@@ -14,7 +14,7 @@
       <!--<servlet.version>3.1.0</servlet.version>-->
       <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
       <jersy.version>2.25.1</jersy.version>
-      <struts2.version>2.5.14.1</struts2.version>
+      <struts2.version>2.5.16</struts2.version>
   </properties>
 
   <parent>

@@ -9,4 +9,7 @@
     <interceptors>
         <class>ru.otus.rik.service.interceptors.InvocationTimeProfilerInterceptor</class>
     </interceptors>
+    <decorators>
+        <class>ru.otus.rik.service.creadit.CreditServiceValidationDecorator</class>
+    </decorators>
 </beans>

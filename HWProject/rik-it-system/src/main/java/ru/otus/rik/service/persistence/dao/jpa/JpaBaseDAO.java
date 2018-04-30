@@ -1,6 +1,7 @@
 package ru.otus.rik.service.persistence.dao.jpa;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.List;
 
@@ -26,7 +27,12 @@ public class JpaBaseDAO<T> {
                 .setParameter("value", value)
                 .setMaxResults(1);
 
-        return (T) query.getSingleResult();
+        T result = null;
+        try {
+            result = (T) query.getSingleResult();
+        } catch (NoResultException e) { }
+
+        return result;
     }
 
     public List<T> findByOneParameter(String parameterName, String value) {
