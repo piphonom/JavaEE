@@ -1,6 +1,8 @@
 package ru.otus.rik.service.security;
 
+import com.google.gwt.aria.client.Role;
 import lombok.Getter;
+import ru.otus.rikapi.entities.RoleEntity;
 import ru.otus.rikapi.entities.UserEntity;
 import ru.otus.rik.service.persistence.PersistenceService;
 import ru.otus.rik.service.helpers.HashGenerator;
@@ -11,11 +13,14 @@ import javax.enterprise.context.SessionScoped;
 import javax.security.sasl.AuthenticationException;
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-//@Stateful
-//@Remote(AuthenticationService.class)
-//@LocalBean
-@SessionScoped
+@Singleton
+@Remote(AuthenticationService.class)
+@LocalBean
+//@SessionScoped
 @Getter
 public class AuthenticationServiceImpl implements AuthenticationService, Serializable {
 
@@ -41,5 +46,15 @@ public class AuthenticationServiceImpl implements AuthenticationService, Seriali
         }
         currentUser = user;
         return user;
+    }
+
+    @Override
+    public Set<String> getUserRoles(String email) {
+        Set<String> roles = null;
+        UserEntity user = persistenceService.findUserByEmail(email);
+        if (user != null) {
+            roles = user.getRoles().stream().map(RoleEntity::getName).collect(Collectors.toSet());
+        }
+        return roles;
     }
 }

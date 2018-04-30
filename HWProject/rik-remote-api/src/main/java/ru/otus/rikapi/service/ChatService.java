@@ -4,5 +4,5 @@ import java.util.Queue;
 
 public interface ChatService {
     Queue<ChatMessage> getMessages();
-    ChatMessage addMessage(String message);
+    ChatMessage addMessage(String user, String message);
 }

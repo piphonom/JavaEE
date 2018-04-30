@@ -8,7 +8,11 @@ import javax.ejb.LocalBean;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
 import java.io.StringReader;
+import java.security.Principal;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -27,8 +31,9 @@ public class ChatServiceImpl implements ChatService {
     }
 
     @Override
-    public ChatMessage addMessage(String message) {
+    public ChatMessage addMessage(String user, String message) {
         ChatMessage chatMessage = jsonBinder.fromJson(new StringReader(message));
+        chatMessage.setUser(user);
         messages.add(chatMessage);
 
         return chatMessage;

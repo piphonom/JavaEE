@@ -18,9 +18,9 @@ import javax.servlet.http.HttpSession;
 @Setter
 public class Login extends ActionSupport {
 
-    //private AuthenticationService authenticationService = RemoteAuthenticationServiceHolder.getAuthenticationService();
-    @Inject
-    private AuthenticationService authenticationService;
+    private AuthenticationService authenticationService = RemoteAuthenticationServiceHolder.getAuthenticationService();
+    //@Inject
+    //private AuthenticationService authenticationService;
 
     private String email;
     private String password;
@@ -31,19 +31,19 @@ public class Login extends ActionSupport {
     public String execute() throws Exception {
 
         /* TODO: no good idea to use session here */
-        HttpServletRequest request = ServletActionContext.getRequest();
-        HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("user") == null) {
-        try {
-                user = authenticationService.authenticateByEmail(email, password);
-            } catch (AuthenticationException e) {
-                error = e.getMessage();
-                return ERROR;
-            }
-        }
-
-        session = request.getSession(true);
-        session.setAttribute("user", email);
+//        HttpServletRequest request = ServletActionContext.getRequest();
+//        HttpSession session = request.getSession(false);
+//        if (session == null || session.getAttribute("user") == null) {
+//        try {
+//                user = authenticationService.authenticateByEmail(email, password);
+//            } catch (AuthenticationException e) {
+//                error = e.getMessage();
+//                return ERROR;
+//            }
+//        }
+//
+//        session = request.getSession(true);
+//        session.setAttribute("user", email);
 
         return SUCCESS;
     }

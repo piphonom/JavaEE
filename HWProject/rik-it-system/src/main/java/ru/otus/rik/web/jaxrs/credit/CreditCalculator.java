@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import ru.otus.rikapi.service.CreditService;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -17,6 +18,7 @@ import java.util.List;
 @Api(tags={"calculator"})
 @Path("/credit/calculator")
 @Produces(MediaType.APPLICATION_JSON)
+@RolesAllowed({"ADMIN", "USER"})
 public class CreditCalculator {
 
     //@EJB

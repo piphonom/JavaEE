@@ -2,3 +2,17 @@ Lections/
 .idea/
 *.iml
 *.class
+HWProject/rik-it-system/target/
+HWProject/rik-remote-api/target/
+HWProject/rik-remote-client/target/
+HWProject.tar.gz
+HWProject/gwt-2.8.2/
+HWProject/rik-it-system/src/main/webapp/WEB-INF/glassfish-web.xml
+HWProject_prev.tar.gz
+Lesson_01/Lesson_01_Architecture.odt
+Lesson_01_Totalizator/TotalizatorOtus_122017/WebContent/obfuscatedEmails.csv
+Lesson_01_Totalizator/TotalizatorOtus_122017/target/
+Lesson_01_Totalizator/TotalizatorOtus_122017/tomcat.8080/
+VitalyIvanovProject/
+bootstrap-select-1.12.4.zip
+users.lmx

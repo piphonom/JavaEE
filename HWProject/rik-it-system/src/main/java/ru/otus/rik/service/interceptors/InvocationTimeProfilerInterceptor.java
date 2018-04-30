@@ -9,6 +9,7 @@ import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 import java.io.Serializable;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 
 @InvocationTimeProfile
 @Interceptor
@@ -32,6 +33,7 @@ public class InvocationTimeProfilerInterceptor implements Serializable {
             // TODO: fix SRP violation
             saveStatistics(method, endTime);
         }
+
         return result;
     }
 

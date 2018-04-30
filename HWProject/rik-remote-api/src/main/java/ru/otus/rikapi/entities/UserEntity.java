@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "User",
@@ -51,10 +53,14 @@ public class UserEntity implements Serializable {
     @XmlElement(name = "Position")
     private PositionEntity positionRef;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
-    @JoinColumn(name="roleRef", referencedColumnName="idRole")
-    @XmlElement(name = "Role")
-    private RoleEntity roleRef;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH}, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "UserRoles",
+            joinColumns = { @JoinColumn(name = "idUser") },
+            inverseJoinColumns = { @JoinColumn(name = "idRole") }
+    )
+    @XmlTransient
+    private Set<RoleEntity> roles = new HashSet<>();
 
     /*
     void writeObject(ObjectOutputStream outStream) throws IOException {

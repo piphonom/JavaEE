@@ -17,7 +17,7 @@
         <url-pattern>/RikGWTApp/RikGWTAppService</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>login.action</welcome-file>
   </welcome-file-list>
 
     <servlet>
@@ -99,8 +99,50 @@
         <url-pattern>*.action</url-pattern>
     </filter-mapping>
 
+
     <context-param>
         <param-name>defaultUsersSnapshotLocation</param-name>
         <param-value>/WEB-INF/users.xml</param-value>
     </context-param>
+
+    <!-- Security settings -->
+
+    <security-role>
+        <description>Administrators of the system</description>
+        <role-name>ADMIN</role-name>
+    </security-role>
+
+    <security-role>
+        <description>Users of the system</description>
+        <role-name>USER</role-name>
+    </security-role>
+
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>RikRealm</realm-name>
+        <form-login-config>
+            <form-login-page>/WEB-INF/login.jsp</form-login-page>
+            <form-error-page>/WEB-INF/login.jsp?fail</form-error-page>
+        </form-login-config>
+    </login-config>
+
+    <security-constraint>
+        <display-name>Allow users resources</display-name>
+
+        <web-resource-collection>
+            <web-resource-name>users-resources</web-resource-name>
+            <description/>
+            <url-pattern>/login.action</url-pattern>
+            <url-pattern>/chat.action</url-pattern>
+            <url-pattern>/credit.action</url-pattern>
+            <url-pattern>/edit-user.action</url-pattern>
+            <url-pattern>/soap.action</url-pattern>
+        </web-resource-collection>
+
+        <auth-constraint>
+            <description/>
+            <role-name>ADMIN</role-name>
+            <role-name>USER</role-name>
+        </auth-constraint>
+    </security-constraint>
 </web-app>

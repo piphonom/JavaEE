@@ -10,6 +10,7 @@ import ru.otus.rik.web.jaxws.geoipservice.GeoIpServiceAdapter;
 import ru.otus.rik.web.jaxws.sunsetrise.RiseSetDateHolder;
 import ru.otus.rik.web.jaxws.sunsetrise.SunRiseSetServiceAdapter;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.ws.rs.GET;
@@ -22,6 +23,7 @@ import javax.ws.rs.core.Response;
 @Api(tags={"soap"})
 @Produces(MediaType.APPLICATION_JSON)
 @Path("/")
+@RolesAllowed({"ADMIN", "USER"})
 public class SoapOverRest {
     private static final SunRiseSetServiceAdapter sunRiseSetServiceAdapter = new SunRiseSetServiceAdapter();
     private static final GeoIpServiceAdapter geoIpServiceAdapter = new GeoIpServiceAdapter();

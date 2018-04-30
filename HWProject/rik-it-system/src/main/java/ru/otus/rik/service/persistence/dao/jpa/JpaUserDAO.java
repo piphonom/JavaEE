@@ -28,6 +28,7 @@ public class JpaUserDAO implements UserDAO {
 
     @Override
     public List<UserEntity> findAll() {
+
         return baseDAO.findAll();
     }
 

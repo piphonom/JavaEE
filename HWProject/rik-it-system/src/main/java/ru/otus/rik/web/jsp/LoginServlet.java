@@ -25,8 +25,8 @@ public class LoginServlet extends HttpServlet {
     @EJB
     private PersistenceService persistenceService;
 
-    //@EJB
-    @Inject
+    @EJB
+    //@Inject
     private AuthenticationService authenticationService;
 
 

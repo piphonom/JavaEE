@@ -99,7 +99,7 @@
             </c:if>
         </c:when>
         <c:otherwise>
-            <jsp:forward page="${contextPath}/login.jsp"/>
+            <jsp:forward page="${contextPath}/WEB-INF/login.jsp"/>
         </c:otherwise>
     </c:choose>
 </div>

@@ -14,6 +14,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -36,7 +37,8 @@ public class ChatWebSocket {
 
     @OnMessage
     public void onMessage(Session session, String message) {
-        ChatMessage chatMessage = chatService.addMessage(message);
+        Principal principal = session.getUserPrincipal();
+        ChatMessage chatMessage = chatService.addMessage(principal.getName(), message);
         String result = jsonBuilder.toJson(chatMessage);
         sessions.forEach(s -> {
             try {

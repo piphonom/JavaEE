@@ -22,8 +22,11 @@ import java.io.PrintWriter;
 import java.io.Reader;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @WebServlet("/DbInit")
 public class DbInitServlet extends HttpServlet {
@@ -105,7 +108,7 @@ public class DbInitServlet extends HttpServlet {
             }
             user.setDepartmentRef(department);
             user.setPositionRef(position);
-            user.setRoleRef(role);
+            user.setRoles(Stream.of(role).collect(Collectors.toSet()));
 
             if (persistenceService.saveUser(user) == null) {
                 unsavedUsers.add(user);

@@ -9,6 +9,7 @@ import ru.otus.rik.web.jaxrs.user.parameters.CreateUserParameters;
 import ru.otus.rik.web.jaxrs.user.parameters.UserEmailParameter;
 import ru.otus.rik.web.jaxrs.user.parameters.EditUserParameters;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -19,6 +20,7 @@ import javax.ws.rs.core.Response;
 @Api(tags={"rik_users"})
 @Path("/user")
 @Produces(MediaType.APPLICATION_JSON)
+@RolesAllowed("ADMIN")
 public class UserRestService {
 
     //@EJB

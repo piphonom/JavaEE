@@ -24,6 +24,7 @@
         <module>rik-remote-api</module>
         <module>rik-remote-client</module>
         <module>guess-the-number</module>
+        <module>rik-login-module</module>
     </modules>
 
     <dependencyManagement>

@@ -8,25 +8,34 @@ import ru.otus.rikapi.entities.PositionEntity;
 import ru.otus.rikapi.entities.UserEntity;
 import ru.otus.rikapi.service.UserService;
 
+import javax.annotation.Resource;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
+import java.security.Principal;
 import java.util.List;
 
 @Api(tags={"rik_catalog"})
 @Path("/catalog")
 @Produces(MediaType.APPLICATION_JSON)
+@RolesAllowed({"ADMIN", "USER"})
 public class CatalogRestService {
 
     //@EJB
     @Inject
     @Named("userService")
     private UserService userService;
+
+    @Context
+    SecurityContext securityContext;
 
     @GET
     @Path("/users")
@@ -35,6 +44,9 @@ public class CatalogRestService {
             @ApiResponse(response = UsersListResponse.class, code = 200, message = "Users list")
     )
     public Response getUsers() {
+        Principal principal = securityContext.getUserPrincipal();
+        boolean role = securityContext.isUserInRole("ADMIN");
+
         List<UserEntity> users = userService.findAllUsers();
         UsersListResponse response = new UsersListResponse(users);
         return Response.status(Response.Status.OK).entity(response).build();
