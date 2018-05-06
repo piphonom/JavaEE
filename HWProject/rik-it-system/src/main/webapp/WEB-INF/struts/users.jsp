@@ -10,6 +10,7 @@
     <title>Users</title>
     <script>
         var catalogBaseUrl = "http://" + document.location.host + "/rik-it-system/api/v1/catalog";
+        var logoutUrl = "http://" + document.location.host + "/rik-it-system/api/v1/auth/logout";
         var userListUrl = catalogBaseUrl + "/users";
         var statusTimeout = 300000; // timeout form message
 
@@ -17,6 +18,21 @@
 
         function removeUser (email) {
 
+        }
+
+        function logout() {
+            $.ajax({
+                url: logoutUrl,
+                cache: false,
+                dataType: "json",
+                timeout: statusTimeout,
+                type: "post",
+                error: errorHandler,
+                success: logoutHandler});
+        }
+
+        function logoutHandler() {
+            window.location.href = '/login.action';
         }
 
         function getUsers() {
@@ -82,12 +98,12 @@
                 <input type="hidden" name="csrf" value="<c:out value='${csrf}'/>"/>
             </form>
 
-            <form id="logoutForm" method="POST" action="${contextPath}/logout">
+            <form id="logoutForm" method="POST" action="${contextPath}/api/v1/auth/logout">
                 <input type="hidden" name="csrf" value="<c:out value='${csrf}'/>"/>
             </form>
 
-            <h2>List of users for ${user.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
-
+            <%--<h2>List of users for ${user.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>--%>
+            <h2>List of users for ${user.name} | <a onclick="logout()">Logout</a></h2>
             <c:if test="${not empty message}">
                 <div class="alert alert-success">
                     ${message}
